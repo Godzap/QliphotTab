@@ -2,28 +2,27 @@ import { useEffect, useState } from 'react'
 import './LoadingScreen.css'
 
 const LOG_LINES = [
-  { text: 'Verificando integridade do núcleo...',      delay: 1900, type: 'active' },
-  { text: 'Núcleo verificado.',                         delay: 2400, type: 'done'   },
-  { text: 'Carregando banco de anormalidades...',       delay: 2800, type: 'active' },
-  { text: '[ AVISO ] 9 entidades detectadas.',          delay: 3400, type: 'warn'   },
-  { text: 'Módulo de contenção inicializado.',          delay: 3900, type: 'done'   },
-  { text: 'Conectando às câmeras de monitoramento...', delay: 4400, type: 'active' },
-  { text: 'Câmeras ativas — Setor A, B, C.',            delay: 5000, type: 'done'   },
-  { text: 'Carregando perfis de agentes...',            delay: 5400, type: 'active' },
-  { text: '6 agentes disponíveis para implantação.',   delay: 5900, type: 'done'   },
-  { text: 'Sistema pronto.',                            delay: 6600, type: 'done'   },
+  { text: 'Verificando integridade do núcleo...',      delay: 700,  type: 'active' },
+  { text: 'Núcleo verificado.',                         delay: 950,  type: 'done'   },
+  { text: 'Carregando banco de anormalidades...',       delay: 1150, type: 'active' },
+  { text: '[ AVISO ] 9 entidades detectadas.',          delay: 1400, type: 'warn'   },
+  { text: 'Módulo de contenção inicializado.',          delay: 1600, type: 'done'   },
+  { text: 'Câmeras ativas — Setor A, B, C.',            delay: 1850, type: 'done'   },
+  { text: 'Carregando perfis de agentes...',            delay: 2050, type: 'active' },
+  { text: '6 agentes disponíveis para implantação.',   delay: 2250, type: 'done'   },
+  { text: 'Sistema pronto.',                            delay: 2450, type: 'done'   },
 ]
 
 const PROGRESS_KF = [
-  { pct: 8,   delay: 400  },
-  { pct: 18,  delay: 800  },
-  { pct: 35,  delay: 1400 },
-  { pct: 51,  delay: 2000 },
-  { pct: 67,  delay: 2600 },
-  { pct: 82,  delay: 3200 },
-  { pct: 90,  delay: 3600 },
-  { pct: 95,  delay: 3800 },
-  { pct: 100, delay: 4000 },
+  { pct: 8,   delay: 100  },
+  { pct: 18,  delay: 300  },
+  { pct: 35,  delay: 550  },
+  { pct: 51,  delay: 800  },
+  { pct: 67,  delay: 1050 },
+  { pct: 82,  delay: 1300 },
+  { pct: 90,  delay: 1500 },
+  { pct: 95,  delay: 1600 },
+  { pct: 100, delay: 1750 },
 ]
 
 const STATUS = {
@@ -43,7 +42,7 @@ function getStatus(pct) {
   return STATUS[0]
 }
 
-const BASE_DELAY = 1600
+const BASE_DELAY = 400
 
 const LOG_COLOR  = { done: '#1abc9c', warn: '#b83232', active: '#555' }
 const LOG_PREFIX = { done: '✓ ',      warn: '⚠ ',      active: '▸ '  }
@@ -90,9 +89,9 @@ export default function LoadingScreen({ onComplete }) {
   }, [])
 
   useEffect(() => {
-    const t1 = setTimeout(() => setShowComplete(true), 7000)
-    const t2 = setTimeout(() => setFading(true), 8200)
-    const t3 = setTimeout(() => onComplete?.(), 8800)
+    const t1 = setTimeout(() => setShowComplete(true), 2600)
+    const t2 = setTimeout(() => setFading(true),       3000)
+    const t3 = setTimeout(() => onComplete?.(),        3500)
     return () => [t1, t2, t3].forEach(clearTimeout)
   }, [onComplete])
 
@@ -103,69 +102,67 @@ export default function LoadingScreen({ onComplete }) {
       className="lc-loading-wrap"
       style={{
         opacity: fading ? 0 : 1,
-        transition: fading ? 'opacity 0.6s ease' : 'none',
+        transition: fading ? 'opacity 0.5s ease' : 'none',
         pointerEvents: fading ? 'none' : 'all',
       }}
     >
-      <div className="lc-tablet-frame">
-        <div className="lc-screen">
-          <div className="lc-power-flash" />
-          <div className="lc-scanlines" />
-          <div className="lc-vignette" />
-          <div className="lc-deco-top" />
-          <div className="lc-deco-bottom" />
-          <div className="lc-corner lc-corner-tl" />
-          <div className="lc-corner lc-corner-tr" />
-          <div className="lc-corner lc-corner-bl" />
-          <div className="lc-corner lc-corner-br" />
-          <div className="lc-glitch" />
+      <div className="lc-screen">
+        <div className="lc-power-flash" />
+        <div className="lc-scanlines" />
+        <div className="lc-vignette" />
+        <div className="lc-deco-top" />
+        <div className="lc-deco-bottom" />
+        <div className="lc-corner lc-corner-tl" />
+        <div className="lc-corner lc-corner-tr" />
+        <div className="lc-corner lc-corner-bl" />
+        <div className="lc-corner lc-corner-br" />
+        <div className="lc-glitch" />
 
-          <div className="lc-top-bar">
-            <span className="lc-top-bar-title">Sistema de Gestão — Terminal 4</span>
-            <div className="lc-top-dots">
-              <div style={{ background: '#b83232' }} />
-              <div style={{ background: '#e8b700' }} />
-              <div style={{ background: '#1abc9c' }} />
+        <div className="lc-top-bar">
+          <span className="lc-top-bar-title">Sistema de Gestão — Terminal 4</span>
+          <div className="lc-top-dots">
+            <div style={{ background: '#b83232' }} />
+            <div style={{ background: '#e8b700' }} />
+            <div style={{ background: '#1abc9c' }} />
+          </div>
+        </div>
+
+        <div className="lc-content">
+          <div className="lc-logo-area">
+            <img src={logoSrc} alt="Corporação Lobotomy" className="lc-logo-img" />
+            <div className="lc-logo-name">Corporação Lobotomy</div>
+            <div className="lc-logo-tagline">Enfrente o Medo · Construa o Futuro</div>
+          </div>
+
+          <div className="lc-progress-area">
+            <div className="lc-progress-label">
+              <span>{statusTop}</span>
+              <span style={{ color: '#1abc9c' }}>{pct}%</span>
+            </div>
+            <div className="lc-progress-track">
+              <div className="lc-progress-fill" style={{ width: `${pct}%` }} />
             </div>
           </div>
 
-          <div className="lc-content">
-            <div className="lc-logo-area">
-              <img src={logoSrc} alt="Corporação Lobotomy" className="lc-logo-img" />
-              <div className="lc-logo-name">Corporação Lobotomy</div>
-              <div className="lc-logo-tagline">Enfrente o Medo · Construa o Futuro</div>
-            </div>
-
-            <div className="lc-progress-area">
-              <div className="lc-progress-label">
-                <span>{statusTop}</span>
-                <span style={{ color: '#1abc9c' }}>{pct}%</span>
+          <div className="lc-log-area">
+            {logLines.map((line, i) => (
+              <div key={i} className="lc-log-line" style={{ color: LOG_COLOR[line.type] }}>
+                {LOG_PREFIX[line.type]}{line.text}
               </div>
-              <div className="lc-progress-track">
-                <div className="lc-progress-fill" style={{ width: `${pct}%` }} />
-              </div>
-            </div>
-
-            <div className="lc-log-area">
-              {logLines.map((line, i) => (
-                <div key={i} className="lc-log-line" style={{ color: LOG_COLOR[line.type] }}>
-                  {LOG_PREFIX[line.type]}{line.text}
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
+        </div>
 
-          <div className="lc-complete" style={{ opacity: showComplete ? 1 : 0 }}>
-            <span className={`lc-complete-text${showComplete ? ' lc-pulse' : ''}`}>
-              Acesso Autorizado
-            </span>
-          </div>
+        <div className="lc-complete" style={{ opacity: showComplete ? 1 : 0 }}>
+          <span className={`lc-complete-text${showComplete ? ' lc-pulse' : ''}`}>
+            Acesso Autorizado
+          </span>
+        </div>
 
-          <div className="lc-status-bar">
-            <div className="lc-status-dot" />
-            <span className="lc-status-text">{statusBottom}</span>
-            <span className="lc-clock">{clock}</span>
-          </div>
+        <div className="lc-status-bar">
+          <div className="lc-status-dot" />
+          <span className="lc-status-text">{statusBottom}</span>
+          <span className="lc-clock">{clock}</span>
         </div>
       </div>
     </div>

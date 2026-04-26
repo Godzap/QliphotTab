@@ -1,0 +1,351 @@
+/* ============================================================
+   LOBOTOMY CORPORATION — Design System Tokens
+   colors_and_type.css
+   Project Moon / Lobotomy Corporation
+   ============================================================ */
+
+/* ─────────────────────────────────────────
+   Brand Fonts
+   Norwester — uploaded brand font (display/logo/headings)
+   Barlow Condensed → UI labels (Google Fonts)
+   Source Sans 3 → body text (Google Fonts)
+   ───────────────────────────────────────── */
+@font-face {
+  font-family: 'Norwester';
+  src: url('fonts/norwester.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+:root {
+
+  /* ─── BASE COLORS ─────────────────────────────────────── */
+  --color-black:          #0c0a07;   /* True game background — warm sépia */
+  --color-dark:           #191410;   /* Panel backgrounds — dark parchment */
+  --color-dark-mid:       #231e16;   /* Secondary panel bg */
+  --color-gray-deep:      #322c20;   /* Separator / inactive */
+  --color-gray-mid:       #5e5444;   /* Disabled / subdued */
+  --color-gray-light:     #8c7e68;   /* Tertiary text */
+  --color-white:          #f2ead8;   /* Primary text on dark — warm off-white */
+
+  /* ─── BRAND / ACCENT COLORS ──────────────────────────── */
+  --color-cream:          #eddcb8;   /* True cream — key panels, highlighted labels */
+  --color-cream-dim:      #d9c89e;   /* Cream shadow / pressed */
+  --color-crimson:        #b83232;   /* Red — danger, borders, story accents */
+  --color-crimson-dark:   #8a1f1f;   /* Deep red — pressed state */
+  --color-crimson-light:  #d44444;   /* Bright red — hover state */
+  --color-teal:           #1abc9c;   /* Cyan — containment, positive, active */
+  --color-teal-dark:      #148f76;   /* Teal pressed */
+  --color-teal-light:     #2eded8;   /* Teal hover */
+  --color-yellow:         #e8b700;   /* Warning yellow — dashed borders, LV indicators */
+  --color-yellow-light:   #f5d020;   /* Bright warning */
+  --color-green:          #5a9e36;   /* Energy bar positive */
+  --color-green-light:    #7fbb56;   /* HP bar highlight */
+  --color-purple:         #7b4cc2;   /* Repression / Black damage type */
+  --color-purple-light:   #a06de0;   /* Purple hover */
+  --color-orange:         #e07820;   /* Mid-stress / warning */
+
+  /* ─── SEMANTIC COLORS ────────────────────────────────── */
+  --color-danger:         var(--color-crimson);
+  --color-safe:           var(--color-teal);
+  --color-warning:        var(--color-yellow);
+  --color-positive:       var(--color-green);
+  --color-panic:          var(--color-orange);
+  --color-meltdown:       var(--color-crimson-light);
+
+  /* ─── RISK LEVEL COLORS ─────────────────────────────────── */
+  --color-risk-zayin:     #4caf6e;   /* Green */
+  --color-risk-teth:      #3a7bc8;   /* Blue */
+  --color-risk-he:        #e8e070;   /* Light yellow */
+  --color-risk-waw:       #7b4cc2;   /* Purple */
+  --color-risk-aleph:     #b83232;   /* Red */
+
+  /* ─── WORK TYPE COLORS ───────────────────────────────── */
+  --color-instinct:       #c0392b;   /* Red */
+  --color-insight:        #d0d0d0;   /* Light gray-white */
+  --color-attachment:     #7b4cc2;   /* Purple */
+  --color-repression:     #7dd4e0;   /* Aqua blue */
+
+  /* ─── DAMAGE TYPE COLORS ─────────────────────────────── */
+  --color-dmg-white:      #e8e8e8;
+  --color-dmg-black:      #444444;
+  --color-dmg-pale:       #c8d4e0;
+  --color-dmg-red:        #b83232;
+
+  /* ─── SURFACE / UI BACKGROUNDS ───────────────────────── */
+  --surface-base:         var(--color-black);
+  --surface-panel:        var(--color-dark);
+  --surface-card:         var(--color-dark-mid);
+  --surface-overlay:      rgba(0,0,0,0.75);
+  --surface-highlight:    rgba(237,220,184,0.09);   /* cream glow on dark */
+
+  /* ─── TYPOGRAPHY ─────────────────────────────────────── */
+
+  /* Font stacks */
+  --font-display:         'Norwester', 'Barlow Condensed', sans-serif;
+  --font-ui:              'Barlow Condensed', 'Norwester', sans-serif;
+  --font-body:            'Source Sans 3', 'Barlow Condensed', sans-serif;
+  --font-mono:            'Courier New', monospace;  /* stats readouts */
+
+  /* Scale */
+  --text-xs:              10px;
+  --text-sm:              12px;
+  --text-base:            14px;
+  --text-md:              16px;
+  --text-lg:              20px;
+  --text-xl:              24px;
+  --text-2xl:             32px;
+  --text-3xl:             48px;
+  --text-display:         64px;
+  --text-logo:            96px;
+
+  /* Weights */
+  --fw-regular:           400;
+  --fw-medium:            500;
+  --fw-semibold:          600;
+  --fw-bold:              700;
+
+  /* Letter spacing */
+  --ls-tight:             -0.02em;
+  --ls-normal:            0em;
+  --ls-wide:              0.05em;
+  --ls-widest:            0.15em;   /* ALL CAPS UI labels */
+
+  /* Line heights */
+  --lh-tight:             1.1;
+  --lh-normal:            1.4;
+  --lh-loose:             1.7;
+
+  /* ─── SEMANTIC TYPE ROLES ────────────────────────────── */
+  /* h1 → game section title */
+  --h1-font:              var(--font-display);
+  --h1-size:              var(--text-3xl);
+  --h1-weight:            var(--fw-bold);
+  --h1-transform:         uppercase;
+  --h1-spacing:           var(--ls-widest);
+  --h1-color:             var(--color-cream);
+
+  /* h2 → panel/section heading */
+  --h2-font:              var(--font-display);
+  --h2-size:              var(--text-2xl);
+  --h2-weight:            var(--fw-bold);
+  --h2-transform:         uppercase;
+  --h2-spacing:           var(--ls-wide);
+  --h2-color:             var(--color-white);
+
+  /* h3 → subsection / card title */
+  --h3-font:              var(--font-ui);
+  --h3-size:              var(--text-xl);
+  --h3-weight:            var(--fw-semibold);
+  --h3-transform:         uppercase;
+  --h3-spacing:           var(--ls-wide);
+  --h3-color:             var(--color-cream);
+
+  /* label → UI labels, stat names */
+  --label-font:           var(--font-ui);
+  --label-size:           var(--text-sm);
+  --label-weight:         var(--fw-semibold);
+  --label-transform:      uppercase;
+  --label-spacing:        var(--ls-widest);
+  --label-color:          var(--color-gray-light);
+
+  /* p → body / lore text */
+  --p-font:               var(--font-body);
+  --p-size:               var(--text-base);
+  --p-weight:             var(--fw-regular);
+  --p-transform:          none;
+  --p-spacing:            var(--ls-normal);
+  --p-color:              var(--color-white);
+
+  /* code → stat readouts, counters */
+  --code-font:            var(--font-mono);
+  --code-size:            var(--text-base);
+  --code-color:           var(--color-teal);
+
+  /* ─── SPACING SCALE ──────────────────────────────────── */
+  --space-1:              4px;
+  --space-2:              8px;
+  --space-3:              12px;
+  --space-4:              16px;
+  --space-5:              20px;
+  --space-6:              24px;
+  --space-8:              32px;
+  --space-10:             40px;
+  --space-12:             48px;
+  --space-16:             64px;
+
+  /* ─── BORDERS ────────────────────────────────────────── */
+  --radius:               0px;           /* Angular — no rounded corners */
+  --radius-clip:          0px;           /* Use clip-path for chamfered corners */
+  --border-thin:          1px;
+  --border-base:          2px;
+  --border-thick:         3px;
+  --border-heavy:         4px;
+
+  /* Border color tokens */
+  --border-cream:         var(--color-cream);
+  --border-red:           var(--color-crimson);
+  --border-teal:          var(--color-teal);
+  --border-yellow:        var(--color-yellow);
+  --border-gray:          var(--color-gray-deep);
+
+  /* ─── SHADOWS & ELEVATION ────────────────────────────── */
+  --shadow-none:          none;
+  --shadow-panel:         0 2px 8px rgba(0,0,0,0.8);
+  --shadow-popup:         0 4px 24px rgba(0,0,0,0.95);
+  --shadow-inner:         inset 0 1px 4px rgba(0,0,0,0.6);
+  --shadow-glow-teal:     0 0 12px rgba(26,188,156,0.4);
+  --shadow-glow-red:      0 0 12px rgba(184,50,50,0.5);
+  --shadow-glow-cream:    0 0 8px rgba(237,220,184,0.35);
+
+  /* ─── CLIP-PATH CHAMFER (45° cut corners) ────────────── */
+  /* Small chamfer — 8px */
+  --chamfer-sm: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
+  /* Medium chamfer — 16px */
+  --chamfer-md: polygon(16px 0%, calc(100% - 16px) 0%, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0% calc(100% - 16px), 0% 16px);
+  /* Top-left only — 16px */
+  --chamfer-tl: polygon(16px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 16px);
+  /* Top-right only — 16px */
+  --chamfer-tr: polygon(0% 0%, calc(100% - 16px) 0%, 100% 16px, 100% 100%, 0% 100%);
+  /* Bottom-right only — 16px */
+  --chamfer-br: polygon(0% 0%, 100% 0%, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0% 100%);
+
+  /* ─── Z-INDEX SCALE ──────────────────────────────────── */
+  --z-base:               1;
+  --z-panel:              10;
+  --z-overlay:            100;
+  --z-modal:              200;
+  --z-tooltip:            300;
+  --z-top:                999;
+
+  /* ─── TRANSITIONS ────────────────────────────────────── */
+  --transition-fast:      80ms linear;
+  --transition-base:      150ms linear;
+  --transition-slow:      300ms ease;
+
+}
+
+/* ─── BASE RESETS ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-black);
+  color: var(--color-white); /* warm off-white */
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--lh-normal);
+}
+
+/* ─── TYPE UTILITY CLASSES ────────────────────────────────── */
+.lc-h1 {
+  font-family: var(--h1-font);
+  font-size: var(--h1-size);
+  font-weight: var(--h1-weight);
+  text-transform: var(--h1-transform);
+  letter-spacing: var(--h1-spacing);
+  color: var(--h1-color);
+  line-height: var(--lh-tight);
+}
+.lc-h2 {
+  font-family: var(--h2-font);
+  font-size: var(--h2-size);
+  font-weight: var(--h2-weight);
+  text-transform: var(--h2-transform);
+  letter-spacing: var(--h2-spacing);
+  color: var(--h2-color);
+  line-height: var(--lh-tight);
+}
+.lc-h3 {
+  font-family: var(--h3-font);
+  font-size: var(--h3-size);
+  font-weight: var(--h3-weight);
+  text-transform: var(--h3-transform);
+  letter-spacing: var(--h3-spacing);
+  color: var(--h3-color);
+  line-height: var(--lh-tight);
+}
+.lc-label {
+  font-family: var(--label-font);
+  font-size: var(--label-size);
+  font-weight: var(--label-weight);
+  text-transform: var(--label-transform);
+  letter-spacing: var(--label-spacing);
+  color: var(--label-color);
+}
+.lc-body {
+  font-family: var(--p-font);
+  font-size: var(--p-size);
+  font-weight: var(--p-weight);
+  color: var(--p-color);
+  line-height: var(--lh-normal);
+}
+.lc-code {
+  font-family: var(--code-font);
+  font-size: var(--code-size);
+  color: var(--code-color);
+}
+
+/* ─── PANEL / CARD UTILITY CLASSES ──────────────────────────  */
+.lc-panel {
+  background: var(--surface-panel);
+  border: var(--border-base) solid var(--border-cream);
+  clip-path: var(--chamfer-sm);
+  padding: var(--space-4);
+}
+.lc-panel-danger {
+  border-color: var(--border-red);
+}
+.lc-panel-active {
+  border-color: var(--border-teal);
+  box-shadow: var(--shadow-glow-teal);
+}
+.lc-panel-warning {
+  border: var(--border-thick) dashed var(--border-yellow);
+}
+
+/* ─── BUTTON UTILITY CLASSES ─────────────────────────────────  */
+.lc-btn {
+  font-family: var(--font-ui);
+  font-size: var(--text-md);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-widest);
+  color: var(--color-white);
+  background: var(--color-dark);
+  border: var(--border-base) solid var(--border-cream);
+  clip-path: var(--chamfer-sm);
+  padding: var(--space-2) var(--space-6);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  outline: none;
+}
+.lc-btn:hover {
+  background: var(--color-dark-mid);
+  border-color: var(--color-teal);
+  box-shadow: var(--shadow-glow-teal);
+}
+.lc-btn:active {
+  background: var(--color-teal-dark);
+  color: var(--color-cream);
+}
+.lc-btn-danger {
+  border-color: var(--color-crimson);
+}
+.lc-btn-danger:hover {
+  border-color: var(--color-crimson-light);
+  box-shadow: var(--shadow-glow-red);
+}
+.lc-btn-primary {
+  background: var(--color-crimson);
+  border-color: var(--color-cream);
+  color: var(--color-cream);
+}
+.lc-btn-primary:hover {
+  background: var(--color-crimson-light);
+}
