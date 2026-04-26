@@ -1,20 +1,32 @@
 const DAMAGE_TYPES = [
-  { key: 'red',   label: '🔴 Red',   color: 'text-damage-red'   },
-  { key: 'white', label: '⬜ White', color: 'text-damage-white' },
-  { key: 'black', label: '⬛ Black', color: 'text-damage-black' },
-  { key: 'pale',  label: '🩵 Pale',  color: 'text-damage-pale'  },
+  { key: 'red', label: 'Vermelho', color: 'text-damage-red' },
+  { key: 'white', label: 'Branco', color: 'text-damage-white' },
+  { key: 'black', label: 'Preto', color: 'text-damage-black' },
+  { key: 'pale', label: 'Palido', color: 'text-damage-pale' },
 ]
 
 const RESISTANCE_STYLES = {
-  Normal:     'text-moonstone/70',
-  Weak:       'text-tier-aleph font-semibold',
-  Endured:    'text-tier-he',
-  Resistant:  'text-tier-teth',
-  Immune:     'text-tier-teth font-bold',
-  Absorb:     'text-tier-zayin font-bold',
+  Normal: 'text-moonstone/70',
+  Weak: 'text-tier-aleph font-semibold',
+  Endured: 'text-tier-he',
+  Resistant: 'text-tier-teth',
+  Immune: 'text-tier-teth font-bold',
+  Absorb: 'text-tier-zayin font-bold',
   Vulnerable: 'text-tier-aleph font-bold',
-  '?':        'text-moonstone-dark/40 italic',
-  'N/A':      'text-moonstone-dark/30',
+  '?': 'text-moonstone-dark/40 italic',
+  'N/A': 'text-moonstone-dark/30',
+}
+
+const RESISTANCE_LABELS = {
+  Normal: 'Normal',
+  Weak: 'Fraco',
+  Endured: 'Resistente',
+  Resistant: 'Muito resistente',
+  Immune: 'Imune',
+  Absorb: 'Absorve',
+  Vulnerable: 'Vulneravel',
+  '?': '?',
+  'N/A': 'N/A',
 }
 
 export default function ResistanceTable({ durability, isNonEscaping, enkephalinLocked, enkephalinCost, resistances }) {
@@ -22,7 +34,7 @@ export default function ResistanceTable({ durability, isNonEscaping, enkephalinL
     return (
       <div className="space-y-3">
         <p className="text-sm text-moonstone-dark/60 italic border border-gold-muted/20 bg-navy-800/40 px-4 py-3 rounded-sm">
-          Non Escaping Object — this abnormality does not escape and has no defensive stats.
+          Objeto nao escapante - esta anomalia nao foge e nao possui atributos defensivos.
         </p>
         <ResistanceRow resistances={{ red: 'N/A', white: 'N/A', black: 'N/A', pale: 'N/A' }} />
       </div>
@@ -33,13 +45,13 @@ export default function ResistanceTable({ durability, isNonEscaping, enkephalinL
     <div className="space-y-3">
       {durability !== null && durability !== undefined && (
         <p className="text-sm text-moonstone/80">
-          <span className="text-moonstone-dark/60 font-mono text-xs tracking-wider uppercase mr-2">Durability</span>
+          <span className="text-moonstone-dark/60 font-mono text-xs tracking-wider uppercase mr-2">Durabilidade</span>
           <span className="font-mono text-gold">{durability}</span>
         </p>
       )}
       {enkephalinLocked && (
         <p className="text-sm text-moonstone-dark/60 italic border border-gold-muted/20 bg-navy-800/40 px-4 py-3 rounded-sm">
-          Stats locked behind {enkephalinCost} Enkephalin boxes. Defensive data pending.
+          Dados bloqueados ate {enkephalinCost} caixas de encefalina. Informacoes defensivas pendentes.
         </p>
       )}
       <ResistanceRow resistances={resistances} />
@@ -63,10 +75,10 @@ function ResistanceRow({ resistances }) {
         <tbody>
           <tr className="bg-navy-900/40">
             {DAMAGE_TYPES.map(({ key }) => {
-              const val = resistances?.[key] ?? '?'
+              const value = resistances?.[key] ?? '?'
               return (
-                <td key={key} className={`px-4 py-2 text-center text-xs ${RESISTANCE_STYLES[val] ?? 'text-moonstone/70'}`}>
-                  {val}
+                <td key={key} className={`px-4 py-2 text-center text-xs ${RESISTANCE_STYLES[value] ?? 'text-moonstone/70'}`}>
+                  {RESISTANCE_LABELS[value] ?? value}
                 </td>
               )
             })}

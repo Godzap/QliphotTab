@@ -5,11 +5,11 @@ import GlobalSearchModal from './components/GlobalSearchModal'
 import HomePage from './pages/HomePage'
 import ListPage from './pages/ListPage'
 import DetailPage from './pages/DetailPage'
-import CompanionPage from './pages/CompanionPage'
+import AuthPage from './pages/AuthPage'
 import LoadingScreen from './components/LoadingScreen'
 import { ThemeProvider } from './context/ThemeContext'
 
-const NAV_SHORTCUTS = { '1': '/', '2': '/abnormalities', '3': '/tools', '4': '/ordeals', '5': '/companion' }
+const NAV_SHORTCUTS = { '1': '/', '2': '/abnormalities', '3': '/systems', '4': '/ordeals', '5': '/auth' }
 
 function GlobalKeyHandler() {
   const location = useLocation()
@@ -47,11 +47,11 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/abnormalities" element={<ListPage category="abnormalities" />} />
             <Route path="/abnormalities/:id" element={<DetailPage category="abnormalities" />} />
-            <Route path="/tools" element={<ListPage category="tools" />} />
-            <Route path="/tools/:id" element={<DetailPage category="tools" />} />
+            <Route path="/systems" element={<ListPage category="systems" />} />
+            <Route path="/systems/:id" element={<DetailPage category="systems" />} />
             <Route path="/ordeals" element={<ListPage category="ordeals" />} />
             <Route path="/ordeals/:id" element={<DetailPage category="ordeals" />} />
-            <Route path="/companion" element={<CompanionPage />} />
+            <Route path="/auth" element={<AuthPage />} />
           </Route>
         </Routes>
       </HashRouter>

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "terminal-central",
+    "name": "Terminal Central de Supervisao",
+    "code": "SYS-01",
+    "level": "Zayin",
+    "image": null,
+    "usageType": "Monitoramento",
+    "notes": "Canal principal para leitura de relatorios, celas e alertas administrativos.",
+    "hasNotes": true,
+    "hasEmpiricalResearch": false,
+    "toolNotes": {
+      "typeDescriptor": "Monitoramento interno",
+      "typeDefinition": "Painel de consulta utilizado para consolidar dados de setores, acompanhar registros recentes e confirmar o estado geral da instalacao.",
+      "unlockConditions": [
+        "Acesso concedido a funcionarios autenticados com credenciais basicas.",
+        "Disponibilidade condicionada ao funcionamento da rede interna do departamento."
+      ],
+      "effects": [
+        {
+          "label": "Modulo 1",
+          "text": "Exibe listas de anomalias, sistemas e equipes registradas no terminal atual."
+        },
+        {
+          "label": "Modulo 2",
+          "text": "Permite consultar resumos operacionais e navegar entre entradas catalogadas pela administracao."
+        }
+      ]
+    },
+    "empiricalResearch": {
+      "observations": []
+    }
+  },
+  {
+    "id": "painel-enkephalin",
+    "name": "Painel de Fluxo de Encefalina",
+    "code": "SYS-02",
+    "level": "Teth",
+    "image": null,
+    "usageType": "Analise",
+    "notes": "Modulo voltado ao acompanhamento da producao energetica e das oscilacoes de coleta.",
+    "hasNotes": true,
+    "hasEmpiricalResearch": false,
+    "toolNotes": {
+      "typeDescriptor": "Analise operacional",
+      "typeDefinition": "Sistema de apoio que consolida dados energeticos, incidentes de queda de rendimento e sinais de sobrecarga em setores ativos.",
+      "unlockConditions": [
+        "Liberado para equipes com autorizacao de leitura assistida.",
+        "Requer integridade minima das linhas de distribuicao do departamento."
+      ],
+      "effects": [
+        {
+          "label": "Modulo 1",
+          "text": "Sinaliza variacoes no rendimento da encefalina em setores sob observacao."
+        },
+        {
+          "label": "Modulo 2",
+          "text": "Destaca instabilidades que possam exigir intervencao imediata da equipe de controle."
+        }
+      ]
+    },
+    "empiricalResearch": {
+      "observations": []
+    }
+  },
+  {
+    "id": "rede-sephirah",
+    "name": "Rede Consultiva Sephirah",
+    "code": "SYS-03",
+    "level": "HE",
+    "image": null,
+    "usageType": "Suporte",
+    "notes": "Canal institucional para protocolos, alertas e orientacoes de alto nivel.",
+    "hasNotes": true,
+    "hasEmpiricalResearch": false,
+    "toolNotes": {
+      "typeDescriptor": "Suporte estrategico",
+      "typeDefinition": "Ambiente destinado a distribuir instrucoes sensiveis, observacoes contextuais e respostas de orientacao para as equipes autorizadas.",
+      "unlockConditions": [
+        "Necessita autenticacao validada pelo sistema interno.",
+        "Opera de forma parcial quando interfaces externas estiverem em manutencao."
+      ],
+      "effects": [
+        {
+          "label": "Modulo 1",
+          "text": "Centraliza comunicados, prioridades de ciclo e avisos de seguranca em um unico fluxo."
+        },
+        {
+          "label": "Modulo 2",
+          "text": "Serve como camada de apoio para consulta de protocolos durante eventos fora do padrao."
+        }
+      ]
+    },
+    "empiricalResearch": {
+      "observations": []
+    }
+  },
+  {
+    "id": "controle-brechas",
+    "name": "Console de Controle de Brechas",
+    "code": "SYS-04",
+    "level": "Waw",
+    "image": null,
+    "usageType": "Contencao",
+    "notes": "Ferramenta administrativa para acompanhar falhas, travamentos e pontos de risco operacional.",
+    "hasNotes": true,
+    "hasEmpiricalResearch": false,
+    "toolNotes": {
+      "typeDescriptor": "Resposta a incidentes",
+      "typeDefinition": "Console dedicado ao rastreamento de eventos criticos, interrupcoes em celas e ocorrencias que comprometam a estabilidade interna.",
+      "unlockConditions": [
+        "Acesso restrito a cargos com permissao reforcada.",
+        "Pode operar em modo reduzido durante emergencias em larga escala."
+      ],
+      "effects": [
+        {
+          "label": "Modulo 1",
+          "text": "Organiza alertas por prioridade e ajuda a identificar o setor mais afetado."
+        },
+        {
+          "label": "Modulo 2",
+          "text": "Mantem um historico resumido das ultimas anomalias de operacao registradas pela equipe."
+        }
+      ]
+    },
+    "empiricalResearch": {
+      "observations": []
+    }
+  }
+]

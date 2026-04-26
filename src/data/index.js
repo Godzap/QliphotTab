@@ -1,8 +1,30 @@
 import abnormalities from './abnormalities.json'
-import tools from './tools.json'
 import ordeals from './ordeals.json'
+import systems from './systems.json'
+import tools from './tools.json'
 
-export const DATA = { abnormalities, tools, ordeals }
+function normalizeToolAsAbnormality(entry) {
+  return {
+    ...entry,
+    sourceCategory: 'tools',
+    classification: 'Sistema anomalo',
+  }
+}
+
+const mergedAbnormalities = [
+  ...abnormalities.map((entry) => ({
+    ...entry,
+    sourceCategory: 'abnormalities',
+    classification: 'Anomalia',
+  })),
+  ...tools.map(normalizeToolAsAbnormality),
+]
+
+export const DATA = {
+  abnormalities: mergedAbnormalities,
+  systems,
+  ordeals,
+}
 
 export function getAll(category) {
   return DATA[category] ?? []
@@ -31,22 +53,22 @@ export const ORDEAL_COLOR_STYLES = {
 
 export const CATEGORY_META = {
   abnormalities: {
-    label: 'Abnormalities',
-    description: 'Anomalous entities contained within the facility. Each poses unique risk and research value.',
+    label: 'Anomalias',
+    description: 'Entidades e artefatos anormais catalogados pela instalacao. Cada registro exige controle, estudo e monitoramento constante.',
     filterKey: 'level',
     filterOptions: TIER_ORDER,
     filterStyles: TIER_STYLES,
   },
-  tools: {
-    label: 'Tools',
-    description: 'Equipment derived from abnormality research. Classified by usage type and risk tier.',
+  systems: {
+    label: 'Sistemas',
+    description: 'Infraestruturas internas, terminais e protocolos operacionais que sustentam a rotina da Corporacao.',
     filterKey: 'level',
     filterOptions: TIER_ORDER,
     filterStyles: TIER_STYLES,
   },
   ordeals: {
-    label: 'Ordeals',
-    description: 'Wave incursions drawn at designated cycle intervals. Severity scales with facility progress.',
+    label: 'Times',
+    description: 'Equipes e frentes operacionais acionadas em momentos criticos. A composicao varia conforme a necessidade da instalacao.',
     filterKey: 'color',
     filterOptions: ['Crimson', 'Amber', 'Indigo', 'Pale'],
     filterStyles: ORDEAL_COLOR_STYLES,

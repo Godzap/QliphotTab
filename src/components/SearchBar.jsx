@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 
 const SearchBar = forwardRef(function SearchBar(
-  { value, onChange, onKeyDown, placeholder = 'Search…', autoFocus = false },
+  { value, onChange, onKeyDown, placeholder = 'Buscar...', autoFocus = false },
   ref
 ) {
   return (
@@ -29,7 +29,6 @@ const SearchBar = forwardRef(function SearchBar(
         style={{ clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))' }}
       />
 
-      {/* Ctrl+L hint — visible when input is empty */}
       {!value && (
         <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none select-none
           text-[10px] font-mono text-gold/55 bg-navy-800 border border-gold/25 px-1.5 py-0.5 tracking-wide">
@@ -37,7 +36,6 @@ const SearchBar = forwardRef(function SearchBar(
         </kbd>
       )}
 
-      {/* Clear button — visible when input has text */}
       {value && (
         <button
           onClick={() => onChange('')}

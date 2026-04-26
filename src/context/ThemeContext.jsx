@@ -2,52 +2,52 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 export const TEAMS = [
   {
-    id:      'default',
-    label:   'Corporação',
+    id: 'default',
+    label: 'Corporacao',
     sublabel: 'Paleta Base',
-    color:   '#eddcb8',
+    color: '#eddcb8',
     textColor: '#f2ead8',
-    bg:      '#0c0a07',
+    bg: '#0c0a07',
   },
   {
-    id:      'info',
-    label:   'Informação',
+    id: 'info',
+    label: 'Informacao',
     sublabel: 'Time I',
-    color:   '#c084f5',
+    color: '#c084f5',
     textColor: '#dab8ff',
-    bg:      '#0a0818',
+    bg: '#0a0818',
   },
   {
-    id:      'welfare',
-    label:   'Bem-Estar',
+    id: 'welfare',
+    label: 'Bem-Estar',
     sublabel: 'Time II',
-    color:   '#40b8e0',
+    color: '#40b8e0',
     textColor: '#80c8e8',
-    bg:      '#030810',
+    bg: '#030810',
   },
   {
-    id:      'safety',
-    label:   'Segurança',
+    id: 'safety',
+    label: 'Seguranca',
     sublabel: 'Time III',
-    color:   '#40ff60',
+    color: '#40ff60',
     textColor: '#80ff90',
-    bg:      '#020f04',
+    bg: '#020f04',
   },
   {
-    id:      'control',
-    label:   'Controle',
+    id: 'control',
+    label: 'Controle',
     sublabel: 'Time IV',
-    color:   '#f5d020',
+    color: '#f5d020',
     textColor: '#f5e060',
-    bg:      '#100e00',
+    bg: '#100e00',
   },
   {
-    id:      'training',
-    label:   'Treinamento',
+    id: 'training',
+    label: 'Treinamento',
     sublabel: 'Time V',
-    color:   '#f0a030',
+    color: '#f0a030',
     textColor: '#f0c880',
-    bg:      '#0f0804',
+    bg: '#0f0804',
   },
 ]
 
@@ -56,9 +56,7 @@ const STORAGE_KEY = 'qliphot-team'
 const ThemeContext = createContext(null)
 
 export function ThemeProvider({ children }) {
-  const [team, setTeamState] = useState(
-    () => localStorage.getItem(STORAGE_KEY) ?? 'default'
-  )
+  const [team, setTeamState] = useState(() => localStorage.getItem(STORAGE_KEY) ?? 'default')
 
   const setTeam = (id) => {
     localStorage.setItem(STORAGE_KEY, id)
