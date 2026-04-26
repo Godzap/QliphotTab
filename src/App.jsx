@@ -37,9 +37,9 @@ export default function App() {
   const [loading, setLoading] = useState(true)
 
   return (
-    <HashRouter>
-      <ThemeProvider>
-        {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+    <ThemeProvider>
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+      <HashRouter>
         <GlobalKeyHandler />
         <GlobalSearchModal />
         <Routes>
@@ -54,7 +54,7 @@ export default function App() {
             <Route path="/companion" element={<CompanionPage />} />
           </Route>
         </Routes>
-      </ThemeProvider>
-    </HashRouter>
+      </HashRouter>
+    </ThemeProvider>
   )
 }

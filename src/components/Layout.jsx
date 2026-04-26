@@ -3,17 +3,14 @@ import { useOutlet, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from './Navbar'
 
-// Freezes the outlet content while the element is exiting.
-// Without this, AnimatePresence keeps the old motion.div mounted during the
-// exit animation, but React still re-renders it — so Outlet updates to the
-// NEW route while the container is fading out, making content flash and vanish.
+// Snapshots the outlet at mount and never updates it.
+// Each motion.div in AnimatePresence mounts fresh per navigation (keyed by pathname),
+// so the snapshot is always correct at entry. During exit, the frozen snapshot
+// prevents the exiting container from showing the new route's content.
 function FrozenRoute() {
   const outlet = useOutlet()
-  const { key } = useLocation()
-  const initialKey = useRef(key)
-  const frozenOutlet = useRef(outlet)
-  if (key === initialKey.current) frozenOutlet.current = outlet
-  return frozenOutlet.current
+  const frozen = useRef(outlet)
+  return frozen.current
 }
 
 function CornerDecorations() {
