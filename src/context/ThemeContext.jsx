@@ -5,9 +5,9 @@ export const TEAMS = [
     id:      'default',
     label:   'Corporação',
     sublabel: 'Paleta Base',
-    color:   '#e8d850',
-    textColor: '#f5f090',
-    bg:      '#000000',
+    color:   '#eddcb8',
+    textColor: '#f2ead8',
+    bg:      '#0c0a07',
   },
   {
     id:      'info',
