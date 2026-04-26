@@ -1,0 +1,392 @@
+/* LoadingScreen — Lobotomy Corporation boot screen */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap');
+
+.lc-loading-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #000;
+  font-family: 'Barlow Condensed', sans-serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── TABLET FRAME ── */
+.lc-tablet-frame {
+  position: relative;
+  width: 820px;
+  height: 560px;
+  background: #0a0a0a;
+  border: 3px solid #1e1e1e;
+  border-radius: 18px;
+  box-shadow:
+    0 0 0 1px #111,
+    0 20px 80px rgba(0,0,0,.9),
+    inset 0 1px 0 #2e2e2e;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.lc-tablet-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: #1a1a1a;
+  border-radius: 0 0 4px 4px;
+  z-index: 10;
+}
+.lc-tablet-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 4px;
+  background: #1e1e1e;
+  border-radius: 2px;
+  z-index: 10;
+}
+
+/* ── SCREEN (inside tablet frame) ── */
+.lc-screen {
+  width: 100%;
+  height: 100%;
+  background: #050505;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+/* Power-on white flash */
+.lc-power-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  z-index: 30;
+  animation: lcPowerOn 0.3s ease 0.1s forwards;
+  pointer-events: none;
+  border-radius: 16px;
+}
+
+/* CRT scanlines */
+.lc-scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+}
+
+/* Radial vignette */
+.lc-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 19;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.8) 100%);
+}
+
+/* Diagonal stripe deco — top-right */
+.lc-deco-top {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 180px;
+  height: 40px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #111 0px, #111 6px,
+    #0d0d0d 6px, #0d0d0d 12px
+  );
+  clip-path: polygon(40px 0%, 100% 0%, 100% 100%, 0% 100%);
+  z-index: 2;
+}
+
+/* Diagonal stripe deco — bottom-left */
+.lc-deco-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 180px;
+  height: 40px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #111 0px, #111 6px,
+    #0d0d0d 6px, #0d0d0d 12px
+  );
+  clip-path: polygon(0% 0%, 100% 0%, calc(100% - 40px) 100%, 0% 100%);
+  z-index: 2;
+}
+
+/* Corner bracket decorations — use box-shadow to avoid Tailwind border reset */
+.lc-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 3;
+}
+.lc-corner-tl {
+  top: 36px; left: 8px;
+  box-shadow: -1px -1px 0 0 #555 inset;
+}
+.lc-corner-tr {
+  top: 36px; right: 8px;
+  box-shadow: 1px -1px 0 0 #555 inset;
+}
+.lc-corner-bl {
+  bottom: 36px; left: 8px;
+  box-shadow: -1px 1px 0 0 #555 inset;
+}
+.lc-corner-br {
+  bottom: 36px; right: 8px;
+  box-shadow: 1px 1px 0 0 #555 inset;
+}
+
+/* Teal glitch scan line */
+.lc-glitch {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(26,188,156,0.4);
+  z-index: 15;
+  pointer-events: none;
+  animation: lcGlitchScan 3s linear 1s infinite;
+}
+
+/* ── TOP BAR ── */
+.lc-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  z-index: 6;
+}
+.lc-top-bar-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #2e2e2e;
+}
+.lc-top-dots {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.lc-top-dots > div {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* ── MAIN CONTENT ── */
+.lc-content {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* ── LOGO ── */
+.lc-logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: lcFadeInUp 0.6s ease 0.8s forwards;
+}
+.lc-logo-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  opacity: 0;
+  animation: lcLogoReveal 0.4s ease 0.5s forwards;
+}
+.lc-logo-name {
+  font-size: 28px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #f5f0b0;
+  margin-top: 12px;
+  text-shadow: 0 0 20px rgba(245,240,176,0.3);
+}
+.lc-logo-tagline {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #b83232;
+  margin-top: 4px;
+}
+
+/* ── PROGRESS ── */
+.lc-progress-area {
+  width: 420px;
+  opacity: 0;
+  animation: lcFadeIn 0.4s ease 1.4s forwards;
+}
+.lc-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #555;
+  margin-bottom: 6px;
+}
+.lc-progress-track {
+  width: 100%;
+  height: 6px;
+  background: #111;
+  border: 1px solid #2e2e2e;
+  clip-path: polygon(
+    3px 0%, calc(100% - 3px) 0%, 100% 3px,
+    100% calc(100% - 3px), calc(100% - 3px) 100%,
+    3px 100%, 0% calc(100% - 3px), 0% 3px
+  );
+  overflow: hidden;
+  position: relative;
+}
+.lc-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1abc9c, #5a9e36);
+  width: 0%;
+  transition: width 0.6s ease;
+}
+
+/* ── LOG LINES ── */
+.lc-log-area {
+  width: 420px;
+  margin-top: 20px;
+  opacity: 0;
+  animation: lcFadeIn 0.3s ease 1.8s forwards;
+}
+.lc-log-line {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+  animation: lcLogAppear 0.3s ease forwards;
+}
+
+/* ── STATUS BAR ── */
+.lc-status-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: #0d0d0d;
+  border-top: 1px solid #1e1e1e;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 16px;
+  z-index: 6;
+}
+.lc-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1abc9c;
+  flex-shrink: 0;
+  animation: lcBlink 1s ease-in-out 2s infinite;
+}
+.lc-status-text {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #333;
+}
+.lc-clock {
+  margin-left: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: #2e2e2e;
+}
+
+/* ── COMPLETE OVERLAY ── */
+.lc-complete {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.lc-complete-text {
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #1abc9c;
+  text-shadow: 0 0 20px rgba(26,188,156,0.8);
+}
+.lc-pulse {
+  animation: lcCompletePulse 1s ease infinite;
+}
+
+/* ── KEYFRAMES ── */
+@keyframes lcPowerOn {
+  0%   { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; }
+}
+@keyframes lcFadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes lcFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes lcLogoReveal {
+  0%   { opacity: 0; transform: scale(0.8); filter: drop-shadow(0 0 0px rgba(184,50,50,0)); }
+  60%  { opacity: 1; transform: scale(1.05); filter: drop-shadow(0 0 24px rgba(184,50,50,0.8)); }
+  100% { opacity: 1; transform: scale(1);    filter: drop-shadow(0 0 16px rgba(184,50,50,0.5)); }
+}
+@keyframes lcGlitchScan {
+  0%   { top: -2px;  opacity: 0; }
+  5%   { opacity: 0.6; }
+  95%  { opacity: 0.2; }
+  100% { top: 100%;  opacity: 0; }
+}
+@keyframes lcBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+@keyframes lcCompletePulse {
+  0%, 100% { opacity: 1;   text-shadow: 0 0 20px rgba(26,188,156,0.8); }
+  50%       { opacity: 0.6; text-shadow: 0 0 6px rgba(26,188,156,0.3); }
+}
+@keyframes lcLogAppear {
+  from { opacity: 0; transform: translateX(-4px); }
+  to   { opacity: 1; transform: translateX(0); }
+}

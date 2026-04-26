@@ -1,0 +1,213 @@
+/* ============================================================
+   TEAM THEME TOKENS
+   Applied via data-team="<id>" on <html>.
+   Each team overrides the --t-* custom properties used by
+   Tailwind config and index.css. Add new teams below.
+   ============================================================ */
+
+/* ── Default — Lobotomy Corp Base (Green) ──────────────────── */
+:root,
+[data-team="default"] {
+  /* Backgrounds (RGB triplets for Tailwind alpha support) */
+  --t-bg-950-rgb: 3 8 5;         /* #030805 */
+  --t-bg-900-rgb: 6 15 6;        /* #060f06 */
+  --t-bg-800-rgb: 12 30 12;      /* #0c1e0c */
+  --t-bg-700-rgb: 18 40 16;      /* #122810 */
+
+  /* Accent — neon green */
+  --t-accent-rgb:       0 255 153;    /* #00ff99 */
+  --t-accent-light-rgb: 102 255 204;  /* #66ffcc */
+  --t-accent-dark-rgb:  0 187 119;    /* #00bb77 */
+  --t-accent-muted-rgb: 10 77 46;     /* #0a4d2e */
+
+  /* Text */
+  --t-text-rgb:       204 245 228;  /* #ccf5e4 */
+  --t-text-muted-rgb: 74 138 100;   /* #4a8a64 */
+
+  /* Body */
+  --t-body-bg:   #030805;
+  --t-dot-color: rgba(0, 255, 153, 0.04);
+
+  /* Shadows */
+  --t-shadow-accent:    0 0 20px rgba(0, 255, 153, 0.3);
+  --t-shadow-accent-lg: 0 0 40px rgba(0, 255, 153, 0.4);
+  --t-shadow-accent-sm: 0 0 8px  rgba(0, 255, 153, 0.25);
+  --t-text-glow:        0 0 24px rgba(0, 255, 153, 0.55),
+                        0 0 8px  rgba(0, 255, 153, 0.3);
+
+  /* Scrollbar */
+  --t-scrollbar-track: #060f06;
+  --t-scrollbar-thumb: #0a4d2e;
+  --t-scrollbar-hover: #00ff99;
+
+  /* Corner decorations */
+  --t-corner-bright: #00ff99;
+  --t-corner-dim:    rgba(0, 255, 153, 0.35);
+}
+
+/* ── Time da Informação (Purple / Violet) ───────────────────── */
+[data-team="info"] {
+  /* Backgrounds */
+  --t-bg-950-rgb: 10 8 24;    /* #0a0818 */
+  --t-bg-900-rgb: 14 12 26;   /* #0e0c1a */
+  --t-bg-800-rgb: 19 17 42;   /* #13112a */
+  --t-bg-700-rgb: 30 26 56;   /* #1e1a38 */
+
+  /* Accent — violet */
+  --t-accent-rgb:       192 132 245;  /* #c084f5 */
+  --t-accent-light-rgb: 218 184 255;  /* #dab8ff */
+  --t-accent-dark-rgb:  123 76 194;   /* #7b4cc2 */
+  --t-accent-muted-rgb: 42 30 72;     /* #2a1e48 */
+
+  /* Text — muted raised to #b0a0d0 so /40–/70 opacities are legible */
+  --t-text-rgb:       218 184 255;  /* #dab8ff — primary */
+  --t-text-muted-rgb: 176 160 208;  /* #b0a0d0 — muted (brighter than default for dark bg) */
+
+  /* Body */
+  --t-body-bg:   #0a0818;
+  --t-dot-color: rgba(107, 63, 168, 0.06);
+
+  /* Shadows */
+  --t-shadow-accent:    0 0 20px rgba(107, 63, 168, 0.3);
+  --t-shadow-accent-lg: 0 0 40px rgba(107, 63, 168, 0.4);
+  --t-shadow-accent-sm: 0 0 8px  rgba(107, 63, 168, 0.25);
+  --t-text-glow:        0 0 24px rgba(192, 132, 245, 0.55),
+                        0 0 8px  rgba(192, 132, 245, 0.3);
+
+  /* Scrollbar */
+  --t-scrollbar-track: #0e0c1a;
+  --t-scrollbar-thumb: #3d1e6a;
+  --t-scrollbar-hover: #c084f5;
+
+  /* Corner decorations */
+  --t-corner-bright: #c084f5;
+  --t-corner-dim:    rgba(192, 132, 245, 0.35);
+}
+
+/* ── Time do Bem-Estar (Cyan / Blue) ───────────────────────── */
+[data-team="welfare"] {
+  --t-bg-950-rgb: 3 8 16;
+  --t-bg-900-rgb: 6 12 26;
+  --t-bg-800-rgb: 10 20 40;
+  --t-bg-700-rgb: 16 32 56;
+
+  --t-accent-rgb:       64 184 224;
+  --t-accent-light-rgb: 96 208 240;
+  --t-accent-dark-rgb:  32 128 192;
+  --t-accent-muted-rgb: 22 48 96;
+
+  --t-text-rgb:       128 200 232;
+  --t-text-muted-rgb: 60 108 150;
+
+  --t-body-bg:   #030810;
+  --t-dot-color: rgba(32, 128, 192, 0.06);
+
+  --t-shadow-accent:    0 0 20px rgba(64, 184, 224, 0.3);
+  --t-shadow-accent-lg: 0 0 40px rgba(64, 184, 224, 0.4);
+  --t-shadow-accent-sm: 0 0 8px  rgba(64, 184, 224, 0.25);
+  --t-text-glow:        0 0 24px rgba(64, 184, 224, 0.55),
+                        0 0 8px  rgba(64, 184, 224, 0.3);
+
+  --t-scrollbar-track: #060c1a;
+  --t-scrollbar-thumb: #163060;
+  --t-scrollbar-hover: #40b8e0;
+
+  --t-corner-bright: #40b8e0;
+  --t-corner-dim:    rgba(64, 184, 224, 0.35);
+}
+
+/* ── Time de Segurança (Red / Crimson) ──────────────────────── */
+[data-team="safety"] {
+  --t-bg-950-rgb: 10 0 0;
+  --t-bg-900-rgb: 16 0 0;
+  --t-bg-800-rgb: 24 4 4;
+  --t-bg-700-rgb: 36 6 6;
+
+  --t-accent-rgb:       204 34 34;
+  --t-accent-light-rgb: 232 48 48;
+  --t-accent-dark-rgb:  153 18 18;
+  --t-accent-muted-rgb: 51 0 0;
+
+  --t-text-rgb:       240 192 192;
+  --t-text-muted-rgb: 148 88 88;
+
+  --t-body-bg:   #0a0000;
+  --t-dot-color: rgba(204, 34, 34, 0.07);
+
+  --t-shadow-accent:    0 0 20px rgba(204, 34, 34, 0.4);
+  --t-shadow-accent-lg: 0 0 40px rgba(204, 34, 34, 0.5);
+  --t-shadow-accent-sm: 0 0 8px  rgba(204, 34, 34, 0.3);
+  --t-text-glow:        0 0 24px rgba(204, 34, 34, 0.6),
+                        0 0 8px  rgba(204, 34, 34, 0.35);
+
+  --t-scrollbar-track: #100000;
+  --t-scrollbar-thumb: #330000;
+  --t-scrollbar-hover: #cc2222;
+
+  --t-corner-bright: #cc2222;
+  --t-corner-dim:    rgba(204, 34, 34, 0.35);
+}
+
+/* ── Time de Controle (Yellow / Amber) ──────────────────────── */
+[data-team="control"] {
+  --t-bg-950-rgb: 16 14 0;
+  --t-bg-900-rgb: 22 18 0;
+  --t-bg-800-rgb: 30 24 0;
+  --t-bg-700-rgb: 46 36 0;
+
+  --t-accent-rgb:       245 208 32;
+  --t-accent-light-rgb: 255 224 64;
+  --t-accent-dark-rgb:  232 192 0;
+  --t-accent-muted-rgb: 62 50 0;
+
+  --t-text-rgb:       245 224 96;
+  --t-text-muted-rgb: 140 118 40;
+
+  --t-body-bg:   #100e00;
+  --t-dot-color: rgba(232, 192, 0, 0.06);
+
+  --t-shadow-accent:    0 0 20px rgba(245, 208, 32, 0.3);
+  --t-shadow-accent-lg: 0 0 40px rgba(245, 208, 32, 0.4);
+  --t-shadow-accent-sm: 0 0 8px  rgba(245, 208, 32, 0.25);
+  --t-text-glow:        0 0 24px rgba(245, 208, 32, 0.55),
+                        0 0 8px  rgba(245, 208, 32, 0.3);
+
+  --t-scrollbar-track: #161200;
+  --t-scrollbar-thumb: #3e3200;
+  --t-scrollbar-hover: #f5d020;
+
+  --t-corner-bright: #f5d020;
+  --t-corner-dim:    rgba(245, 208, 32, 0.35);
+}
+
+/* ── Time de Treinamento (Orange / Ember) ───────────────────── */
+[data-team="training"] {
+  --t-bg-950-rgb: 15 8 4;
+  --t-bg-900-rgb: 20 10 4;
+  --t-bg-800-rgb: 26 12 4;
+  --t-bg-700-rgb: 40 20 8;
+
+  --t-accent-rgb:       240 160 48;
+  --t-accent-light-rgb: 240 200 128;
+  --t-accent-dark-rgb:  200 104 32;
+  --t-accent-muted-rgb: 58 30 10;
+
+  --t-text-rgb:       240 200 128;
+  --t-text-muted-rgb: 148 96 50;
+
+  --t-body-bg:   #0f0804;
+  --t-dot-color: rgba(200, 104, 32, 0.06);
+
+  --t-shadow-accent:    0 0 20px rgba(200, 104, 32, 0.3);
+  --t-shadow-accent-lg: 0 0 40px rgba(200, 104, 32, 0.4);
+  --t-shadow-accent-sm: 0 0 8px  rgba(200, 104, 32, 0.25);
+  --t-text-glow:        0 0 24px rgba(240, 160, 48, 0.55),
+                        0 0 8px  rgba(240, 160, 48, 0.3);
+
+  --t-scrollbar-track: #140a04;
+  --t-scrollbar-thumb: #3a1e0a;
+  --t-scrollbar-hover: #f0a030;
+
+  --t-corner-bright: #f0a030;
+  --t-corner-dim:    rgba(240, 160, 48, 0.35);
+}

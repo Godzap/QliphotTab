@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-navy-950 text-moonstone;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body antialiased min-h-screen;
+    background-color: var(--t-body-bg);
+    background-image: radial-gradient(circle, var(--t-dot-color) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* CRT scanlines */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 3px,
+      rgba(0, 0, 0, 0.09) 3px,
+      rgba(0, 0, 0, 0.09) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Vignette */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+    pointer-events: none;
+    z-index: 9998;
+  }
+
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--t-scrollbar-track); }
+  ::-webkit-scrollbar-thumb { background: var(--t-scrollbar-thumb); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--t-scrollbar-hover); }
+}
+
+@keyframes hint-glitter {
+  0%, 100% { opacity: 0.55; }
+  20%       { opacity: 1;    }
+  40%       { opacity: 0.4;  }
+  60%       { opacity: 0.9;  }
+  80%       { opacity: 0.5;  }
+}
+
+.hint-glitter {
+  animation: hint-glitter 3s ease-in-out infinite;
+}
+
+@keyframes tab-scan {
+  0%   { top: -10%; opacity: 0; }
+  5%   { opacity: 0.55; }
+  92%  { opacity: 0.25; }
+  100% { top: 110%; opacity: 0; }
+}
+
+@keyframes tab-flicker {
+  0%, 100% { opacity: 1; }
+  92%       { opacity: 1; }
+  93%       { opacity: 0.88; }
+  94%       { opacity: 1; }
+  96%       { opacity: 0.92; }
+  97%       { opacity: 1; }
+}
+
+.tab-active-scan::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0.45) 50%,
+    rgba(0, 0, 0, 0.35) 60%,
+    transparent
+  );
+  animation: tab-scan 2.8s linear infinite;
+  pointer-events: none;
+}
+
+.tab-active-flicker {
+  animation: tab-flicker 4s ease-in-out infinite;
+}
+
+@layer components {
+  /* Bracket / effect notation tags */
+  .bracket-tag {
+    @apply inline-flex items-center px-1.5 py-0.5 text-xs font-mono font-medium;
+    @apply bg-navy-800 border border-gold/30 text-gold;
+  }
+  .bracket-tag-death {
+    @apply bg-red-950/60 border-tier-aleph/60 text-tier-aleph;
+  }
+  .bracket-tag-possession {
+    @apply bg-purple-950/60 border-purple-400/50 text-purple-300;
+  }
+
+  .placeholder-text {
+    @apply italic text-moonstone-dark/70 text-sm;
+  }
+
+  /* Section label */
+  .section-label {
+    @apply font-display text-xs tracking-widest uppercase text-gold font-semibold;
+  }
+
+  .tier-badge {
+    @apply inline-flex items-center px-2 py-0.5 text-xs font-mono font-semibold tracking-wider uppercase;
+  }
+
+  /* Card — LC panel style with diagonal corner cut */
+  .card-base {
+    @apply relative bg-navy-900/90 border border-gold/20 overflow-hidden;
+    @apply transition-all duration-200;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+
+  .card-hover {
+    @apply hover:border-gold/70 hover:shadow-gold hover:bg-navy-800/80;
+  }
+
+  .divider-gold {
+    @apply border-t border-gold/20;
+  }
+
+  /* Panel section header — teal filled like LC tab active state */
+  .panel-header {
+    @apply bg-gold/10 border-b border-gold/25 px-4 py-2 flex items-center gap-2;
+  }
+
+  /* Page title badge — like "MANUAL" in the LC UI */
+  .page-title-badge {
+    @apply font-display font-bold tracking-widest uppercase text-navy-950 bg-gold;
+    @apply px-4 py-1.5 text-sm;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    text-shadow: none;
+  }
+
+  /* Glowing text — for titles that need LC-style presence */
+  .text-glow {
+    text-shadow: var(--t-text-glow);
+  }
+}

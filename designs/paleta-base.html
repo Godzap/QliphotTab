@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Paleta — Base Corporação Lobotomy</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #000000;
+  color: #e8d850;
+  font-family: 'Barlow Condensed', sans-serif;
+  padding: 48px 40px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 28px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: #e8d850; margin-bottom: 4px;
+}
+.subtitle {
+  font-size: 13px; letter-spacing: 0.14em;
+  color: #3a0808; text-transform: uppercase; margin-bottom: 8px;
+}
+/* Tagline bar — igual à barra vermelha do jogo */
+.tagline-bar {
+  display: inline-block;
+  background: #cc2222;
+  color: #e8d850;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  padding: 5px 14px;
+  margin-bottom: 48px;
+}
+
+.section { margin-bottom: 40px; }
+.section-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: #3a0808; border-bottom: 1px solid #1a0000;
+  padding-bottom: 8px; margin-bottom: 20px;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.swatch { background: #0d0d0d; border: 1px solid #1a0000; overflow: hidden; }
+.swatch-color { height: 80px; width: 100%; }
+.swatch-body { padding: 10px 12px 12px; }
+.swatch-name {
+  font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #e8d850; margin-bottom: 2px;
+}
+.swatch-name .star { color: #cc2222; margin-left: 4px; }
+.swatch-hex { font-family: 'Courier New', monospace; font-size: 12px; color: #4a1010; margin-bottom: 6px; }
+.swatch-use { font-size: 11px; letter-spacing: 0.06em; color: #280000; line-height: 1.5; }
+
+.usage-map { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.usage-row {
+  background: #0d0d0d; border: 1px solid #1a0000;
+  padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+}
+.usage-dot { width: 28px; height: 28px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.06); }
+.usage-label {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #e8d850; margin-bottom: 2px;
+}
+.usage-desc { font-size: 11px; color: #280000; letter-spacing: 0.05em; }
+
+/* SPECIMEN */
+.specimen { background: #0d0d0d; border: 2px solid #cc2222; padding: 28px; position: relative;
+  box-shadow: 0 0 0 1px #1a0000, 0 0 32px rgba(204,34,34,0.15); }
+.corner-deco {
+  position: absolute; width: 16px; height: 16px;
+  border-color: #cc2222; border-style: solid;
+}
+.corner-deco.tl { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+.corner-deco.tr { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+.corner-deco.bl { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+.corner-deco.br { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+
+.specimen-screen {
+  background: #000000; border: 1px solid #330000;
+  padding: 24px; position: relative;
+}
+.specimen-screen::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(204,34,34,0.02) 2px, rgba(204,34,34,0.02) 4px
+  );
+  pointer-events: none;
+}
+.specimen-topbar {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid #1a0000;
+}
+.specimen-dot { width: 8px; height: 8px; border-radius: 50%; }
+.specimen-title { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #280000; }
+.specimen-heading {
+  font-size: 22px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #e8d850;
+  text-shadow: 0 0 20px rgba(232,216,80,0.2); margin-bottom: 4px;
+}
+.specimen-sub {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  background: #cc2222; color: #e8d850;
+  display: inline-block; padding: 2px 8px;
+  margin-bottom: 20px;
+}
+.specimen-bar-track {
+  background: #0d0d0d; border: 1px solid #1a0000;
+  height: 8px; margin-bottom: 16px; position: relative; overflow: hidden;
+}
+.specimen-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22dd44, #cc2222);
+  width: 78%; position: relative;
+}
+.specimen-bar-fill::after {
+  content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 16px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2));
+}
+.specimen-log { font-family: 'Courier New', monospace; font-size: 11px; color: #280000; line-height: 1.8; }
+.specimen-log .ok  { color: #22dd44; }
+.specimen-log .err { color: #cc2222; }
+.specimen-log .cr  { color: #e8d850; }
+.specimen-log .tl  { color: #2ab8b8; }
+.specimen-statusbar {
+  background: #000000; border: 1px solid #1a0000; border-top: none;
+  padding: 8px 16px; display: flex; align-items: center; gap: 10px;
+}
+.specimen-pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #cc2222; box-shadow: 0 0 8px rgba(204,34,34,0.8);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.specimen-status-text { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #280000; }
+
+pre {
+  background: #000000; border: 1px solid #1a0000;
+  padding: 20px; font-family: 'Courier New', monospace;
+  font-size: 12px; line-height: 2; color: #280000;
+}
+.tk { color: #cc2222; }
+.tv { color: #e8d850; }
+.tc { color: #3a0808; }
+.tv2 { color: #2ab8b8; }
+</style>
+</head>
+<body>
+
+<h1>Corporação Lobotomy</h1>
+<div class="subtitle">Design System — Paleta Base</div>
+<div class="tagline-bar">▸ Enfrente o Medo · Construa o Futuro — sem time referenciado</div>
+
+<!-- ── PRETO — COR DOMINANTE ── -->
+<div class="section">
+  <div class="section-title">Preto — Cor Dominante (70%+ da tela)</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#000000;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Pure Black <span class="star">★</span></div>
+        <div class="swatch-hex">#000000</div>
+        <div class="swatch-use">Fundo absoluto — o preto do menu principal. Ocupa ~70% da tela.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0d0d0d;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Near Black</div>
+        <div class="swatch-hex">#0d0d0d</div>
+        <div class="swatch-use">Painéis, cards, sidebars — preto levemente respirado.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1a1a00;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Olive Dark</div>
+        <div class="swatch-hex">#1a1a00</div>
+        <div class="swatch-use">Fundo da tela de loading (warm olive-black). Exclusivo do loading screen.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1a0000;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Red-Black</div>
+        <div class="swatch-hex">#1a0000</div>
+        <div class="swatch-use">Bordas internas, separadores, hover de painéis — preto com sangue.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#330000;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Deep Crimson</div>
+        <div class="swatch-hex">#330000</div>
+        <div class="swatch-use">Status bars, borda de tela ativa, divisórias de seção.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── VERMELHO — COR PRIMÁRIA DA MARCA ── -->
+<div class="section">
+  <div class="section-title">Vermelho — Cor Primária da Marca</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#6a0808;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Red Shadow</div>
+        <div class="swatch-hex">#6a0808</div>
+        <div class="swatch-use">Interior sombreado do círculo do logo. Profundidade do acento vermelho.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#991212;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Red Dark</div>
+        <div class="swatch-hex">#991212</div>
+        <div class="swatch-use">Pressed state, borda exterior do círculo do logo.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#cc2222;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Red Brand <span class="star">★</span></div>
+        <div class="swatch-hex">#cc2222</div>
+        <div class="swatch-use">COR PRIMÁRIA DA MARCA. Círculo do logo, barra tagline, bordas de frame, botão primário.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#e83030;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Red Hover</div>
+        <div class="swatch-hex">#e83030</div>
+        <div class="swatch-use">Hover de elementos vermelhos, glow de alerta.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#ff5050;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Red Meltdown</div>
+        <div class="swatch-hex">#ff5050</div>
+        <div class="swatch-use">Estado de pânico / meltdown — erro crítico máximo.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── CREME — SILHUETA E LINHA ── -->
+<div class="section">
+  <div class="section-title">Creme / Pale Yellow — Silhueta, Texto & Wireframe</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#3a3200;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Cream Ghost</div>
+        <div class="swatch-hex">#3a3200</div>
+        <div class="swatch-use">Ornamentos decorativos, texto ilegível / watermark.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#7a6800;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Cream Dim</div>
+        <div class="swatch-hex">#7a6800</div>
+        <div class="swatch-use">Itens de menu desativados ("Challenge Mode"), texto inativo.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#c8b200;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Cream Dark</div>
+        <div class="swatch-hex">#c8b200</div>
+        <div class="swatch-use">Linhas do wireframe no loading, bordas dos diagramas de protocolo.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#e8d850;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Cream Primary <span class="star">★</span></div>
+        <div class="swatch-hex">#e8d850</div>
+        <div class="swatch-use">Silhueta da falésia, texto do logo, wireframe do loading, corpo da personagem Angela.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#f5f090;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Cream Highlight</div>
+        <div class="swatch-hex">#f5f090</div>
+        <div class="swatch-use">Hover de texto creme, ponto mais claro da silhueta iluminada.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── TEAL — SKYLINE / INTERFACE ── -->
+<div class="section">
+  <div class="section-title">Teal — Skyline da Cidade & Interface Cibernética</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0b2c2c;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Teal Deep</div>
+        <div class="swatch-hex">#0b2c2c</div>
+        <div class="swatch-use">Fundo do céu teal atrás da skyline — a cidade underground.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1a7878;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Teal Dark</div>
+        <div class="swatch-hex">#1a7878</div>
+        <div class="swatch-use">Texto de log do terminal (versão info), linhas de dados secundárias.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#2ab8b8;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Teal Skyline <span class="star">★</span></div>
+        <div class="swatch-hex">#2ab8b8</div>
+        <div class="swatch-use">Cor da skyline da cidade. Interface cibernética ativa, logs de sistema, luzes de estado OK.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#50d8d8;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Teal Glow</div>
+        <div class="swatch-hex">#50d8d8</div>
+        <div class="swatch-use">Glow das luzes da cidade, hover de elementos teal, reflexo na falésia.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#3a2040;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Moon Blue</div>
+        <div class="swatch-hex">#3a2040</div>
+        <div class="swatch-use">A lua no canto do menu principal — roxo-escuro do céu noturno.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SEMÂNTICAS ── -->
+<div class="section">
+  <div class="section-title">Cores Semânticas do Sistema</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#22dd44;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">HP / Safe</div>
+        <div class="swatch-hex">#22dd44</div>
+        <div class="swatch-use">Barra de vida, logs de sucesso, estado saudável.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#cc2222;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Danger</div>
+        <div class="swatch-hex">#cc2222</div>
+        <div class="swatch-use">Alertas de erro — mesma cor do logo, reforço semântico.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#e8b700;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Warning</div>
+        <div class="swatch-hex">#e8b700</div>
+        <div class="swatch-use">Avisos de nível médio, bordas tracejadas de atenção.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#555555;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Disabled</div>
+        <div class="swatch-hex">#555555</div>
+        <div class="swatch-use">Itens desativados — como "Challenge Mode" no menu.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAPA DE USO -->
+<div class="section">
+  <div class="section-title">Mapa de Uso — O quê vai onde</div>
+  <div class="usage-map">
+
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#000000;"></div>
+      <div><div class="usage-label">--surface-base</div><div class="usage-desc">Fundo absoluto da tela — preto puro</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#0d0d0d;"></div>
+      <div><div class="usage-label">--surface-panel</div><div class="usage-desc">Painéis, cards, sidebars</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#cc2222;"></div>
+      <div><div class="usage-label">--color-brand ★</div><div class="usage-desc">COR PRIMÁRIA — borda de frame, logo, botão principal</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#e8d850;"></div>
+      <div><div class="usage-label">--color-cream ★</div><div class="usage-desc">Silhueta, texto de heading, wireframe, Angela</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#2ab8b8;"></div>
+      <div><div class="usage-label">--color-interface ★</div><div class="usage-desc">Skyline da cidade, luzes de sistema, logs ativos</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#cc2222;"></div>
+      <div><div class="usage-label">--color-heading</div><div class="usage-desc">Taglines em caps — barra vermelha + texto creme</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#e8d850;"></div>
+      <div><div class="usage-label">--color-text-primary</div><div class="usage-desc">Texto de corpo, labels de menu, itens ativos</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#1a0000;"></div>
+      <div><div class="usage-label">--border-subtle</div><div class="usage-desc">Divisórias e bordas internas — preto com sangue</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#1a1a00;"></div>
+      <div><div class="usage-label">--surface-loading</div><div class="usage-desc">Fundo específico do loading screen (olive-dark)</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#3a2040;"></div>
+      <div><div class="usage-label">--color-moon</div><div class="usage-desc">Lua no menu — roxo noturno do céu</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#22dd44;"></div>
+      <div><div class="usage-label">--color-hp</div><div class="usage-desc">Barra de vida dos agentes</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:linear-gradient(90deg,#22dd44,#cc2222);"></div>
+      <div><div class="usage-label">--gradient-progress</div><div class="usage-desc">Fill da barra de progresso (verde → vermelho)</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SPECIMEN -->
+<div class="section">
+  <div class="section-title">Specimen — Preview do tema base aplicado</div>
+  <div class="specimen">
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div>
+    <div class="corner-deco br"></div>
+    <div class="specimen-screen">
+      <div class="specimen-topbar">
+        <div class="specimen-dot" style="background:#cc2222;box-shadow:0 0 5px rgba(204,34,34,.8);"></div>
+        <div class="specimen-dot" style="background:#e8b700;box-shadow:0 0 4px rgba(232,183,0,.6);"></div>
+        <div class="specimen-dot" style="background:#22dd44;box-shadow:0 0 4px rgba(34,221,68,.6);"></div>
+        <div class="specimen-title">Sistema de Gestão — Corporação Lobotomy · Terminal Principal</div>
+      </div>
+      <div class="specimen-heading">Corporação Lobotomy</div>
+      <div class="specimen-sub">▸ Enfrente o Medo · Construa o Futuro</div>
+      <div class="specimen-bar-track">
+        <div class="specimen-bar-fill"></div>
+      </div>
+      <div class="specimen-log">
+        <div class="cr">▸ Inicializando sistema...</div>
+        <div class="tl">▸ Protocolo Sephirot — sincronizando memória.</div>
+        <div class="ok">✓ Núcleo verificado — sistema operacional.</div>
+        <div class="tl">▸ Skyline conectada — 1 cidade subterrânea online.</div>
+        <div class="err">⚠ Gestor — conteúdo sensível detectado no setor leste.</div>
+      </div>
+    </div>
+    <div class="specimen-statusbar">
+      <div class="specimen-pulse"></div>
+      <div class="specimen-status-text">Conexão estabelecida — Gestor autorizado.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS TOKENS -->
+<div class="section">
+  <div class="section-title">Tokens CSS prontos para usar</div>
+  <pre>
+<span class="tc">/* ══════════════════════════════════════════════
+   PALETA BASE — Corporação Lobotomy
+   Aplicar quando nenhum time está referenciado
+   Diferencial: PRETO absoluto + VERMELHO primário
+   ══════════════════════════════════════════════ */</span>
+
+<span class="tc">/* Fundos — preto é dominante */</span>
+<span class="tk">--base-bg-pure:</span>            <span class="tv">#000000</span>;   <span class="tc">/* ★ fundo absoluto */</span>
+<span class="tk">--base-surface-panel:</span>      <span class="tv">#0d0d0d</span>;
+<span class="tk">--base-surface-loading:</span>    <span class="tv">#1a1a00</span>;   <span class="tc">/* warm olive — loading screen */</span>
+<span class="tk">--base-border-inner:</span>       <span class="tv">#1a0000</span>;   <span class="tc">/* red-black — separadores */</span>
+<span class="tk">--base-border-subtle:</span>      <span class="tv">#330000</span>;
+
+<span class="tc">/* Vermelho — COR PRIMÁRIA da marca */</span>
+<span class="tk">--base-red-shadow:</span>         <span class="tv">#6a0808</span>;
+<span class="tk">--base-red-dark:</span>           <span class="tv">#991212</span>;
+<span class="tk">--base-red:</span>                <span class="tv">#cc2222</span>;   <span class="tc">/* ★ COR PRIMÁRIA */</span>
+<span class="tk">--base-red-hover:</span>          <span class="tv">#e83030</span>;
+<span class="tk">--base-red-meltdown:</span>       <span class="tv">#ff5050</span>;
+
+<span class="tc">/* Creme — silhueta, wireframe, texto */</span>
+<span class="tk">--base-cream-ghost:</span>        <span class="tv">#3a3200</span>;
+<span class="tk">--base-cream-dim:</span>          <span class="tv">#7a6800</span>;
+<span class="tk">--base-cream-dark:</span>         <span class="tv">#c8b200</span>;
+<span class="tk">--base-cream:</span>              <span class="tv">#e8d850</span>;   <span class="tc">/* ★ silhueta / texto / Angela */</span>
+<span class="tk">--base-cream-highlight:</span>    <span class="tv">#f5f090</span>;
+
+<span class="tc">/* Teal — skyline da cidade / interface */</span>
+<span class="tk">--base-teal-deep:</span>          <span class="tv">#0b2c2c</span>;   <span class="tc">/* céu atrás da cidade */</span>
+<span class="tk">--base-teal-dark:</span>          <span class="tv">#1a7878</span>;
+<span class="tk">--base-teal:</span>               <span class="tv">#2ab8b8</span>;   <span class="tc">/* ★ skyline / logs ativos */</span>
+<span class="tk">--base-teal-glow:</span>          <span class="tv">#50d8d8</span>;
+<span class="tk">--base-moon:</span>               <span class="tv">#3a2040</span>;   <span class="tc">/* lua — detalhe do menu */</span>
+
+<span class="tc">/* Semânticas */</span>
+<span class="tk">--base-hp:</span>                 <span class="tv">#22dd44</span>;
+<span class="tk">--base-danger:</span>             <span class="tv">#cc2222</span>;
+<span class="tk">--base-warning:</span>            <span class="tv">#e8b700</span>;
+<span class="tk">--base-disabled:</span>           <span class="tv">#555555</span>;
+
+<span class="tc">/* Gradientes & glows */</span>
+<span class="tk">--base-gradient-bar:</span>       <span class="tv">linear-gradient(90deg, #22dd44, #cc2222)</span>;
+<span class="tk">--base-glow-red:</span>           <span class="tv">0 0 20px rgba(204,34,34,0.5)</span>;
+<span class="tk">--base-glow-cream:</span>         <span class="tv">0 0 12px rgba(232,216,80,0.25)</span>;
+<span class="tk">--base-glow-teal:</span>          <span class="tv">0 0 14px rgba(42,184,184,0.4)</span>;
+</pre>
+</div>
+
+</body>
+</html>

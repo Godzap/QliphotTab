@@ -1,0 +1,1713 @@
+[
+  {
+    "id": "t-01-23-04",
+    "name": "Blubbering Toad",
+    "code": "T-01-23-04",
+    "level": "Zayin",
+    "image": "t-01-23-04.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was bad, the Qliphoth counter lowered by 1. When the work result was neutral, the Qliphoth counter lowered by 1.",
+        "Guideline 2: When the Qliphoth counter reached 0, Blubbering Toad left its containment cell and began to cry. No work could be performed in the department until it had been suppressed."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 20,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Endured",
+        "white": "Endured",
+        "black": "Endured",
+        "pale": "Vulnerable"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-04-25",
+    "name": "Bottle of Tears",
+    "code": "F-04-25",
+    "level": "Zayin",
+    "image": "f-04-25.webp",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the result of performing Instinct work was good, the containment chamber filled with water until the employee had drowned. [Death]",
+        "Guideline 2: When the result of performing Attachment work was good, the employee regained +5 Health and Sanity."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-04-83",
+    "name": "Fairy Festival",
+    "code": "F-04-83",
+    "level": "Zayin",
+    "image": "f-04-83.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was good, a group of small fairies appeared around the employee, giving them +5 to their Health cap. This can extend past the tier V or EX Instinct cap. Additionally, the employee regained +2 Health at the end of each cycle. [Give Group of Small Fairies Token]",
+        "Guideline 2: When an employee with a group of small fairies attached to them interacted with another abnormality other than Fairy Festival, the fairies proceeded to scratch their eyes and body until they died from blood loss. [Death]"
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "o-03-03",
+    "name": "One Sin and Hundreds of Good Deeds",
+    "code": "O-03-03",
+    "level": "Zayin",
+    "image": "o-03-03.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was good, the employee who interacted with the abnormality gained +1 Prudence. The same employee cannot benefit from this more than once. [Give Atonement Token]",
+        "Guideline 2: When the work result is a natural maximum roll, all insane employees in the facility are no longer considered to be insane and have their sanity restored to full.",
+        "Guideline 3: Salvation can be postponed through confession."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "t-06-27",
+    "name": "1.76 MHz",
+    "code": "T-06-27",
+    "level": "Teth",
+    "image": "t-06-27.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was neutral, the Qliphoth counter lowered by 1. When the work result was bad, the Qliphoth counter lowered by 1.",
+        "Guideline 2: When work was performed with this abnormality, at the end of that work process that which should not be known was rejected by the employee's mind. [3 ⬜ White Damage] When an employee went Insane as a result of working with this abnormality, the Qliphoth counter lowered by 1.",
+        "Guideline 3: When the Qliphoth hit 0, static yet hostile information spread throughout the facility. Starting from the hallway outside this containment unit, and then spreading from that point randomly to a single adjacent room at the end of each cycle. [Place Forbidden Noise Token] Any employee in a room with a Forbidden Noise token at the end of any movement phase suffered. [3 ⬜ White Damage]"
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Instinct",
+          "roll": "Good",
+          "result": "5 ⬜ White damage"
+        },
+        {
+          "workType": "Instinct",
+          "roll": "Bad",
+          "result": "Qlipoph -1, plus 5 ⬜ White damage"
+        },
+        {
+          "workType": "Repression",
+          "roll": "Good",
+          "result": "Qlipoph +1"
+        }
+      ],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-02-44",
+    "name": "Beauty and the Beast",
+    "code": "F-02-44",
+    "level": "Teth",
+    "image": "f-02-44.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: Conducting Repression work showed the best results. The work produced a good number of Enkephalin boxes, but negatively affected the health of Beauty and the Beast.",
+        "Guideline 2: Any work other than Repression was found to improve the health of Beauty and the Beast.",
+        "Guideline 3: After Repression work was done twice in a row, Beauty and the Beast collapsed with a weak moan onto the floor. Once it had passed away, the employee that last worked with it became Beauty and the Beast. [Death]"
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Insight",
+          "roll": "Neutral",
+          "result": "Nothing happens"
+        }
+      ],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "t-05-51",
+    "name": "Bloodbath",
+    "code": "T-05-51",
+    "level": "Teth",
+    "image": "t-05-51.png",
+    "notes": "Temperance threshold",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When an employee who performed work with the Bloodbath had a Fortitude or Temperance level of 1, the employee was dragged into the bathtub by a hand that rose from the depths of the blood. [Death]",
+        "Guideline 2: For each employee that was killed by Bloodbath, a hand rose out of the blood and remained there. This occurred up to a maximum of 3 times. For each hand stretching out of Bloodbath, all employees gain +1 to all work rolls with this abnormality."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "m-01-11-07",
+    "name": "Brazen Bull",
+    "code": "M-01-11-07",
+    "level": "Teth",
+    "image": "m-01-11-07.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When an employee with a Fortitude Level of II or higher worked with the Brazen Bull, the Qliphoth Counter lowered by 1.",
+        "Guideline 2: When the work result was bad, the employee that worked with Brazen Bull suffered [5 🔴 Damage]. If an employee died as a result of this damage, Brazen Bull had its Qliphoth Counter lowered by 1."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 25,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Normal",
+        "white": "Normal",
+        "black": "Weak",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "o-05-61",
+    "name": "Crumbling Armor",
+    "code": "O-05-61",
+    "level": "Teth",
+    "image": "o-05-61.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When an employee with Fortitude level I worked with Crumbling Armor, they were found with their head sliced clean off. [Death] When an employee with an Inspired Courage or Reckless Courage Token tried to perform Attachment work, they were engulfed in flames. [Death]",
+        "Guideline 2: Employees who performed Repression work with Crumbling Armor were Inspired by it, feeling protected by its power. [Gain Inspired Courage Token] The Inspired employee gained +1 to all attack damage while the token was active.",
+        "Guideline 3: Employees who performed Repression work with Crumbling Armor and already possessed an Inspired Courage Token were driven to recklessness by it, feeling invincible with its power. [Lose Inspired Courage Token] [Gain Reckless Courage Token] The Reckless employee gained +2 to all attack damage, but their health cap was reduced by -5 while the token was active."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Repression",
+          "roll": "Good",
+          "result": "Death"
+        },
+        {
+          "workType": "Repression",
+          "roll": "Good",
+          "result": "Gained Inspired Courage Token (+1 to all attack damage)"
+        },
+        {
+          "workType": "Repression",
+          "roll": "Neutral",
+          "result": "Lost Inspired Courage, gained Reckless Courage (+2 to all attack damage, -5 Health Cap)"
+        }
+      ],
+      "extraObservations": [
+        "Interaction 1: employee had Fortitude 1 → Death.",
+        "Interactions 2 & 3: employee had Fortitude 2 → Survived.",
+        "Working hypothesis: Fortitude 2 or higher is required to survive. The token progression suggests repeated good results build courage, while neutral results shift it into a riskier form."
+      ]
+    }
+  },
+  {
+    "id": "o-04-20-11",
+    "name": "Drenched Gossypium",
+    "code": "O-04-20-11",
+    "level": "Teth",
+    "image": "o-04-20-11.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: After an employee performed Instinct work with the Drenched Gossypium, their blood was sapped from their body as the entity replenished its reserves of blood. [7 🔴 Damage] After Instinct work was performed the Qliphoth Counter increased by 1.",
+        "Guideline 2: When work was performed other than Instinct work, the Qliphoth Counter lowered by 1. At the end of the cycle, if work was not performed on the Drenched Gossypium, the Qliphoth Counter lowered by 1.",
+        "Guideline 3: When the Drenched Gossypium breached containment and was able to drain a number of employees' blood, its body underwent changes until it was a deep shade of crimson. In this form the Drenched Gossypium was far more of a threat than its previous form until it was drained of blood."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-04-21-03",
+    "name": "Faelantern",
+    "code": "F-04-21-03",
+    "level": "Teth",
+    "image": "f-04-21-03.webp",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was good, the Qliphoth counter lowered by 1. When Instinct work was performed, Faelantern selected a single employee in the same layer as its containment cell. That employee was lured closer and closer to the abyss below the roots. [Possession]",
+        "Guideline 2: When Repression work was performed and the work result was good, the Qliphoth counter lowered by 1.",
+        "Guideline 3: When the Qliphoth Counter reached 0, Faelantern manifested in a random main room and began to lure even more employees to crawl into the abyss below the roots. [Possession]"
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-01-11-12",
+    "name": "Fairy Gentleman",
+    "code": "F-01-11-12",
+    "level": "Teth",
+    "image": "f-01-11-12.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When work was performed on Fairy Gentleman, a glass of Fairy Wine was drunk by the employee who performed work. The type of wine created was based on the type of work performed. Guideline 2 — Instinct Work = Blood Wine On a good work result, the drinker of this wine increased their Fortitude level by +1. On a neutral or bad work result, the drinker of this wine received [6 🔴 Damage]. Guideline 3 — Insight Work = Cloudbreaker Wine On a good work result, the drinker of this wine increased their Prudence level by +1. On a neutral or bad work result, the drinker of this wine received [6 ⬜ Damage]."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 32,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Weak",
+        "white": "Endured",
+        "black": "Endured",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-01-11-15",
+    "name": "Fairy Longlegs",
+    "code": "F-01-11-15",
+    "level": "Teth",
+    "image": "f-01-11-15.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was neutral, the Qliphoth counter lowered by 1. When an employee with any health lower than their currently available health cap began work on Fairy Longlegs, the Qliphoth Counter lowered by 1.",
+        "Guideline 2: When Fairy Longlegs breached, it made its way towards the department's main room. Upon arriving it created a Giant Clover that granted Fairy Longlegs more power for its attacks.",
+        "Guideline 3: This Giant Clover could be suppressed in order to neutralize this effect, and make Fairy Longlegs easier to suppress."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "t-01-54",
+    "name": "Forsaken Murderer",
+    "code": "T-01-54",
+    "level": "Teth",
+    "image": "t-01-54.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was bad, the Qliphoth counter lowered by 1.",
+        "Guideline 2: The Forsaken Murderer always targeted and pursued the closest employee after breaking containment.",
+        "Guideline 3: The Forsaken Murderer used its metal, covered head to bash and flail against any entity unfortunate enough to be close to it."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "o-03-60",
+    "name": "Fragment of the Universe",
+    "code": "O-03-60",
+    "level": "Teth",
+    "image": "o-03-60.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was bad, the Qliphoth counter lowered by 1. When the work result was neutral, the Qliphoth counter lowered by 1.",
+        "Guideline 2: When any type of work was completed on Fragment of the Universe, the employee suffered extreme mental strain from attempting to grasp the creature's physical form. [5 ⬜ Damage] When the employee went insane from the work attempt, the Qliphoth counter turned to 0.",
+        "Guideline 3: When Fragment of the Universe broke containment, it made its way to the nearest sane employee and made a piercing screech that shook the minds of everyone in the room."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "grave-of-cherry-blossoms",
+    "name": "Grave of Cherry Blossoms",
+    "code": null,
+    "level": "Teth",
+    "image": "grave-of-cherry-blossoms.png",
+    "notes": "",
+    "hasManagerialNotes": false,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": []
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Insight",
+          "roll": "Neutral",
+          "result": "Qliphoth -1 + 5 ⬜ White Sanity damage"
+        },
+        {
+          "workType": "Insight",
+          "roll": "Bad",
+          "result": "5 ⬜ White Sanity damage"
+        },
+        {
+          "workType": "Insight",
+          "roll": "Bad",
+          "result": "5 ⬜ White Sanity damage"
+        }
+      ],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "t-04-16-02",
+    "name": "Hurting Teddybear",
+    "code": "T-04-16-02",
+    "level": "Teth",
+    "image": "t-04-16-02.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When an employee performed Attachment work with this abnormality and the work result was good, the Qliphoth counter lowered by 1. When an employee died from the ability of the \"Hex Nail\" EGO weapon, the Qliphoth counter lowered by 1.",
+        "Guideline 2: When an employee performed Attachment work on another abnormality in the same department, this abnormality's Qliphoth counter lowered by 1.",
+        "Guideline 3: The abnormality has been observed desperately clinging to targets, squeezing the life out of them and preventing the target from moving or performing all actions until either the target or this abnormality were suppressed. Though perhaps the wearer of this abnormality's EGO can stop this cycle of pain for a time."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Attachment",
+          "roll": "Neutral",
+          "result": "Nothing happens"
+        },
+        {
+          "workType": "Attachment",
+          "roll": "Good",
+          "result": "Qlipoph -1"
+        }
+      ],
+      "extraObservations": [
+        "Qliphoth -1 when an employee interacted with another abnormality — did not trigger when that work was Repression on another abno and resulted in a failure.",
+        "Working hypothesis are:",
+        "Either overall Good work with the abnormality causes the qlipoph to drop, either is only attachment good;",
+        "very likely that attachment work with other abnormalities also drop que qlipoph count in 1."
+      ]
+    }
+  },
+  {
+    "id": "o-04-84",
+    "name": "Meat Lantern",
+    "code": "O-04-84",
+    "level": "Teth",
+    "image": "o-04-84.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was bad, the Qliphoth counter lowered by 1.",
+        "Guideline 2: When Meat Lantern escaped containment it placed itself in a random hallway, the flower on its head the only visible part of its body sticking out from the ground.",
+        "Guideline 3: A single employee or an abnormality within the same room as Meat Lantern was selected to be prey to a massive set of jaws that pierced the floor of the facility."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 30,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Normal",
+        "white": "Weak",
+        "black": "Weak",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "opened-can-of-welchers",
+    "name": "Opened Can of Welchers",
+    "code": null,
+    "level": "Teth",
+    "image": "opened-can-of-welchers.png",
+    "notes": "",
+    "hasManagerialNotes": false,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": []
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Insight",
+          "roll": "Good",
+          "result": "Recover 10 Sanity"
+        },
+        {
+          "workType": "Instinct",
+          "roll": "Neutral",
+          "result": "Nothing happens"
+        },
+        {
+          "workType": "Repression",
+          "roll": "Neutral",
+          "result": "Nothing happens"
+        }
+      ],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "o-02-20-05",
+    "name": "Portrait of a Certain Day",
+    "code": "O-02-20-05",
+    "level": "Teth",
+    "image": "o-02-20-05.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was normal, the Qliphoth counter lowered by 1. When the work result was bad, the Qliphoth counter lowered by 1.",
+        "Guideline 2: The abnormality seemed to recognize employees who had its EGO gift, forming an obsessive attachment with them and calling them \"Master\". When its \"Master\" performed a good work result with any abnormality, Portrait of a Certain Day's Qliphoth Counter raised by 1.",
+        "Guideline 3: When an employee that was not its \"Master\" performed Insight work with this abnormality, the Qliphoth counter lowered by 1. When Portrait of a Certain Day broke containment, it became obsessed with killing a random employee in the facility, prioritizing them at all costs. [Give Interloper Token]"
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "d-02-107",
+    "name": "Ppodae",
+    "code": "D-02-107",
+    "level": "Teth",
+    "image": "d-02-107.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: Ppodae wuvs Instinct work the most. Please don't do work other than Instinct with him, or else the Qliphoth Counter lowered by 1.",
+        "Guideline 2: When the work result was Bad, the Qliphoth Counter lowered by 1.",
+        "Guideline 3: When Ppodae escaped, it voluntarily returned to its containment unit using normal movement after attacking an employee and taking ????? from their corpse."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 28,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Normal",
+        "white": "Weak",
+        "black": "Normal",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "o-02-56",
+    "name": "Punishing Bird",
+    "code": "O-02-56",
+    "level": "Teth",
+    "image": "o-02-56.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When an employee belonging to the player that owns this abnormality began work with another abnormality in the facility, Punishing Bird's Qliphoth counter lowered by 1.",
+        "Guideline 2: When Punishing Bird broke containment it proceeded to follow the nearest employee, until it had inflicted at least 1 damage. Punishing Bird then began to slowly move back to its containment cell, flying back to its perch.",
+        "Guideline 3: When an entity struck Punishing Bird, the abnormality ripped open the red spot on its chest to reveal a set of massive jaws. The entity was then devoured in a single bite."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-01-48",
+    "name": "Red Queen",
+    "code": "F-01-48",
+    "level": "Teth",
+    "image": "f-01-48.webp",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When work was performed that was not Instinct work, the Qliphoth Counter lowered by 1. When Instinct work was performed, the employee would tell tales to the Red Queen. Employees with Fortitude II or less failed to entertain the queen and after their work was performed the Qliphoth Counter lowered by 1.",
+        "Guideline 2: Employees with Fortitude III or higher seemed to tell engaging enough stories to keep the Red Queen's attention and did not lower the Qliphoth Counter after working.",
+        "Guideline 3: When the Qliphoth Counter reached 0, a red playing card manifested next to a single random employee in the same department as the Red Queen. The card cut their head clean off. [Death]"
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-01-02",
+    "name": "Scorched Girl",
+    "code": "F-01-02",
+    "level": "Teth",
+    "image": "f-01-02.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was neutral, the Qliphoth counter lowered by 1. When the work result was bad, the Qliphoth counter lowered by 1.",
+        "Guideline 2: When Scorched Girl broke containment, she began to sob and whimper as she made her way towards a specific employee within the same department. This employee appeared to be randomly marked. [Give 4th Match Token] Scorched Girl seemed to ignore all acts of aggression.",
+        "Guideline 3: As soon as Scorched Girl arrived at her marked target during the movement phase, she exploded violently, causing the entire room and everyone in it to be engulfed in flames."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 29,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Endured",
+        "white": "Normal",
+        "black": "Weak",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Insight",
+          "roll": "Neutral",
+          "result": "Qliphoth -1"
+        },
+        {
+          "workType": "Insight",
+          "roll": "Bad",
+          "result": "Qliphoth -1"
+        },
+        {
+          "workType": "Instinct",
+          "roll": "Good",
+          "result": "Nothing happens"
+        },
+        {
+          "workType": "Repression",
+          "roll": "Neutral",
+          "result": "Qliphoth -1"
+        }
+      ],
+      "extraObservations": [
+        "When she escapes, gives a Fourth March Flame token to a random worker in the department.",
+        "If she reaches her target, she explodes, dealing 12 AoE 🔴 Red damage — then is permanently removed from the game."
+      ]
+    }
+  },
+  {
+    "id": "t-03-21-09",
+    "name": "Skin Prophet",
+    "code": "T-03-21-09",
+    "level": "Teth",
+    "image": "t-03-21-09.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When an employee of Justice level II or lower finished work, the Qliphoth Counter lowered by 1. When an employee with less health than their current health cap began work on Skin Prophet, the Qliphoth Counter lowered by 1.",
+        "Guideline 2: When an employee with a Prophecy Token went Insane, the Qliphoth Counter lowered by 3. When the work result was bad, the Qliphoth Counter lowered by 1.",
+        "Guideline 3: Extinguish the flame, or fade away."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 26,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Weak",
+        "white": "Absorb",
+        "black": "Vulnerable",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "t-03-16-15",
+    "name": "Sleeping Bag of a Bygone Day",
+    "code": "T-03-16-15",
+    "level": "Teth",
+    "image": "t-03-16-15.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was good, the Qliphoth counter lowered by 1. When the employee that worked with Sleeping Bag of a Bygone Day had a Fortitude level of 1, they were ignored by the Sleeping Bag and the Qliphoth Counter did not lower regardless of the result.",
+        "Guideline 2: When the Qliphoth Counter reached 0 as a result of work, the Sleeping Bag dragged the employee into the depths of the bone like cage in the center of the entity. [Death] The Sleeping Bag of a Bygone Day's Qliphoth Counter could not be lowered by any other means aside from work.",
+        "Guideline 3: When the Sleeping Bag escaped containment, its breath seemed to restore the sanity of a single employee in the room with it. However when this occurred the Sleeping Bag restored damage inflicted upon its body based on the amount of sanity restored."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 27,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Resistant",
+        "white": "Weak",
+        "black": "Weak",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "spider-bud",
+    "name": "Spider Bud",
+    "code": null,
+    "level": "Teth",
+    "image": "spider-bud.png",
+    "notes": "",
+    "hasManagerialNotes": false,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When an employee with a Temperance rating of I finished work with Spider Bud, they accidentally stepped on a spiderling. Spider Bud then turned those who harmed its children into cocoons. [Death]",
+        "Guideline 2: When cleaning the cell as part of Insight work, the employee was quickly turned into a cocoon by Spider Bud at the end of that work. [Death]",
+        "Guideline 3: When an employee was placed into a cocoon, it was found that it produced a small sum of anomalous energy alongside the energy already produced from working with Spider Bud. [Gain +8 Enkephalin Boxes]"
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Instinct",
+          "roll": "Good",
+          "result": "Death"
+        },
+        {
+          "workType": "Insight",
+          "roll": "Good",
+          "result": "Death + 9 Enkephalin generated at end of turn"
+        },
+        {
+          "workType": "Instinct",
+          "roll": "Neutral",
+          "result": "Nothing happens"
+        }
+      ],
+      "extraObservations": [
+        "Interaction 1: employee had Temperance 1 → Death.",
+        "Interaction 2: employee had Temperance 2 → Death (Insight Good).",
+        "Interaction 3: employee had Temperance 2 → Nothing happens (Instinct Neutral).",
+        "Working hypothesis: Temperance 2 or higher is required to survive. Possibly, Insight work causes death regardless of result — not yet confirmed."
+      ]
+    }
+  },
+  {
+    "id": "o-01-92",
+    "name": "Today's Shy Look",
+    "code": "O-01-92",
+    "level": "Teth",
+    "image": "o-01-92.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: At the start of each cycle, the entity standing behind the many faces of Today's Shy Look changed position randomly. When work was completed the following events happened based on the currently worn face. Guideline 2 — Face effects: - Smiling — The work provided +6 Enkephalin Boxes - Happy — The employee gained +1 Prudence - Neutral — Nothing - Sad — The employee took [5 ⬜ White Damage] - Angry — The employee took [6 🔴 Red Damage]"
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "t-02-99",
+    "name": "Void Dream",
+    "code": "T-02-99",
+    "level": "Teth",
+    "image": "t-02-99.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: Any employee with a Temperance of II or lower fell asleep after working on the abnormality, never to reawaken. [Death] When the work result was bad, the Qliphoth counter lowered by 1.",
+        "Guideline 2: When Void Dream entered a room with any employees, they fell asleep at the end of the combat phase and were unable to act in any phase until an Event card is played. When an event card is played, Void Dream will return to its containment cell using normal movement. Attempts to suppress the Abnormality will provoke it, transforming into an extremely hostile entity at the end of the cycle.",
+        "Guideline 3: When Void Dream transformed it crowed and dealt extreme mental damage to those who were not currently asleep in the same department as Void Dream. In this form Void Dream would not return to its cell until it was suppressed."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Insight",
+          "roll": "Good",
+          "result": "Death"
+        },
+        {
+          "workType": "Repression",
+          "roll": "Bad",
+          "result": "Qliphoth -1 + Death"
+        },
+        {
+          "workType": "Attachment",
+          "roll": "Neutral",
+          "result": "nothing happened"
+        }
+      ],
+      "extraObservations": [
+        "Interaction 1: employee had Temperance 2 → Death.",
+        "Interaction 2: employee had Temperance 1 → Death.",
+        "Interaction 3: employee had Temperance 3 → nothing happened.",
+        "We can confidently assure that Temperance 3 is needed in order to survive. May be related to work type."
+      ]
+    }
+  },
+  {
+    "id": "alleyway-watchdog",
+    "name": "Alleyway Watchdog",
+    "code": null,
+    "level": "HE",
+    "image": "alleyway-watchdog.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was bad, the Qliphoth counter lowered by 1. When an employee performed Repression work with Alleyway Watchdog, the Qliphoth Counter lowered by 1.",
+        "Guideline 2: If the work result was good and Instinct work was performed, the Qliphoth Counter raised by 1.",
+        "Guideline 3: When Alleyway Watchdog breached, the electrical systems in the department that regulated Regenerators began to malfunction. While Alleyway Watchdog was out of its containment cell, no employees could benefit from regenerators."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 49,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Normal",
+        "white": "Normal",
+        "black": "Resistant",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Insight",
+          "roll": "Good",
+          "result": "Nothing happens"
+        }
+      ],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "der-freischutz",
+    "name": "Der Freischutz",
+    "code": null,
+    "level": "HE",
+    "image": "der-freischutz.webp",
+    "notes": "",
+    "hasManagerialNotes": false,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": []
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "t-01-68",
+    "name": "Funeral of the Dead Butterflies",
+    "code": "T-01-68",
+    "level": "HE",
+    "image": "t-01-68.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When employees with Justice II or lower finished working with Funeral of the Dead Butterflies, the Qliphoth Counter lowered by 1. When the work result was Bad, the Qliphoth Counter lowered by 1.",
+        "Guideline 2: The above phenomenon also occurred when employees with Fortitude IV or higher finished working with Funeral of the Dead Butterflies.",
+        "Guideline 3: Funeral of the Dead Butterflies sought out employees with the lowest Justice stat upon escaping containment, but attacked anyone in its path."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 51,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Weak",
+        "white": "Endured",
+        "black": "Normal",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "laetitia",
+    "name": "Laetitia",
+    "code": null,
+    "level": "HE",
+    "image": "laetitia.png",
+    "notes": "",
+    "hasManagerialNotes": false,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": []
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Attachment",
+          "roll": "Bad",
+          "result": "Nothing happens"
+        }
+      ],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "plague-doctor",
+    "name": "Plague Doctor",
+    "code": null,
+    "level": "HE",
+    "image": "plague-doctor.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was bad, the Qliphoth counter lowered by 1. When a Qliphoth Meltdown is selected to appear on the Plague Doctor, instead lower its Qliphoth by 1 and remove the meltdown.",
+        "Guideline 2: When a WAW or ALEPH class abnormality breached containment, the Qliphoth counter lowered by 1. When an employee works with this abnormality it is embraced by the Plague Doctor's wings and becomes Blessed. [Give Blessed Token] Blessed employees gain +1 to any stat of the player's choosing.",
+        "Guideline 3: When the Qliphoth counter reached 0, a random employee that had not been Blessed became possessed. The employee moved towards Plague Doctor's containment cell and was unable to be stopped via normal methods. Upon arriving in the hallways outside its containment cell, the employee was embraced by the Plague Doctor, becoming Blessed. Then the Qliphoth Counter raised to 1. [Possession]"
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-01-87",
+    "name": "Scarecrow Searching for Wisdom",
+    "code": "F-01-87",
+    "level": "HE",
+    "image": "f-01-87.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When an employee with Prudence level III or higher finished their work on this abnormality, the Qliphoth Counter lowered by 1.",
+        "Guideline 2: When the work result was Bad, the Qliphoth Counter lowered by 1.",
+        "Guideline 3: When Scarecrow Searching for Wisdom escaped and killed any employee, it sucked their brains out to recover its Durability."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 56,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Normal",
+        "white": "Resistant",
+        "black": "Weak",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-02-65",
+    "name": "Scaredy Cat",
+    "code": "F-02-65",
+    "level": "HE",
+    "image": "f-02-65.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was bad, the Qliphoth counter lowered by 1. When Instinct work was performed, the Qliphoth counter lowered by 1.",
+        "Guideline 2: When Repression work was performed, the Qliphoth counter raised by 1.",
+        "Guideline 3: When The Road Home was attacked by an entity, the Qliphoth counter of this abnormality lowered by 2. Then Scaredy Cat followed the Road Home until she had safely entered the House."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 57,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Resistant",
+        "white": "Normal",
+        "black": "Normal",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "t-02-11-04",
+    "name": "Shock Centipede",
+    "code": "T-02-11-04",
+    "level": "HE",
+    "image": "t-02-11-04.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When any work result in the same layer as this abnormality was good, the Shock Centipede siphoned energy out of the facility's power grid and its Qliphoth Counter lowered by 1. This could only occur up to 2 times per cycle.",
+        "Guideline 2: After Shock Centipede had breached containment, it made its way to central command. When it arrived it latched onto the main power generators and it began to short circuit containment cells all across the facility.",
+        "Guideline 3: When Shock Centipede arrived in central command it remained there until it was suppressed, coiling up into a defensive form and regenerating itself from all previous damage."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 50,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Normal",
+        "white": "Endured",
+        "black": "Normal",
+        "pale": "Weak"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "singing-machine",
+    "name": "Singing Machine",
+    "code": null,
+    "level": "HE",
+    "image": "singing-machine.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was Bad, the Qliphoth Counter lowered by 1. An employee with IV or higher Fortitude complained of a harmonious melody and dove into Singing Machine after completing their work. [Death]",
+        "Guideline 2: When the Qliphoth Counter reached 0, the next employee to enter the unit dove into Singing Machine and activated it. [Death]. After the employee dove into Singing Machine, the Qliphoth Counter raised by 1.",
+        "Guideline 3: After work was performed on Singing Machine and any employees was in the hallway outside of its containment cell other than the employee that just worked with it, they became a slave to its song. [Possession]"
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Insight",
+          "roll": "Neutral",
+          "result": "Nothing happens"
+        }
+      ],
+      "extraObservations": [
+        "Interaction 1: a worker in the same hallway was possessed.",
+        "If the possessed employee manages to kill another employee, Singing Machine spreads its possession to another employee as well.",
+        "Suggests a chain possession mechanic — containment of the possessed worker is a priority to prevent escalation."
+      ]
+    }
+  },
+  {
+    "id": "steam-transport-machine",
+    "name": "Steam Transport Machine",
+    "code": null,
+    "level": "HE",
+    "image": "steam-transport-machine.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: If at the end of the cycle this abnormality was not worked with, its Qliphoth counter lowered by 1. When an employee with a Prudence Level of III or higher obtained a good work result with this abnormality, the Qliphoth Counter raised by 1.",
+        "Guideline 2: When an employee with a Prudence Level of II or lower finished work with Steam Transport Machine, they were grabbed by the machine and compacted like luggage into the corner of the containment cell. [Death] A connection between this abnormality and the Backward Clock has yet to be confirmed, though when Backward Clock was worked with this abnormality's Qliphoth Counter lowered by 4.",
+        "Guideline 3: Each cycle Steam Transport Machine was out of its containment cell, it progressively grew stronger by storing more and more time within its body."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 50,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Normal",
+        "white": "Immune",
+        "black": "Normal",
+        "pale": "Vulnerable"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Insight",
+          "roll": "Good",
+          "result": "Instakill"
+        },
+        {
+          "workType": "Insight",
+          "roll": "Good",
+          "result": "Instakill"
+        },
+        {
+          "workType": "Attachment",
+          "roll": "Neutral",
+          "result": "Instakill"
+        }
+      ],
+      "extraObservations": [
+        "Interaction 1: employee had Prudence 2 → Instakill.",
+        "Interaction 2: employee had Prudence 1 → Instakill.",
+        "Interaction 3: employee had Prudence 1 → Instakill.",
+        "Prudence level was checked — working hypothesis: Prudence threshold required to survive, minimum unknown."
+      ]
+    }
+  },
+  {
+    "id": "the-red-shoes",
+    "name": "The Red Shoes",
+    "code": null,
+    "level": "HE",
+    "image": "the-red-shoes.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": true,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When an employee with a Temperance Level II or less began work they put on the red shoes and fell under its influence. [Possession] When the work result was bad, the Qliphoth Counter lowered by 1.",
+        "Guideline 2: When the Qliphoth Counter reached 0, an employee with II or less Temperance in the facility fell under the influence of the red shoes and moved to go put them on. [Possession]",
+        "Guideline 3: An employee who wore Red Shoes became Resistant to all damage types despite any EGO the possessed employee had equipped or tokens present. They went on a rampage and attacked all employees in the facility. Once the possessed employee was killed or went Insane, the red shoes returned to their cell."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Attachment",
+          "roll": "Good",
+          "result": "Nothing happens"
+        }
+      ],
+      "extraObservations": [
+        "Interaction 1: employee had Temperance 5 → Nothing happened.",
+        "The Temperance level checked suggests a survival threshold mechanic similar to other abnormalities. Temperance requirement is still unknown — 5 surviving without incident sets only an upper bound."
+      ]
+    }
+  },
+  {
+    "id": "f-01-111",
+    "name": "The Road Home",
+    "code": "F-01-111",
+    "level": "HE",
+    "image": "f-01-111.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was good, the Qliphoth counter lowered by 1. When Attachment work was performed, the Qliphoth counter lowered by 1.",
+        "Guideline 2: When The Road Home breached containment, a House manifested in the main room of a random department she was not present in. She began to make her way towards the dwelling, not stopping for any reason until she was suppressed or had reached the House.",
+        "Guideline 3: Every containment cell The Road Home passed by on her way towards the House had its Qliphoth counter lowered by 1. Once The Road Home reached the house she returned to her containment cell."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 52,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Normal",
+        "white": "Weak",
+        "black": "Normal",
+        "pale": "Normal"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "wayward-passenger",
+    "name": "Wayward Passenger",
+    "code": null,
+    "level": "HE",
+    "image": "wayward-passenger.png",
+    "notes": "",
+    "hasManagerialNotes": false,
+    "hasDefensiveNotes": false,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": []
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "?",
+        "white": "?",
+        "black": "?",
+        "pale": "?"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [
+        {
+          "workType": "Insight",
+          "roll": "Neutral",
+          "result": "Nothing happens"
+        }
+      ],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "f-01-249",
+    "name": "White Lake",
+    "code": "F-01-249",
+    "level": "HE",
+    "image": "f-01-249.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": []
+    },
+    "defensiveNotes": {
+      "durability": null,
+      "isNonEscaping": true,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "N/A",
+        "white": "N/A",
+        "black": "N/A",
+        "pale": "N/A"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "o-03-88",
+    "name": "Dimensional Refraction Variant",
+    "code": "O-03-88",
+    "level": "Waw",
+    "image": "o-03-88.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: When the work result was bad, the Qliphoth Counter lowered by 1.",
+        "Guideline 2: When an employee with a Prudence Level of III or lower worked with this abnormality, the Qliphoth Counter lowered by 1.",
+        "Guideline 3: When Dimensional Refraction Variant was loose in the facility, it could not normally be seen by the human eye. Be watchful not to forget about its existence amongst other threats."
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 68,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Resistant",
+        "white": "Normal",
+        "black": "Weak",
+        "pale": "Endured"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  },
+  {
+    "id": "o-03-93",
+    "name": "Blue Star",
+    "code": "O-03-93",
+    "level": "Aleph",
+    "image": "o-03-93.png",
+    "notes": "",
+    "hasManagerialNotes": true,
+    "hasDefensiveNotes": true,
+    "hasEmpiricalResearch": false,
+    "managerialNotes": {
+      "guidelines": [
+        "Guideline 1: Employees with IV or lower Temperance immediately threw themselves into Blue Star upon encountering the abnormality. [Death]",
+        "Guideline 2: When an employee with IV or lower Prudence completed their work, the Qliphoth counter lowered by 1. When the work result was bad, the Qliphoth counter lowered by 1.",
+        "Guideline 3: \"Our Blue Star was born in an abyss of despair and floats towards a new beginning.\""
+      ]
+    },
+    "defensiveNotes": {
+      "durability": 130,
+      "isNonEscaping": false,
+      "enkephalinLocked": false,
+      "enkephalinCost": null,
+      "resistances": {
+        "red": "Endured",
+        "white": "Immune",
+        "black": "Weak",
+        "pale": "Normal"
+      }
+    },
+    "empiricalResearch": {
+      "workTable": [],
+      "extraObservations": []
+    }
+  }
+]

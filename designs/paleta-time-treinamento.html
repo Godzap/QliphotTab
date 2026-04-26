@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Paleta — Time de Treinamento</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0f0804;
+  color: #f0c880;
+  font-family: 'Barlow Condensed', sans-serif;
+  padding: 48px 40px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #f0a030;
+  margin-bottom: 4px;
+}
+.subtitle {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: #5a3010;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+
+.section { margin-bottom: 40px; }
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #5a3010;
+  border-bottom: 1px solid #281408;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.swatch {
+  background: #1a0c04;
+  border: 1px solid #281408;
+  overflow: hidden;
+}
+.swatch-color { height: 80px; width: 100%; }
+.swatch-body { padding: 10px 12px 12px; }
+.swatch-name {
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #f0c880; margin-bottom: 2px;
+}
+.swatch-hex {
+  font-family: 'Courier New', monospace;
+  font-size: 12px; color: #7a4820; margin-bottom: 6px;
+}
+.swatch-use {
+  font-size: 11px; letter-spacing: 0.06em;
+  color: #4a2808; line-height: 1.5;
+}
+
+.usage-map {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.usage-row {
+  background: #1a0c04;
+  border: 1px solid #281408;
+  padding: 14px 16px;
+  display: flex; align-items: center; gap: 14px;
+}
+.usage-dot { width: 28px; height: 28px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.06); }
+.usage-label {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #f0c880; margin-bottom: 2px;
+}
+.usage-desc { font-size: 11px; color: #4a2808; letter-spacing: 0.05em; }
+
+/* ── SPECIMEN ── */
+.specimen {
+  background: #1a0c04;
+  border: 1px solid #281408;
+  padding: 28px;
+  position: relative;
+}
+.corner-deco {
+  position: absolute; width: 16px; height: 16px;
+  border-color: #6b3010; border-style: solid;
+}
+.corner-deco.tl { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+.corner-deco.tr { top: 12px; right: 12px; border-width: 1px 1px 0 0; }
+.corner-deco.bl { bottom: 12px; left: 12px; border-width: 0 0 1px 1px; }
+.corner-deco.br { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
+
+.specimen-screen {
+  background: #0f0804;
+  border: 2px solid #c86820;
+  box-shadow: 0 0 24px rgba(200,104,32,0.3), inset 0 0 40px rgba(200,104,32,0.04);
+  padding: 24px;
+  position: relative;
+}
+.specimen-screen::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(200,104,32,0.03) 2px, rgba(200,104,32,0.03) 4px
+  );
+  pointer-events: none;
+}
+.specimen-topbar {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid #3a1e0a;
+}
+.specimen-dot { width: 8px; height: 8px; border-radius: 50%; }
+.specimen-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #4a2808;
+}
+.specimen-heading {
+  font-size: 22px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #f0a030;
+  text-shadow: 0 0 16px rgba(240,160,48,0.4);
+  margin-bottom: 6px;
+}
+.specimen-sub {
+  font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: #e07820; margin-bottom: 20px;
+}
+.specimen-bar-track {
+  background: #1a0c04; border: 1px solid #3a1e0a;
+  height: 8px; margin-bottom: 16px;
+  position: relative; overflow: hidden;
+}
+.specimen-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22dd44, #e07820);
+  width: 68%;
+  position: relative;
+}
+.specimen-bar-fill::after {
+  content: '';
+  position: absolute; right: 0; top: 0; bottom: 0; width: 16px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25));
+}
+.specimen-log {
+  font-family: 'Courier New', monospace;
+  font-size: 11px; color: #3a1e0a; line-height: 1.8;
+}
+.specimen-log .ok  { color: #22dd44; }
+.specimen-log .err { color: #cc2020; }
+.specimen-log .hi  { color: #f0a030; }
+.specimen-statusbar {
+  background: #0f0804; border: 1px solid #3a1e0a; border-top: none;
+  padding: 8px 16px; display: flex; align-items: center; gap: 10px;
+}
+.specimen-pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #e07820;
+  box-shadow: 0 0 6px rgba(224,120,32,0.8);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.specimen-status-text {
+  font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: #3a1e0a;
+}
+
+/* code block */
+pre {
+  background: #0f0804; border: 1px solid #281408;
+  padding: 20px; font-family: 'Courier New', monospace;
+  font-size: 12px; line-height: 2; color: #4a2808;
+}
+.tk { color: #e07820; }
+.tv { color: #f0c880; }
+.tc { color: #5a3010; }
+</style>
+</head>
+<body>
+
+<h1>Time de Treinamento</h1>
+<div class="subtitle">Lobotomy Corporation — Paleta de Cores & Guia de Uso</div>
+
+<!-- FUNDOS -->
+<div class="section">
+  <div class="section-title">Fundos & Superfícies</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0f0804;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Void</div>
+        <div class="swatch-hex">#0f0804</div>
+        <div class="swatch-use">Fundo da tela / screen base. Negro com toque âmbar mínimo.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#140a04;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Deep Ember</div>
+        <div class="swatch-hex">#140a04</div>
+        <div class="swatch-use">Body / container externo. Fundo padrão de página.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1a0c04;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Panel Dark</div>
+        <div class="swatch-hex">#1a0c04</div>
+        <div class="swatch-use">Painéis secundários, cards, sidebars.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#281408;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Panel Mid</div>
+        <div class="swatch-hex">#281408</div>
+        <div class="swatch-use">Hover de painéis, bordas internas, separadores.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#3a1e0a;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Panel Light</div>
+        <div class="swatch-hex">#3a1e0a</div>
+        <div class="swatch-use">Bordas de elementos UI, status bars, divisórias.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#5a3a1a;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Wall Brown</div>
+        <div class="swatch-hex">#5a3a1a</div>
+        <div class="swatch-use">Paredes e teto do departamento — madeira industrial escura.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#6b4420;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Wall Mid</div>
+        <div class="swatch-hex">#6b4420</div>
+        <div class="swatch-use">Painéis de madeira claros, superfície do piso.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#8b5a28;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Wood Light</div>
+        <div class="swatch-hex">#8b5a28</div>
+        <div class="swatch-use">Detalhes de madeira clara, tubulações iluminadas.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PRIMÁRIAS — LARANJA -->
+<div class="section">
+  <div class="section-title">Cores Primárias — Laranja / Âmbar (cor do time)</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#6b3010;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Orange Deep</div>
+        <div class="swatch-hex">#6b3010</div>
+        <div class="swatch-use">Bordas decorativas de canto, ornamentos estruturais.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#c86820;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Orange Primary</div>
+        <div class="swatch-hex">#c86820</div>
+        <div class="swatch-use">Borda principal de painéis, moldura do frame do departamento.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#d4782a;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Orange Mid</div>
+        <div class="swatch-hex">#d4782a</div>
+        <div class="swatch-use">Botões primários, ícone do time, indicadores ativos.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#e07820;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Orange Bright</div>
+        <div class="swatch-hex">#e07820</div>
+        <div class="swatch-use">Status dot ativo, glow de borda, numerais de andar (III).</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#f0a030;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Amber Glow</div>
+        <div class="swatch-hex">#f0a030</div>
+        <div class="swatch-use">Títulos H1/H2 do time, anel portal do departamento, texto de destaque.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#f0c880;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Amber Pale</div>
+        <div class="swatch-hex">#f0c880;</div>
+        <div class="swatch-use">Texto primário do time, labels sobre fundo escuro.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ACENTO — VERMELHO DADOS -->
+<div class="section">
+  <div class="section-title">Cores de Acento — Vermelho de Dados / Plasma</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#6a0808;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Blood Deep</div>
+        <div class="swatch-hex">#6a0808</div>
+        <div class="swatch-use">Fundo da mancha de sangue na parede, sombra de alerta.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#cc2020;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Data Red</div>
+        <div class="swatch-hex">#cc2020</div>
+        <div class="swatch-use">Painéis de dados vermelhos na parede direita, logs de perigo.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#ff4444;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Alert Red</div>
+        <div class="swatch-hex">#ff4444</div>
+        <div class="swatch-use">Hover/glow de avisos críticos, texto de erro máximo.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1a0a2a;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Portal Void</div>
+        <div class="swatch-hex">#1a0a2a</div>
+        <div class="swatch-use">Interior do anel portal (void roxo-escuro). Elemento único do dept.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SEMÂNTICAS -->
+<div class="section">
+  <div class="section-title">Cores Semânticas (mantidas do sistema base)</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#22dd44;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">HP / Safe</div>
+        <div class="swatch-hex">#22dd44</div>
+        <div class="swatch-use">Barra de vida dos agentes. Verde vivo.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#cc2020;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Danger</div>
+        <div class="swatch-hex">#cc2020</div>
+        <div class="swatch-use">Alertas de perigo, bordas de erro, ícone de reiniciar.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#e07820;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Warning</div>
+        <div class="swatch-hex">#e07820</div>
+        <div class="swatch-use">Avisos de nível médio — também é a cor primária do time.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#22cc44;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Matrix Green</div>
+        <div class="swatch-hex">#22cc44</div>
+        <div class="swatch-use">Dados digitais na parede esquerda — efeito terminal/matrix.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAPA DE USO -->
+<div class="section">
+  <div class="section-title">Mapa de Uso — O quê vai onde</div>
+  <div class="usage-map">
+
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#0f0804;"></div>
+      <div><div class="usage-label">--surface-base</div><div class="usage-desc">Fundo da screen / tela principal</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#1a0c04;"></div>
+      <div><div class="usage-label">--surface-panel</div><div class="usage-desc">Painéis, cards, sidebars</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#c86820;"></div>
+      <div><div class="usage-label">--border-primary</div><div class="usage-desc">Borda principal de molduras e painéis</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#d4782a;"></div>
+      <div><div class="usage-label">--color-team</div><div class="usage-desc">Cor identidade do time (ícone, badge)</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#f0a030;"></div>
+      <div><div class="usage-label">--color-heading</div><div class="usage-desc">Títulos H1 e nomes de seção</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#f0c880;"></div>
+      <div><div class="usage-label">--color-text-primary</div><div class="usage-desc">Texto principal / labels do time</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#e07820;"></div>
+      <div><div class="usage-label">--color-active</div><div class="usage-desc">Status dot, luzes ativas, numerais de andar</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#3a1e0a;"></div>
+      <div><div class="usage-label">--border-subtle</div><div class="usage-desc">Divisórias, bordas de status bar</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#5a3a1a;"></div>
+      <div><div class="usage-label">--color-wall</div><div class="usage-desc">Tiles de parede do departamento</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#22dd44;"></div>
+      <div><div class="usage-label">--color-hp</div><div class="usage-desc">Barra de vida dos agentes</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#cc2020;"></div>
+      <div><div class="usage-label">--color-danger</div><div class="usage-desc">Alertas, data panels vermelhos, bordas de erro</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:linear-gradient(90deg,#22dd44,#e07820);"></div>
+      <div><div class="usage-label">--gradient-progress</div><div class="usage-desc">Fill da barra de progresso (verde → laranja)</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SPECIMEN -->
+<div class="section">
+  <div class="section-title">Specimen — Preview do tema aplicado</div>
+  <div class="specimen">
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div>
+    <div class="corner-deco br"></div>
+    <div class="specimen-screen">
+      <div class="specimen-topbar">
+        <div class="specimen-dot" style="background:#cc2020;box-shadow:0 0 4px rgba(204,32,32,.6);"></div>
+        <div class="specimen-dot" style="background:#e07820;box-shadow:0 0 4px rgba(224,120,32,.6);"></div>
+        <div class="specimen-dot" style="background:#22dd44;box-shadow:0 0 4px rgba(34,221,68,.6);"></div>
+        <div class="specimen-title">Sistema de Gestão — Dept. Treinamento · Terminal 3</div>
+      </div>
+      <div class="specimen-heading">Corporação Lobotomy</div>
+      <div class="specimen-sub">▸ Setor de Treinamento · Andar III</div>
+      <div class="specimen-bar-track">
+        <div class="specimen-bar-fill"></div>
+      </div>
+      <div class="specimen-log">
+        <div class="ok">✓ Módulo de treinamento de agentes carregado.</div>
+        <div>▸ Sincronizando registros de campo...</div>
+        <div class="hi">▸ Anel de contenção estabilizado — nível IV.</div>
+        <div class="err">⚠ Anomalia detectada no corredor sul.</div>
+        <div class="ok">✓ Agentes implantados com sucesso.</div>
+      </div>
+    </div>
+    <div class="specimen-statusbar">
+      <div class="specimen-pulse"></div>
+      <div class="specimen-status-text">Conexão estabelecida — Gestor autorizado.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS TOKENS -->
+<div class="section">
+  <div class="section-title">Tokens CSS prontos para usar</div>
+  <pre>
+<span class="tc">/* ── Time de Treinamento ── */</span>
+<span class="tk">--train-bg-void:</span>         <span class="tv">#0f0804</span>;
+<span class="tk">--train-bg-deep:</span>         <span class="tv">#140a04</span>;
+<span class="tk">--train-surface-panel:</span>   <span class="tv">#1a0c04</span>;
+<span class="tk">--train-surface-mid:</span>     <span class="tv">#281408</span>;
+<span class="tk">--train-border-subtle:</span>   <span class="tv">#3a1e0a</span>;
+<span class="tk">--train-wall-dark:</span>       <span class="tv">#5a3a1a</span>;
+<span class="tk">--train-wall-mid:</span>        <span class="tv">#6b4420</span>;
+<span class="tk">--train-wall-light:</span>      <span class="tv">#8b5a28</span>;
+<span class="tk">--train-border-deco:</span>     <span class="tv">#6b3010</span>;
+<span class="tk">--train-border-primary:</span>  <span class="tv">#c86820</span>;
+<span class="tk">--train-orange:</span>          <span class="tv">#d4782a</span>;
+<span class="tk">--train-orange-bright:</span>   <span class="tv">#e07820</span>;
+<span class="tk">--train-heading:</span>         <span class="tv">#f0a030</span>;
+<span class="tk">--train-text:</span>            <span class="tv">#f0c880</span>;
+<span class="tk">--train-data-red:</span>        <span class="tv">#cc2020</span>;
+<span class="tk">--train-alert-red:</span>       <span class="tv">#ff4444</span>;
+<span class="tk">--train-portal-void:</span>     <span class="tv">#1a0a2a</span>;
+<span class="tk">--train-matrix-green:</span>    <span class="tv">#22cc44</span>;
+<span class="tk">--train-hp:</span>              <span class="tv">#22dd44</span>;
+<span class="tk">--train-danger:</span>          <span class="tv">#cc2020</span>;
+<span class="tk">--train-warning:</span>         <span class="tv">#e07820</span>;
+<span class="tk">--train-gradient-bar:</span>    <span class="tv">linear-gradient(90deg, #22dd44, #e07820)</span>;
+<span class="tk">--train-glow-orange:</span>     <span class="tv">0 0 16px rgba(200,104,32,0.5)</span>;
+<span class="tk">--train-glow-red:</span>        <span class="tv">0 0 12px rgba(204,32,32,0.4)</span>;
+</pre>
+</div>
+
+</body>
+</html>

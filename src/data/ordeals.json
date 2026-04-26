@@ -1,0 +1,59 @@
+[
+  {
+    "id": "crimson-dawn",
+    "name": "Crimson Dawn",
+    "color": "Crimson",
+    "time": "Cycle 9",
+    "image": null,
+    "hasDescription": true,
+    "hasEmpiricalResearch": true,
+    "description": {
+      "themeName": "The Bleeding Morning",
+      "quote": "\"When the sun rises red, it is not the light that arrives — it is the hunger.\"",
+      "appearance": "A wave of hunched, crimson-robed figures that move in jerking, erratic patterns. Their faces are obscured by cracked white masks. They carry no weapons but their hands end in elongated black talons."
+    },
+    "empiricalResearch": {
+      "observations": [
+        "Spawns at facility perimeter — 6 units observed in the single encounter so far.",
+        "Move toward the highest employee density, ignoring abnormality cells entirely.",
+        "Each talon strike deals [4 🔴 Red Damage]. They attack twice per turn.",
+        "Employees at the front of a corridor take all hits — positioning matters significantly.",
+        "Hypothesis (unconfirmed): May be deterred by Pale damage — one unit appeared to flinch and reroute when struck."
+      ]
+    }
+  },
+  {
+    "id": "indigo-dawn",
+    "name": "Indigo Dawn",
+    "color": "Indigo",
+    "time": "Cycle 15",
+    "image": null,
+    "hasDescription": true,
+    "hasEmpiricalResearch": false,
+    "description": {
+      "themeName": "The Hollow Choir",
+      "quote": "\"They sing because they have forgotten how to be silent.\"",
+      "appearance": "Tall, translucent blue entities that glide rather than walk. Their mouths are permanently open in a silent scream. They wear tattered formal wear — suits and gowns — suggesting they were once human."
+    },
+    "empiricalResearch": {
+      "observations": []
+    }
+  },
+  {
+    "id": "green-dawn",
+    "name": "Green Dawn",
+    "color": "Amber",
+    "time": "Cycle 12",
+    "image": null,
+    "hasDescription": false,
+    "hasEmpiricalResearch": false,
+    "description": {
+      "themeName": "",
+      "quote": "",
+      "appearance": ""
+    },
+    "empiricalResearch": {
+      "observations": []
+    }
+  }
+]
