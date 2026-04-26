@@ -5,8 +5,8 @@ export const TEAMS = [
     id:      'default',
     label:   'Corporação',
     sublabel: 'Paleta Base',
-    color:   '#cc2222',
-    textColor: '#e8d850',
+    color:   '#e8d850',
+    textColor: '#f5f090',
     bg:      '#000000',
   },
   {
@@ -29,9 +29,9 @@ export const TEAMS = [
     id:      'safety',
     label:   'Segurança',
     sublabel: 'Time III',
-    color:   '#cc2222',
-    textColor: '#f0c0c0',
-    bg:      '#0a0000',
+    color:   '#40ff60',
+    textColor: '#80ff90',
+    bg:      '#020f04',
   },
   {
     id:      'control',

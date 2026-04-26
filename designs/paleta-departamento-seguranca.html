@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Paleta — Departamento de Segurança</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #020f04;
+  color: #80ff90;
+  font-family: 'Barlow Condensed', sans-serif;
+  padding: 48px 40px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 28px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: #40ff60; margin-bottom: 4px;
+}
+.subtitle {
+  font-size: 13px; letter-spacing: 0.14em;
+  color: #0a3010; text-transform: uppercase; margin-bottom: 8px;
+}
+.tagline-bar {
+  display: inline-block;
+  background: #1a6020;
+  color: #40ff60;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  padding: 5px 14px;
+  margin-bottom: 48px;
+  border: 1px solid #40ff60;
+}
+
+.section { margin-bottom: 40px; }
+.section-title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: #0a3010; border-bottom: 1px solid #061208;
+  padding-bottom: 8px; margin-bottom: 20px;
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+.swatch { background: #050e06; border: 1px solid #0a1e0c; overflow: hidden; }
+.swatch-color { height: 80px; width: 100%; }
+.swatch-body { padding: 10px 12px 12px; }
+.swatch-name {
+  font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #80ff90; margin-bottom: 2px;
+}
+.swatch-hex { font-family: 'Courier New', monospace; font-size: 12px; color: #1a4820; margin-bottom: 6px; }
+.swatch-use { font-size: 11px; letter-spacing: 0.06em; color: #0c2010; line-height: 1.5; }
+
+.usage-map { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.usage-row {
+  background: #050e06; border: 1px solid #0a1e0c;
+  padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+}
+.usage-dot { width: 28px; height: 28px; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.06); }
+.usage-label {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: #80ff90; margin-bottom: 2px;
+}
+.usage-desc { font-size: 11px; color: #0c2010; letter-spacing: 0.05em; }
+
+/* SPECIMEN */
+.specimen { background: #050e06; border: 2px solid #28c840; padding: 28px; position: relative;
+  box-shadow: 0 0 32px rgba(40,200,64,0.2); }
+.corner-deco {
+  position: absolute; width: 16px; height: 16px;
+  border-color: #28c840; border-style: solid;
+}
+.corner-deco.tl { top: -2px; left: -2px; border-width: 2px 0 0 2px; }
+.corner-deco.tr { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+.corner-deco.bl { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+.corner-deco.br { bottom: -2px; right: -2px; border-width: 0 2px 2px 0; }
+
+.specimen-screen {
+  background: #020f04; border: 1px solid #0f3018;
+  padding: 24px; position: relative;
+}
+.specimen-screen::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(40,200,64,0.03) 2px, rgba(40,200,64,0.03) 4px
+  );
+  pointer-events: none;
+}
+.specimen-topbar {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid #0f3018;
+}
+.specimen-dot { width: 8px; height: 8px; border-radius: 50%; }
+.specimen-title { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #0c2010; }
+.specimen-heading {
+  font-size: 22px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #40ff60;
+  text-shadow: 0 0 24px rgba(64,255,96,0.5); margin-bottom: 4px;
+}
+.specimen-sub {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #28c840; margin-bottom: 20px;
+}
+.specimen-bar-track {
+  background: #050e06; border: 1px solid #0f3018;
+  height: 8px; margin-bottom: 16px; position: relative; overflow: hidden;
+}
+.specimen-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22dd44, #40ff60);
+  width: 82%; position: relative;
+}
+.specimen-bar-fill::after {
+  content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 16px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
+}
+.specimen-log { font-family: 'Courier New', monospace; font-size: 11px; color: #0c2010; line-height: 1.8; }
+.specimen-log .ok  { color: #40ff60; }
+.specimen-log .err { color: #cc2222; }
+.specimen-log .hi  { color: #80ff90; }
+.specimen-log .tox { color: #b8ff20; }
+.specimen-statusbar {
+  background: #020f04; border: 1px solid #0f3018; border-top: none;
+  padding: 8px 16px; display: flex; align-items: center; gap: 10px;
+}
+.specimen-pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #40ff60; box-shadow: 0 0 8px rgba(64,255,96,0.9);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+.specimen-status-text { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #0c2010; }
+
+pre {
+  background: #020f04; border: 1px solid #0a1e0c;
+  padding: 20px; font-family: 'Courier New', monospace;
+  font-size: 12px; line-height: 2; color: #0c2010;
+}
+.tk { color: #28c840; }
+.tv { color: #80ff90; }
+.tc { color: #0a3010; }
+</style>
+</head>
+<body>
+
+<h1>Departamento de Segurança</h1>
+<div class="subtitle">Lobotomy Corporation — Paleta de Cores & Guia de Uso</div>
+<div class="tagline-bar">▸ Andar III · Verde Tóxico · Contenção Ativa</div>
+
+<!-- FUNDOS -->
+<div class="section">
+  <div class="section-title">Fundos & Superfícies</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#020f04;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Void</div>
+        <div class="swatch-hex">#020f04</div>
+        <div class="swatch-use">Fundo da tela / screen base. Preto com toque verde profundo.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#050e06;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Deep Green-Black</div>
+        <div class="swatch-hex">#050e06</div>
+        <div class="swatch-use">Body / container externo. Fundo padrão de página.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0a1e0c;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Panel Dark</div>
+        <div class="swatch-hex">#0a1e0c</div>
+        <div class="swatch-use">Painéis secundários, cards, sidebars.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0f3018;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Panel Mid</div>
+        <div class="swatch-hex">#0f3018</div>
+        <div class="swatch-use">Hover de painéis, bordas internas, separadores.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1a6020;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Panel Light</div>
+        <div class="swatch-hex">#1a6020</div>
+        <div class="swatch-use">Bordas de elementos UI, status bars, divisórias.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1e4a1a;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Wall Dark</div>
+        <div class="swatch-hex">#1e4a1a</div>
+        <div class="swatch-use">Paredes de fundo do departamento — verde musgo escuro.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#2a6828;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Wall Mid</div>
+        <div class="swatch-hex">#2a6828</div>
+        <div class="swatch-use">Paredes laterais, equipamentos de laboratório no fundo.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#3a8030;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Wall Light</div>
+        <div class="swatch-hex">#3a8030</div>
+        <div class="swatch-use">Paredes frontais iluminadas pelo brilho tóxico da planta.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- VERDE PRIMÁRIO — COR DO TIME -->
+<div class="section">
+  <div class="section-title">Verde Tóxico — Cor Primária do Departamento</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0f5018;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Green Deep</div>
+        <div class="swatch-hex">#0f5018</div>
+        <div class="swatch-use">Bordas decorativas de canto, ornamentos estruturais do frame.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1a8030;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Green Dark</div>
+        <div class="swatch-hex">#1a8030</div>
+        <div class="swatch-use">Borda do frame do departamento, moldura principal.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#28c840;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Green Primary</div>
+        <div class="swatch-hex">#28c840</div>
+        <div class="swatch-use">Borda de painéis, status dot, moldura do frame, ícone do time.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#40ff60;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Green Neon</div>
+        <div class="swatch-hex">#40ff60</div>
+        <div class="swatch-use">Títulos H1/H2, numerais de andar (III), cor identidade do time.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#70ff88;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Green Hover</div>
+        <div class="swatch-hex">#70ff88</div>
+        <div class="swatch-use">Estado hover de elementos, glow de borda no foco.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#80ff90;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Green Pale</div>
+        <div class="swatch-hex">#80ff90</div>
+        <div class="swatch-use">Texto primário do departamento, labels sobre fundo escuro.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- VERDE-AMARELO TÓXICO — PLANTA -->
+<div class="section">
+  <div class="section-title">Verde-Amarelo Tóxico — Planta & Contaminação</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#3a5800;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Toxic Deep</div>
+        <div class="swatch-hex">#3a5800</div>
+        <div class="swatch-use">Sombra das listras da planta carnívora, caule escuro.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#78a800;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Toxic Dark</div>
+        <div class="swatch-hex">#78a800</div>
+        <div class="swatch-use">Listras escuras da planta, stem dos equipamentos de laboratório.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#b8ff20;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Toxic Yellow-Green</div>
+        <div class="swatch-hex">#b8ff20</div>
+        <div class="swatch-use">Listras claras da planta carnívora, névoa tóxica do ambiente. Glow bioluminescente.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#d4ff60;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Toxic Glow</div>
+        <div class="swatch-hex">#d4ff60</div>
+        <div class="swatch-use">Ponto mais brilhante da névoa da planta, faísca de contaminação.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ACENTO — VERMELHO LABORATÓRIO -->
+<div class="section">
+  <div class="section-title">Acento — Vermelho de Laboratório</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#cc0000;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Lab Red</div>
+        <div class="swatch-hex">#cc0000</div>
+        <div class="swatch-use">Barril de resíduos, botão vermelho do equipamento, alertas de contenção.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#c8e0a0;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Lab Pale</div>
+        <div class="swatch-hex">#c8e0a0</div>
+        <div class="swatch-use">Paredes do fundo mais iluminadas, reflexo do brilho tóxico no concreto.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#60a060;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Equipment Green</div>
+        <div class="swatch-hex">#60a060</div>
+        <div class="swatch-use">Equipamentos de laboratório (béqueres, cilindros), tubulações de vidro.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#a0c8a0;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Glass Green</div>
+        <div class="swatch-hex">#a0c8a0</div>
+        <div class="swatch-use">Reflexo de vidro dos equipamentos, tubos de contenção iluminados.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SEMÂNTICAS -->
+<div class="section">
+  <div class="section-title">Cores Semânticas (mantidas do sistema base)</div>
+  <div class="swatches">
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#22dd44;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">HP / Safe</div>
+        <div class="swatch-hex">#22dd44</div>
+        <div class="swatch-use">Barra de vida dos agentes — quase se funde com o tema do dept.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#cc0000;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Danger</div>
+        <div class="swatch-hex">#cc0000</div>
+        <div class="swatch-use">Alertas de perigo, barril radioativo, bordas de erro.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="swatch-color" style="background:#e8b700;"></div>
+      <div class="swatch-body">
+        <div class="swatch-name">Warning</div>
+        <div class="swatch-hex">#e8b700</div>
+        <div class="swatch-use">Avisos de nível médio, bordas tracejadas.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAPA DE USO -->
+<div class="section">
+  <div class="section-title">Mapa de Uso — O quê vai onde</div>
+  <div class="usage-map">
+
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#020f04;"></div>
+      <div><div class="usage-label">--surface-base</div><div class="usage-desc">Fundo da screen / tela principal</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#0a1e0c;"></div>
+      <div><div class="usage-label">--surface-panel</div><div class="usage-desc">Painéis, cards, sidebars</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#28c840;"></div>
+      <div><div class="usage-label">--border-primary</div><div class="usage-desc">Borda principal de molduras e painéis</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#40ff60;"></div>
+      <div><div class="usage-label">--color-team</div><div class="usage-desc">Cor identidade do dept (ícone, badge, numerais III)</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#40ff60;"></div>
+      <div><div class="usage-label">--color-heading</div><div class="usage-desc">Títulos H1 e nomes de seção</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#80ff90;"></div>
+      <div><div class="usage-label">--color-text-primary</div><div class="usage-desc">Texto principal / labels do dept</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#28c840;"></div>
+      <div><div class="usage-label">--color-active</div><div class="usage-desc">Status dot ativo, luzes de estado</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#0f3018;"></div>
+      <div><div class="usage-label">--border-subtle</div><div class="usage-desc">Divisórias, bordas de status bar</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#b8ff20;"></div>
+      <div><div class="usage-label">--color-toxic</div><div class="usage-desc">Névoa tóxica, listras da planta, glow bioluminescente</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#cc0000;"></div>
+      <div><div class="usage-label">--color-danger</div><div class="usage-desc">Barril radioativo, alertas, bordas de erro</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:#2a6828;"></div>
+      <div><div class="usage-label">--color-wall</div><div class="usage-desc">Tiles de parede do departamento</div></div>
+    </div>
+    <div class="usage-row">
+      <div class="usage-dot" style="background:linear-gradient(90deg,#22dd44,#40ff60);"></div>
+      <div><div class="usage-label">--gradient-progress</div><div class="usage-desc">Fill da barra de progresso (verde → neon)</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SPECIMEN -->
+<div class="section">
+  <div class="section-title">Specimen — Preview do tema aplicado</div>
+  <div class="specimen">
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco tr"></div>
+    <div class="corner-deco bl"></div>
+    <div class="corner-deco br"></div>
+    <div class="specimen-screen">
+      <div class="specimen-topbar">
+        <div class="specimen-dot" style="background:#cc0000;box-shadow:0 0 4px rgba(204,0,0,.6);"></div>
+        <div class="specimen-dot" style="background:#e8b700;box-shadow:0 0 4px rgba(232,183,0,.6);"></div>
+        <div class="specimen-dot" style="background:#40ff60;box-shadow:0 0 5px rgba(64,255,96,.8);"></div>
+        <div class="specimen-title">Sistema de Gestão — Dept. Segurança · Terminal 3</div>
+      </div>
+      <div class="specimen-heading">Corporação Lobotomy</div>
+      <div class="specimen-sub">▸ Departamento de Segurança · Andar III</div>
+      <div class="specimen-bar-track">
+        <div class="specimen-bar-fill"></div>
+      </div>
+      <div class="specimen-log">
+        <div class="ok">✓ Módulo de segurança e contenção carregado.</div>
+        <div>▸ Sincronizando câmeras do laboratório...</div>
+        <div class="hi">▸ Planta carnívora: nível de ameaça estável.</div>
+        <div class="tox">▸ Névoa tóxica — concentração: 0.3 ppm. OK.</div>
+        <div class="err">⚠ Barril radioativo detectado no corredor sul.</div>
+      </div>
+    </div>
+    <div class="specimen-statusbar">
+      <div class="specimen-pulse"></div>
+      <div class="specimen-status-text">Conexão estabelecida — Gestor autorizado.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CSS TOKENS -->
+<div class="section">
+  <div class="section-title">Tokens CSS prontos para usar</div>
+  <pre>
+<span class="tc">/* ── Departamento de Segurança ── */</span>
+<span class="tk">--sec-bg-void:</span>             <span class="tv">#020f04</span>;
+<span class="tk">--sec-bg-deep:</span>             <span class="tv">#050e06</span>;
+<span class="tk">--sec-surface-panel:</span>       <span class="tv">#0a1e0c</span>;
+<span class="tk">--sec-surface-mid:</span>         <span class="tv">#0f3018</span>;
+<span class="tk">--sec-border-subtle:</span>       <span class="tv">#1a6020</span>;
+<span class="tk">--sec-wall-dark:</span>           <span class="tv">#1e4a1a</span>;
+<span class="tk">--sec-wall-mid:</span>            <span class="tv">#2a6828</span>;
+<span class="tk">--sec-wall-light:</span>          <span class="tv">#3a8030</span>;
+<span class="tk">--sec-border-deco:</span>         <span class="tv">#0f5018</span>;
+<span class="tk">--sec-green-dark:</span>          <span class="tv">#1a8030</span>;
+<span class="tk">--sec-border-primary:</span>      <span class="tv">#28c840</span>;
+<span class="tk">--sec-green:</span>               <span class="tv">#40ff60</span>;
+<span class="tk">--sec-green-hover:</span>         <span class="tv">#70ff88</span>;
+<span class="tk">--sec-heading:</span>             <span class="tv">#40ff60</span>;
+<span class="tk">--sec-text:</span>                <span class="tv">#80ff90</span>;
+<span class="tk">--sec-toxic-dark:</span>          <span class="tv">#78a800</span>;
+<span class="tk">--sec-toxic:</span>               <span class="tv">#b8ff20</span>;
+<span class="tk">--sec-toxic-glow:</span>          <span class="tv">#d4ff60</span>;
+<span class="tk">--sec-lab-pale:</span>            <span class="tv">#c8e0a0</span>;
+<span class="tk">--sec-equipment:</span>           <span class="tv">#60a060</span>;
+<span class="tk">--sec-glass:</span>               <span class="tv">#a0c8a0</span>;
+<span class="tk">--sec-hp:</span>                  <span class="tv">#22dd44</span>;
+<span class="tk">--sec-danger:</span>              <span class="tv">#cc0000</span>;
+<span class="tk">--sec-warning:</span>             <span class="tv">#e8b700</span>;
+<span class="tk">--sec-gradient-bar:</span>        <span class="tv">linear-gradient(90deg, #22dd44, #40ff60)</span>;
+<span class="tk">--sec-glow-neon:</span>           <span class="tv">0 0 20px rgba(64,255,96,0.55)</span>;
+<span class="tk">--sec-glow-toxic:</span>          <span class="tv">0 0 16px rgba(184,255,32,0.4)</span>;
+</pre>
+</div>
+
+</body>
+</html>

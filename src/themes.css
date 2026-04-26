@@ -5,44 +5,44 @@
    Tailwind config and index.css. Add new teams below.
    ============================================================ */
 
-/* ── Default — Lobotomy Corp Base (Green) ──────────────────── */
+/* ── Default — Lobotomy Corp Base (Cream + Red) ─────────────── */
 :root,
 [data-team="default"] {
-  /* Backgrounds (RGB triplets for Tailwind alpha support) */
-  --t-bg-950-rgb: 3 8 5;         /* #030805 */
-  --t-bg-900-rgb: 6 15 6;        /* #060f06 */
-  --t-bg-800-rgb: 12 30 12;      /* #0c1e0c */
-  --t-bg-700-rgb: 18 40 16;      /* #122810 */
+  /* Backgrounds — preto puro com toque vermelho */
+  --t-bg-950-rgb: 0 0 0;           /* #000000 — pure black */
+  --t-bg-900-rgb: 13 13 13;        /* #0d0d0d — near black panels */
+  --t-bg-800-rgb: 22 4 4;          /* red-black subtle */
+  --t-bg-700-rgb: 36 8 8;          /* red-black hover */
 
-  /* Accent — neon green */
-  --t-accent-rgb:       0 255 153;    /* #00ff99 */
-  --t-accent-light-rgb: 102 255 204;  /* #66ffcc */
-  --t-accent-dark-rgb:  0 187 119;    /* #00bb77 */
-  --t-accent-muted-rgb: 10 77 46;     /* #0a4d2e */
+  /* Accent — creme / pale yellow */
+  --t-accent-rgb:       232 216 80;    /* #e8d850 — Cream Primary */
+  --t-accent-light-rgb: 245 240 144;   /* #f5f090 — Cream Highlight */
+  --t-accent-dark-rgb:  200 178 0;     /* #c8b200 — Cream Dark */
+  --t-accent-muted-rgb: 58 50 0;       /* #3a3200 — Cream Ghost */
 
   /* Text */
-  --t-text-rgb:       204 245 228;  /* #ccf5e4 */
-  --t-text-muted-rgb: 74 138 100;   /* #4a8a64 */
+  --t-text-rgb:       232 216 80;   /* #e8d850 — Cream Primary */
+  --t-text-muted-rgb: 122 104 0;    /* #7a6800 — Cream Dim */
 
   /* Body */
-  --t-body-bg:   #030805;
-  --t-dot-color: rgba(0, 255, 153, 0.04);
+  --t-body-bg:   #000000;
+  --t-dot-color: rgba(204, 34, 34, 0.04);
 
-  /* Shadows */
-  --t-shadow-accent:    0 0 20px rgba(0, 255, 153, 0.3);
-  --t-shadow-accent-lg: 0 0 40px rgba(0, 255, 153, 0.4);
-  --t-shadow-accent-sm: 0 0 8px  rgba(0, 255, 153, 0.25);
-  --t-text-glow:        0 0 24px rgba(0, 255, 153, 0.55),
-                        0 0 8px  rgba(0, 255, 153, 0.3);
+  /* Shadows — cream glow */
+  --t-shadow-accent:    0 0 20px rgba(232, 216, 80, 0.3);
+  --t-shadow-accent-lg: 0 0 40px rgba(232, 216, 80, 0.4);
+  --t-shadow-accent-sm: 0 0 8px  rgba(232, 216, 80, 0.25);
+  --t-text-glow:        0 0 24px rgba(232, 216, 80, 0.55),
+                        0 0 8px  rgba(232, 216, 80, 0.3);
 
   /* Scrollbar */
-  --t-scrollbar-track: #060f06;
-  --t-scrollbar-thumb: #0a4d2e;
-  --t-scrollbar-hover: #00ff99;
+  --t-scrollbar-track: #0d0d0d;
+  --t-scrollbar-thumb: #3a3200;
+  --t-scrollbar-hover: #e8d850;
 
-  /* Corner decorations */
-  --t-corner-bright: #00ff99;
-  --t-corner-dim:    rgba(0, 255, 153, 0.35);
+  /* Corner decorations — vermelho da marca */
+  --t-corner-bright: #cc2222;
+  --t-corner-dim:    rgba(204, 34, 34, 0.35);
 }
 
 /* ── Time da Informação (Purple / Violet) ───────────────────── */
@@ -116,36 +116,36 @@
   --t-corner-dim:    rgba(64, 184, 224, 0.35);
 }
 
-/* ── Time de Segurança (Red / Crimson) ──────────────────────── */
+/* ── Departamento de Segurança (Green Neon / Toxic) ─────────── */
 [data-team="safety"] {
-  --t-bg-950-rgb: 10 0 0;
-  --t-bg-900-rgb: 16 0 0;
-  --t-bg-800-rgb: 24 4 4;
-  --t-bg-700-rgb: 36 6 6;
+  --t-bg-950-rgb: 2 15 4;          /* #020f04 — Void */
+  --t-bg-900-rgb: 5 14 6;          /* #050e06 — Deep Green-Black */
+  --t-bg-800-rgb: 10 30 12;        /* #0a1e0c — Panel Dark */
+  --t-bg-700-rgb: 15 48 24;        /* #0f3018 — Panel Mid */
 
-  --t-accent-rgb:       204 34 34;
-  --t-accent-light-rgb: 232 48 48;
-  --t-accent-dark-rgb:  153 18 18;
-  --t-accent-muted-rgb: 51 0 0;
+  --t-accent-rgb:       64 255 96;     /* #40ff60 — Green Neon */
+  --t-accent-light-rgb: 128 255 144;   /* #80ff90 — Green Pale */
+  --t-accent-dark-rgb:  40 200 64;     /* #28c840 — Green Primary */
+  --t-accent-muted-rgb: 15 80 24;      /* #0f5018 — Green Deep */
 
-  --t-text-rgb:       240 192 192;
-  --t-text-muted-rgb: 148 88 88;
+  --t-text-rgb:       128 255 144;  /* #80ff90 — Green Pale */
+  --t-text-muted-rgb: 26 128 48;    /* #1a8030 — Green Dark */
 
-  --t-body-bg:   #0a0000;
-  --t-dot-color: rgba(204, 34, 34, 0.07);
+  --t-body-bg:   #020f04;
+  --t-dot-color: rgba(40, 200, 64, 0.05);
 
-  --t-shadow-accent:    0 0 20px rgba(204, 34, 34, 0.4);
-  --t-shadow-accent-lg: 0 0 40px rgba(204, 34, 34, 0.5);
-  --t-shadow-accent-sm: 0 0 8px  rgba(204, 34, 34, 0.3);
-  --t-text-glow:        0 0 24px rgba(204, 34, 34, 0.6),
-                        0 0 8px  rgba(204, 34, 34, 0.35);
+  --t-shadow-accent:    0 0 20px rgba(40, 200, 64, 0.35);
+  --t-shadow-accent-lg: 0 0 40px rgba(64, 255, 96, 0.45);
+  --t-shadow-accent-sm: 0 0 8px  rgba(40, 200, 64, 0.3);
+  --t-text-glow:        0 0 24px rgba(64, 255, 96, 0.55),
+                        0 0 8px  rgba(64, 255, 96, 0.3);
 
-  --t-scrollbar-track: #100000;
-  --t-scrollbar-thumb: #330000;
-  --t-scrollbar-hover: #cc2222;
+  --t-scrollbar-track: #050e06;
+  --t-scrollbar-thumb: #0f3018;
+  --t-scrollbar-hover: #40ff60;
 
-  --t-corner-bright: #cc2222;
-  --t-corner-dim:    rgba(204, 34, 34, 0.35);
+  --t-corner-bright: #40ff60;
+  --t-corner-dim:    rgba(64, 255, 96, 0.35);
 }
 
 /* ── Time de Controle (Yellow / Amber) ──────────────────────── */
