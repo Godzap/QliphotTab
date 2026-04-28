@@ -22,6 +22,36 @@ npm run build
 
 ---
 
+## Garry's Mod tablet mode (`telagodzap`)
+
+The app now supports a dedicated `#/tablet` UI for Garry's Mod CEF/DHTML rendering.
+
+Mode is auto-detected when these query params are present:
+
+- `gmod=1`
+- `device=telagodzap`
+- `ui=tablet`
+- `rt_w=1024`
+- `rt_h=1024`
+- `view_w=1024`
+- `view_h=1024`
+- `build=telagodzap-r2`
+
+Detection/parsing helpers:
+
+- `isGmodTabletMode()` in `src/utils/gmod.js`
+- `getGmodRenderHints()` in `src/utils/gmod.js`
+
+Local test (simulated GMod URL):
+
+```text
+http://localhost:5173/?gmod=1&device=telagodzap&ui=tablet&rt_w=1024&rt_h=1024&view_w=1024&view_h=1024&build=telagodzap-r2#/tablet
+```
+
+Without `gmod=1` + `device=telagodzap`, the app falls back to the normal desktop/mobile experience.
+
+---
+
 ## Project structure
 
 ```
