@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { useAuth } from '../../context/AuthContext'
@@ -93,8 +93,18 @@ export default function DataPadLoginExperience({
   const normalizedDepartment = normalizeDepartment(grantedUser?.department)
   const departmentColor = DEPT_COLORS[normalizedDepartment] || '#BFA35A'
 
+  // Impede o efeito de isAuthenticated de navegar durante a animação de granted.
+  // Quando o usuário acaba de logar, a navegação é controlada manualmente pelo timeout abaixo.
+  const justLoggedIn = useRef(false)
+  const navTimerRef = useRef(null)
+
+  useEffect(() => {
+    return () => { window.clearTimeout(navTimerRef.current) }
+  }, [])
+
   useEffect(() => {
     if (!isAuthenticated) return
+    if (justLoggedIn.current) return
     navigate(redirectPath, { replace: true })
   }, [isAuthenticated, navigate, redirectPath])
 
@@ -154,14 +164,15 @@ export default function DataPadLoginExperience({
         wait(1400),
       ])
 
+      justLoggedIn.current = true
       setGrantedUser(session.user)
       setPassword('')
       setPhase('granted')
       setAuthStepIndex(AUTH_STEPS)
 
-      window.setTimeout(() => {
+      navTimerRef.current = window.setTimeout(() => {
         navigate(redirectPath, { replace: true })
-      }, 1700)
+      }, 2600)
     } catch (error) {
       if (error?.status === 401) {
         const nextAttempts = attempts + 1

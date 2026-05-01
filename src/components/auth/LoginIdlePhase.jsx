@@ -60,7 +60,7 @@ export default function LoginIdlePhase({ onEngage }) {
         <div className="dpl-idle-logo-wrap">
           <div className="dpl-idle-ring" />
           <img
-            src="/images/corporacaolobotomy.png"
+            src="/images/corporacaologo.png"
             onError={(e) => { e.currentTarget.src = '/images/Lobotomy-Logo.png' }}
             alt="Lobotomy Corporation"
           />
