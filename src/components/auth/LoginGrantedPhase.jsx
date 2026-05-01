@@ -1,17 +1,20 @@
 import { motion } from 'framer-motion'
 import CornerBrackets from './CornerBrackets'
 
+const PHASE_TRANSITION = { duration: 0.38, ease: [0.16, 1, 0.3, 1] }
+
 export default function LoginGrantedPhase({ user, departmentColor }) {
   return (
     <motion.section
       className="dpl-phase dpl-phase-granted"
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.22 }}
+      exit={{ opacity: 0, y: -8, transition: { duration: 0.18, ease: 'easeIn' } }}
+      transition={PHASE_TRANSITION}
     >
-      <div className="dpl-result-icon is-granted" aria-hidden="true">
+      <div className="dpl-result-icon is-granted dpl-icon-granted-pulse" aria-hidden="true">
         <svg width="30" height="30" viewBox="0 0 32 32">
-          <polyline points="6,17 13,24 26,9" fill="none" stroke="#2F6B45" strokeWidth="2.5" />
+          <polyline points="6,17 13,24 26,9" fill="none" stroke="#2F6B45" strokeWidth="2.5" strokeLinecap="square" />
         </svg>
       </div>
 
@@ -44,7 +47,7 @@ export default function LoginGrantedPhase({ user, departmentColor }) {
       </div>
 
       <p className="dpl-redirecting">
-        REDIRECIONANDO PARA O PAINEL OPERACIONAL <span>|</span>
+        REDIRECIONANDO PARA O PAINEL OPERACIONAL <span>█</span>
       </p>
     </motion.section>
   )

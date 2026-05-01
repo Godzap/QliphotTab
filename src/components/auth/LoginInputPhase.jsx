@@ -1,5 +1,8 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import { motion, useAnimate } from 'framer-motion'
 import CornerBrackets from './CornerBrackets'
+
+const PHASE_TRANSITION = { duration: 0.32, ease: [0.16, 1, 0.3, 1] }
 
 export default function LoginInputPhase({
   username,
@@ -15,16 +18,30 @@ export default function LoginInputPhase({
   maxAttempts,
 }) {
   const canSubmit = Boolean(username.trim() && password) && !isSubmitting && !isLocked
+  const hasError = Boolean(backendError)
+
+  const [scope, animateShake] = useAnimate()
+  const isFirst = useRef(true)
+
+  useEffect(() => {
+    if (isFirst.current) { isFirst.current = false; return }
+    if (backendError) {
+      animateShake(scope.current, { x: [0, -6, 6, -5, 5, -3, 3, 0] }, { duration: 0.48, ease: 'easeInOut' })
+    }
+  }, [backendError])
 
   return (
     <motion.section
       className="dpl-phase dpl-phase-input"
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0, y: -8, transition: { duration: 0.18, ease: 'easeIn' } }}
+      transition={PHASE_TRANSITION}
     >
-      <div className={`dpl-form-shell ${backendError ? 'is-error' : ''}`}>
-        <CornerBrackets color={backendError ? '#B83232' : '#3A332C'} size={12} inset={6} />
+      <div ref={scope} className={`dpl-form-shell ${hasError ? 'is-error' : ''}`}>
+        <CornerBrackets color={hasError ? '#B83232' : '#3A332C'} size={12} inset={6} />
+
+        {hasError && <div className="dpl-form-error-bar" />}
 
         <header>
           <p>AUTENTICACAO DE FUNCIONARIO</p>
@@ -53,7 +70,7 @@ export default function LoginInputPhase({
               autoComplete="current-password"
               value={password}
               onChange={(event) => onPasswordChange(event.target.value)}
-              placeholder="********"
+              placeholder="••••••••"
               disabled={isSubmitting || isLocked}
             />
             {validationErrors.password ? <small>{validationErrors.password}</small> : null}

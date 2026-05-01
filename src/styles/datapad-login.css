@@ -197,6 +197,33 @@
   gap: 18px;
 }
 
+.dpl-idle-logo-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dpl-idle-ring {
+  position: absolute;
+  inset: -10px;
+  border: 1px solid rgba(184, 50, 50, 0.22);
+  border-radius: 50%;
+  animation: dpl-pulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.dpl-idle-logo-wrap img {
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+  opacity: 0.9;
+  position: relative;
+  z-index: 1;
+}
+
 .dpl-idle-emblem img {
   width: 92px;
   height: 92px;
@@ -360,6 +387,23 @@
   letter-spacing: 0.05em;
 }
 
+.dpl-idle-cta {
+  animation: dpl-pulse 2.5s ease-in-out infinite;
+}
+
+.dpl-idle-cta:hover {
+  animation: none;
+}
+
+.dpl-form-error-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #B83232;
+}
+
 .dpl-primary-btn {
   padding: 11px 30px;
   border: 1px solid #A79B8B;
@@ -386,13 +430,27 @@
   cursor: not-allowed;
 }
 
-.dpl-phase-auth .dpl-auth-spinner {
+.dpl-auth-spinner-wrap {
+  position: relative;
   width: 80px;
   height: 80px;
-  border: 1px solid #3A332C;
-  border-top-color: #BFA35A;
-  border-radius: 50%;
-  animation: dpl-spin 1.3s linear infinite;
+  flex-shrink: 0;
+}
+
+.dpl-auth-spinner-dot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dpl-auth-spinner-dot::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #BFA35A;
+  animation: dpl-pulse 0.8s ease-in-out infinite;
 }
 
 .dpl-auth-user {
@@ -515,6 +573,10 @@
 .dpl-result-icon.is-granted {
   border-color: #2F6B45;
   background: rgba(47, 107, 69, 0.1);
+}
+
+.dpl-icon-granted-pulse {
+  animation: dpl-granted-pulse 1s ease 0.1s both;
 }
 
 .dpl-result-icon.is-denied {
@@ -803,4 +865,28 @@
 @keyframes dpl-scanbar {
   0% { top: -2px; }
   100% { top: 100%; }
+}
+
+@keyframes dpl-granted-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(47, 107, 69, 0.6); }
+  70%  { box-shadow: 0 0 0 14px rgba(47, 107, 69, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(47, 107, 69, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dpl-overlay-scanlines,
+  .dpl-scan-bar,
+  .dpl-idle-ring,
+  .dpl-idle-cta,
+  .dpl-cursor,
+  .dpl-status-dot,
+  .dpl-redirecting span,
+  .dpl-auth-spinner-dot::after,
+  .dpl-icon-granted-pulse {
+    animation: none;
+  }
+
+  .dpl-progress-value {
+    transition: none;
+  }
 }

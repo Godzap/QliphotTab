@@ -5,9 +5,10 @@ export default function LoginDeniedPhase({ attempts, maxAttempts, message, onRet
   return (
     <motion.section
       className="dpl-phase dpl-phase-denied"
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.22 }}
+      exit={{ opacity: 0, y: -8, transition: { duration: 0.18, ease: 'easeIn' } }}
+      transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="dpl-result-icon is-denied" aria-hidden="true">
         <svg width="30" height="30" viewBox="0 0 32 32">

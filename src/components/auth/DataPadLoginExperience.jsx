@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import { useAuth } from '../../context/AuthContext'
 import LoginTopBar from './LoginTopBar'
 import LoginBottomBar from './LoginBottomBar'
@@ -210,47 +211,55 @@ export default function DataPadLoginExperience({
         <div className="dpl-vertical-line left" aria-hidden="true" />
         <div className="dpl-vertical-line right" aria-hidden="true" />
 
-        {phase === 'idle' ? <LoginIdlePhase onEngage={handleEngage} /> : null}
+        <AnimatePresence mode="wait">
+          {phase === 'idle' && (
+            <LoginIdlePhase key="idle" onEngage={handleEngage} />
+          )}
 
-        {phase === 'input' ? (
-          <LoginInputPhase
-            username={username}
-            password={password}
-            onUsernameChange={setUsername}
-            onPasswordChange={setPassword}
-            onSubmit={handleSubmit}
-            isSubmitting={isAuthenticating}
-            validationErrors={validationErrors}
-            backendError={backendError}
-            isLocked={isLocked}
-            attempts={attempts}
-            maxAttempts={MAX_ATTEMPTS}
-          />
-        ) : null}
+          {phase === 'input' && (
+            <LoginInputPhase
+              key="input"
+              username={username}
+              password={password}
+              onUsernameChange={setUsername}
+              onPasswordChange={setPassword}
+              onSubmit={handleSubmit}
+              isSubmitting={isAuthenticating}
+              validationErrors={validationErrors}
+              backendError={backendError}
+              isLocked={isLocked}
+              attempts={attempts}
+              maxAttempts={MAX_ATTEMPTS}
+            />
+          )}
 
-        {phase === 'auth' ? (
-          <LoginAuthenticatingPhase
-            username={username.trim()}
-            progressIndex={authStepIndex}
-          />
-        ) : null}
+          {phase === 'auth' && (
+            <LoginAuthenticatingPhase
+              key="auth"
+              username={username.trim()}
+              progressIndex={authStepIndex}
+            />
+          )}
 
-        {phase === 'granted' ? (
-          <LoginGrantedPhase
-            user={grantedUser}
-            departmentColor={departmentColor}
-          />
-        ) : null}
+          {phase === 'granted' && (
+            <LoginGrantedPhase
+              key="granted"
+              user={grantedUser}
+              departmentColor={departmentColor}
+            />
+          )}
 
-        {phase === 'denied' ? (
-          <LoginDeniedPhase
-            attempts={attempts}
-            maxAttempts={MAX_ATTEMPTS}
-            message={deniedMessage}
-            locked={isLocked}
-            onRetry={handleRetry}
-          />
-        ) : null}
+          {phase === 'denied' && (
+            <LoginDeniedPhase
+              key="denied"
+              attempts={attempts}
+              maxAttempts={MAX_ATTEMPTS}
+              message={deniedMessage}
+              locked={isLocked}
+              onRetry={handleRetry}
+            />
+          )}
+        </AnimatePresence>
       </main>
 
       <LoginBottomBar

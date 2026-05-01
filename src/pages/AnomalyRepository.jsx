@@ -109,7 +109,7 @@ function WorkPrefDisplay({ pref }) {
 
   const entries = Object.entries(pref)
   if (entries.length === 0) {
-    return <div className="pref-empty">[DADOS RESTRITOS]</div>
+    return <div className="pref-empty">Não registrado.</div>
   }
 
   return (
