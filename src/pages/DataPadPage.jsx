@@ -1,17 +1,22 @@
-﻿import { useState, useEffect } from 'react'
+﻿import { useState, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { isGmodTabletMode, parseGmodQueryParams } from '../utils/gmod'
+import { isGmodTabletMode } from '../utils/gmod'
 import { useAuth } from '../context/AuthContext'
+import { API_BASE_URL } from '../services/authService'
 import './datapad.css'
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_BASE = API_BASE_URL
 
 const DEPT_COLORS = {
   'Informação': '#7B5EA7',
   'Bem-Estar':  '#3A7FC1',
   'Segurança':  '#2F6B45',
   'Controle':   '#BFA35A',
+  'Treinamento': '#C47A2C',
+  'Anomalia': '#B83232',
 }
+
+const ANOMALY_LEVEL_ORDER = ['Zayin', 'Teth', 'HE', 'Waw', 'Aleph']
 
 const NAV_ITEMS = [
   { id: 'home',    label: 'Home',    icon: 'home'    },
@@ -22,15 +27,6 @@ const NAV_ITEMS = [
   { id: 'dept',    label: 'Depto.',  icon: 'dept'    },
   { id: 'logs',    label: 'Logs',    icon: 'logs'    },
 ]
-
-// Extrai o username do parâmetro ?device=telagodzap → "godzap"
-function getUsername() {
-  const { device } = parseGmodQueryParams()
-  if (device && device.startsWith('tela') && device.length > 4) {
-    return device.slice(4)
-  }
-  return 'godzap'
-}
 
 function useClock() {
   const fmt = () =>
@@ -49,6 +45,34 @@ function normalizeAlertLevel(level) {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toUpperCase()
+}
+
+function normalizeDepartmentName(department) {
+  if (!department || typeof department !== 'string') return 'Controle'
+  const raw = department.trim().toLowerCase()
+  if (raw.includes('anomalia')) return 'Anomalia'
+  if (raw.includes('treinamento')) return 'Treinamento'
+  if (raw.includes('informa')) return 'Informação'
+  if (raw.includes('bem')) return 'Bem-Estar'
+  if (raw.includes('segur')) return 'Segurança'
+  if (raw.includes('control')) return 'Controle'
+  return department
+}
+
+function getDeptColor(department) {
+  const normalized = normalizeDepartmentName(department)
+  return DEPT_COLORS[normalized] ?? '#BFA35A'
+}
+
+function buildRequestHeaders(token) {
+  const requestHeaders = {}
+  if (/ngrok/i.test(API_BASE)) {
+    requestHeaders['ngrok-skip-browser-warning'] = 'true'
+  }
+  if (token) {
+    requestHeaders.Authorization = `Bearer ${token}`
+  }
+  return requestHeaders
 }
 
 // ── Ícones SVG ────────────────────────────────────────────────────────────────
@@ -108,8 +132,12 @@ export default function DataPadPage() {
   const [loading, setLoading] = useState(true)
   const [error,   setError]   = useState(null)
   const [activeNav, setActiveNav] = useState('home')
+  const [anomalies, setAnomalies] = useState([])
+  const [anomaliesLoading, setAnomaliesLoading] = useState(false)
+  const [anomaliesError, setAnomaliesError] = useState(null)
+  const [selectedAnomalyId, setSelectedAnomalyId] = useState(null)
   const time     = useClock()
-  const username = user?.username || getUsername()
+  const username = user?.username || ''
 
   async function handleLogout() {
     await signOut()
@@ -117,28 +145,91 @@ export default function DataPadPage() {
   }
 
   useEffect(() => {
-    setLoading(true)
-    setError(null)
-    const requestHeaders = {}
+    let cancelled = false
 
-    if (/ngrok/i.test(API_BASE)) {
-      requestHeaders['ngrok-skip-browser-warning'] = 'true'
+    async function loadHome() {
+      setLoading(true)
+      setError(null)
+      const requestHeaders = buildRequestHeaders(token)
+
+      if (!username) {
+        await signOut()
+        navigate(isGmodTabletMode() ? '/tablet/login' : '/auth', { replace: true })
+        return
+      }
+
+      try {
+        const response = await fetch(`${API_BASE}/api/home/${username}`, {
+          headers: Object.keys(requestHeaders).length > 0 ? requestHeaders : undefined,
+        })
+        if (!response.ok) {
+          const error = new Error(`HTTP ${response.status}`)
+          error.status = response.status
+          throw error
+        }
+
+        const payload = await response.json()
+        if (cancelled) return
+        setData(payload)
+        setLoading(false)
+      } catch (error) {
+        if (cancelled) return
+
+        if (error?.status === 401 || error?.status === 403) {
+          await signOut()
+          navigate(isGmodTabletMode() ? '/tablet/login' : '/auth', { replace: true })
+          return
+        }
+
+        setError(error?.message || 'Falha de conexão com o backend.')
+        setLoading(false)
+      }
     }
 
-    if (token) {
-      requestHeaders.Authorization = `Bearer ${token}`
-    }
+    loadHome()
 
-    fetch(`${API_BASE}/api/home/${username}`, {
+    return () => {
+      cancelled = true
+    }
+  }, [navigate, signOut, token, username])
+
+  useEffect(() => {
+    if (activeNav !== 'anomaly') return
+    if (anomalies.length > 0 || anomaliesLoading) return
+    if (anomaliesError && anomalies.length === 0) return
+
+    setAnomaliesLoading(true)
+    setAnomaliesError(null)
+    const requestHeaders = buildRequestHeaders(token)
+
+    fetch(`${API_BASE}/api/anomalies`, {
       headers: Object.keys(requestHeaders).length > 0 ? requestHeaders : undefined,
     })
-      .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json() })
-      .then(d  => { setData(d); setLoading(false) })
-      .catch(e => { setError(e.message); setLoading(false) })
-  }, [token, username])
+      .then((r) => {
+        if (!r.ok) {
+          const error = new Error(`HTTP ${r.status}`)
+          error.status = r.status
+          throw error
+        }
+        return r.json()
+      })
+      .then((rows) => {
+        setAnomalies(Array.isArray(rows) ? rows : [])
+        setAnomaliesLoading(false)
+      })
+      .catch(async (e) => {
+        if (e?.status === 401 || e?.status === 403) {
+          await signOut()
+          navigate(isGmodTabletMode() ? '/tablet/login' : '/auth', { replace: true })
+          return
+        }
+        setAnomaliesError(e.message)
+        setAnomaliesLoading(false)
+      })
+  }, [activeNav, anomalies.length, anomaliesLoading, anomaliesError, navigate, signOut, token])
 
-  const dept      = data?.agent?.department ?? 'Controle'
-  const deptColor = DEPT_COLORS[dept] ?? '#BFA35A'
+  const dept = normalizeDepartmentName(data?.agent?.department ?? 'Controle')
+  const deptColor = getDeptColor(dept)
 
   // Seta --dept-color no root para o CSS funcionar
   useEffect(() => {
@@ -165,6 +256,32 @@ export default function DataPadPage() {
   const alertTagClass = alertLevelIndex >= 3 ? 'tag-critical'
     : alertLevelIndex >= 1 ? 'tag-caution'
     : 'tag-active'
+
+  useEffect(() => {
+    if (anomalies.length === 0) {
+      setSelectedAnomalyId(null)
+      return
+    }
+    const exists = anomalies.some((entry) => entry.id === selectedAnomalyId)
+    if (!exists) {
+      setSelectedAnomalyId(anomalies[0].id)
+    }
+  }, [anomalies, selectedAnomalyId])
+
+  const selectedAnomaly = useMemo(
+    () => anomalies.find((entry) => entry.id === selectedAnomalyId) ?? null,
+    [anomalies, selectedAnomalyId],
+  )
+
+  const anomaliesByLevel = useMemo(() => {
+    const counts = { Zayin: 0, Teth: 0, HE: 0, Waw: 0, Aleph: 0 }
+    for (const entry of anomalies) {
+      if (counts[entry.level] !== undefined) {
+        counts[entry.level] += 1
+      }
+    }
+    return counts
+  }, [anomalies])
 
   return (
     <div className="dp-root">
@@ -229,7 +346,156 @@ export default function DataPadPage() {
 
         {/* MAIN */}
         <main className="main-content">
+          {activeNav === 'anomaly' ? (
+            <>
+              <div className="card">
+                <div className="card-header">
+                  <div className="card-title">Codex de Anomalias</div>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '8px', color: '#A79B8B' }}>
+                    {anomalies.length} registros
+                  </div>
+                </div>
+                <div className="card-body">
+                  <div className="anomaly-level-grid">
+                    {ANOMALY_LEVEL_ORDER.map((level) => (
+                      <div key={level} className="ops-item" style={{ borderBottom: 'none', paddingBottom: 0 }}>
+                        <div className="ops-label">{level}</div>
+                        <div className="ops-value">{anomaliesByLevel[level] ?? 0}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
 
+              {anomaliesLoading ? (
+                <div className="card">
+                  <div className="card-body">
+                    <span className="dp-state-text">Carregando anomalias do backend...</span>
+                  </div>
+                </div>
+              ) : anomaliesError ? (
+                <div className="card">
+                  <div className="card-body">
+                    <span className="dp-state-label">FALHA AO BUSCAR ANOMALIAS</span>
+                    <div className="dp-state-text" style={{ marginTop: '6px' }}>{anomaliesError}</div>
+                  </div>
+                </div>
+              ) : anomalies.length === 0 ? (
+                <div className="card">
+                  <div className="card-body">
+                    <span className="dp-state-text">Nenhuma anomalia retornada pelo backend.</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="anomaly-layout">
+                  <div className="card">
+                    <div className="card-header">
+                      <div className="card-title">Lista</div>
+                    </div>
+                    <div className="card-body anomaly-list-wrap">
+                      {anomalies.map((entry) => (
+                        <button
+                          key={entry.id}
+                          type="button"
+                          className={`anomaly-list-item${selectedAnomalyId === entry.id ? ' active' : ''}`}
+                          onClick={() => setSelectedAnomalyId(entry.id)}
+                        >
+                          <div className="anomaly-list-name">{entry.name}</div>
+                          <div className="anomaly-list-meta">{entry.level} · {entry.code ?? entry.id}</div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="card">
+                    <div className="card-header">
+                      <div className="card-title-accent">{selectedAnomaly?.name ?? 'Detalhes'}</div>
+                      <div className="status-tag tag-neutral">{selectedAnomaly?.level ?? '-'}</div>
+                    </div>
+                    <div className="card-body anomaly-detail-wrap">
+                      {selectedAnomaly ? (
+                        <>
+                          <div className="anomaly-stat-grid">
+                            <div className="agent-field">
+                              <div className="agent-field-label">ID</div>
+                              <div className="agent-field-value mono">{selectedAnomaly.id}</div>
+                            </div>
+                            <div className="agent-field">
+                              <div className="agent-field-label">Código</div>
+                              <div className="agent-field-value mono">{selectedAnomaly.code ?? '-'}</div>
+                            </div>
+                            <div className="agent-field">
+                              <div className="agent-field-label">Qliphoth Max</div>
+                              <div className="agent-field-value mono">{selectedAnomaly.qliphothMax ?? '-'}</div>
+                            </div>
+                            <div className="agent-field">
+                              <div className="agent-field-label">E.G.O</div>
+                              <div className="agent-field-value mono">
+                                {(selectedAnomaly.egoWeapon || selectedAnomaly.egoSuit)
+                                  ? `${selectedAnomaly.egoWeapon ?? '-'} / ${selectedAnomaly.egoSuit ?? '-'}`
+                                  : '-'}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="anomaly-section">
+                            <div className="agent-field-label">Resistências</div>
+                            <div className="anomaly-mini-grid">
+                              {Object.entries(selectedAnomaly.resistances ?? {}).map(([key, value]) => (
+                                <div key={key} className="anomaly-mini-item">
+                                  <span>{key}</span>
+                                  <strong>{value}</strong>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="anomaly-section">
+                            <div className="agent-field-label">Preferências de Trabalho</div>
+                            <div className="anomaly-mini-grid">
+                              {Object.entries(selectedAnomaly.workPreferences ?? {}).length > 0 ? (
+                                Object.entries(selectedAnomaly.workPreferences ?? {}).map(([key, value]) => (
+                                  <div key={key} className="anomaly-mini-item">
+                                    <span>{key}</span>
+                                    <strong>{value}</strong>
+                                  </div>
+                                ))
+                              ) : (
+                                <div className="anomaly-empty">Sem dados</div>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="anomaly-section">
+                            <div className="agent-field-label">Notas</div>
+                            <div className="anomaly-text">
+                              {selectedAnomaly.notes?.trim() ? selectedAnomaly.notes : 'Sem notas registradas.'}
+                            </div>
+                          </div>
+
+                          <div className="anomaly-section">
+                            <div className="agent-field-label">Diretrizes Gerenciais</div>
+                            <div className="anomaly-guidelines">
+                              {(selectedAnomaly.managerialNotes?.guidelines ?? []).length > 0
+                                ? selectedAnomaly.managerialNotes.guidelines.map((line, idx) => (
+                                  <div key={`${selectedAnomaly.id}-gl-${idx}`} className="anomaly-text">
+                                    {line}
+                                  </div>
+                                ))
+                                : <div className="anomaly-empty">Sem diretrizes registradas.</div>}
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <span className="dp-state-text">Selecione uma anomalia para ver os detalhes.</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
           {/* ROW 1: Identificação + Status + Alertas */}
           <div className="row" style={{ alignItems: 'stretch' }}>
 
@@ -455,12 +721,7 @@ export default function DataPadPage() {
             <div className="card-body">
               <div className="activity-list">
                 {recentActivity.map((ev, i) => {
-                  const deptColor = {
-                    'Informação': '#7B5EA7',
-                    'Bem-Estar':  '#3A7FC1',
-                    'Segurança':  '#2F6B45',
-                    'Controle':   '#BFA35A',
-                  }[ev.department] ?? '#A79B8B'
+                  const deptColor = getDeptColor(ev.department)
 
                   const timeStr = ev.createdAt
                     ? new Date(ev.createdAt).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
@@ -478,7 +739,8 @@ export default function DataPadPage() {
               </div>
             </div>
           </div>
-
+            </>
+          )}
         </main>
       </div>
     </div>

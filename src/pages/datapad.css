@@ -598,6 +598,117 @@
   letter-spacing: 0.05em;
 }
 
+/* ── ANOMALY VIEW ──────────────────────────────────────────────── */
+.dp-root .anomaly-level-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.dp-root .anomaly-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 10px;
+  min-height: 620px;
+}
+
+.dp-root .anomaly-list-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 620px;
+  overflow-y: auto;
+}
+
+.dp-root .anomaly-list-item {
+  width: 100%;
+  text-align: left;
+  border: 1px solid #3A332C;
+  background: #1D1915;
+  color: #D8CCBD;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.dp-root .anomaly-list-item:hover {
+  border-color: var(--dept-color);
+}
+
+.dp-root .anomaly-list-item.active {
+  border-color: var(--dept-color);
+  background: rgba(216, 204, 189, 0.08);
+}
+
+.dp-root .anomaly-list-name {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.dp-root .anomaly-list-meta {
+  margin-top: 4px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: #A79B8B;
+}
+
+.dp-root .anomaly-detail-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dp-root .anomaly-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.dp-root .anomaly-section {
+  border-top: 1px solid #1D1915;
+  padding-top: 8px;
+}
+
+.dp-root .anomaly-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.dp-root .anomaly-mini-item {
+  border: 1px solid #3A332C;
+  background: #1D1915;
+  padding: 6px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 9px;
+}
+
+.dp-root .anomaly-mini-item strong {
+  color: #F7F2EA;
+}
+
+.dp-root .anomaly-text {
+  font-size: 10px;
+  color: #A79B8B;
+  line-height: 1.45;
+  margin-top: 6px;
+}
+
+.dp-root .anomaly-guidelines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.dp-root .anomaly-empty {
+  font-size: 10px;
+  color: #A79B8B;
+}
+
 /* ── ANIMATIONS ────────────────────────────────────────────────── */
 @keyframes dp-pulse {
   0%, 100% { opacity: 1; }
