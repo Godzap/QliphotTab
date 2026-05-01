@@ -6,7 +6,18 @@ export default function ProtectedRoute({ redirectTo = '/auth', children }) {
   const { isReady, isAuthenticated } = useAuth()
 
   if (!isReady) {
-    return null
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'grid',
+        placeItems: 'center',
+        background: '#0d0f12',
+        color: '#d1d5db',
+        fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+      }}>
+        Validando sessao...
+      </div>
+    )
   }
 
   if (!isAuthenticated) {

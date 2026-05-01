@@ -2,7 +2,8 @@
 import { useNavigate } from 'react-router-dom'
 import { isGmodTabletMode } from '../utils/gmod'
 import { useAuth } from '../context/AuthContext'
-import { API_BASE_URL } from '../services/authService'
+import { API_BASE_URL } from '../services/apiClient'
+import { fetchAnomalies, fetchDashboardData, normalizeDashboardPayload } from '../services/dashboardService'
 import './datapad.css'
 
 const API_BASE = API_BASE_URL
@@ -64,17 +65,6 @@ function getDeptColor(department) {
   return DEPT_COLORS[normalized] ?? '#BFA35A'
 }
 
-function buildRequestHeaders(token) {
-  const requestHeaders = {}
-  if (/ngrok/i.test(API_BASE)) {
-    requestHeaders['ngrok-skip-browser-warning'] = 'true'
-  }
-  if (token) {
-    requestHeaders.Authorization = `Bearer ${token}`
-  }
-  return requestHeaders
-}
-
 // ── Ícones SVG ────────────────────────────────────────────────────────────────
 
 const Icon = ({ name, size = 16 }) => {
@@ -109,15 +99,19 @@ function LoadingState() {
   )
 }
 
-function ErrorState({ error, username }) {
+function ErrorState({ error, username, onRetry, onLogout }) {
   return (
     <div className="dp-root dp-state-center">
       <div className="dp-state-box dp-state-error">
-        <span className="dp-state-label">FALHA DE CONEXÃO</span>
+        <span className="dp-state-label">FALHA AO CARREGAR DASHBOARD</span>
         <span className="dp-state-text">{error}</span>
         <span className="dp-state-sub">
-          Terminal: {username} · {API_BASE}/api/home/{username}
+          Terminal: {username || 'desconhecido'} · Endpoint: {API_BASE || '(API nao configurada)'}/api/home/{username || '{username}'}
         </span>
+        <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+          <button type="button" className="topbar-badge" onClick={onRetry}>Tentar novamente</button>
+          <button type="button" className="topbar-badge" onClick={onLogout}>Logout</button>
+        </div>
       </div>
     </div>
   )
@@ -128,9 +122,10 @@ function ErrorState({ error, username }) {
 export default function DataPadPage() {
   const navigate = useNavigate()
   const { token, user, signOut } = useAuth()
-  const [data,    setData]    = useState(null)
+  const [data,    setData]    = useState(() => normalizeDashboardPayload({}))
   const [loading, setLoading] = useState(true)
   const [error,   setError]   = useState(null)
+  const [reloadKey, setReloadKey] = useState(0)
   const [activeNav, setActiveNav] = useState('home')
   const [anomalies, setAnomalies] = useState([])
   const [anomaliesLoading, setAnomaliesLoading] = useState(false)
@@ -144,14 +139,16 @@ export default function DataPadPage() {
     navigate(isGmodTabletMode() ? '/tablet/login' : '/auth', { replace: true })
   }
 
+  function handleRetry() {
+    setReloadKey((prev) => prev + 1)
+  }
+
   useEffect(() => {
     let cancelled = false
 
     async function loadHome() {
       setLoading(true)
       setError(null)
-      const requestHeaders = buildRequestHeaders(token)
-
       if (!username) {
         await signOut()
         navigate(isGmodTabletMode() ? '/tablet/login' : '/auth', { replace: true })
@@ -159,16 +156,7 @@ export default function DataPadPage() {
       }
 
       try {
-        const response = await fetch(`${API_BASE}/api/home/${username}`, {
-          headers: Object.keys(requestHeaders).length > 0 ? requestHeaders : undefined,
-        })
-        if (!response.ok) {
-          const error = new Error(`HTTP ${response.status}`)
-          error.status = response.status
-          throw error
-        }
-
-        const payload = await response.json()
+        const payload = await fetchDashboardData(username, token)
         if (cancelled) return
         setData(payload)
         setLoading(false)
@@ -181,6 +169,13 @@ export default function DataPadPage() {
           return
         }
 
+        console.error('[dashboard] failed to load home payload', {
+          username,
+          endpoint: '/api/home/:username',
+          status: error?.status ?? 0,
+          detail: error?.detail ?? error?.message,
+          error,
+        })
         setError(error?.message || 'Falha de conexão com o backend.')
         setLoading(false)
       }
@@ -191,7 +186,7 @@ export default function DataPadPage() {
     return () => {
       cancelled = true
     }
-  }, [navigate, signOut, token, username])
+  }, [navigate, reloadKey, signOut, token, username])
 
   useEffect(() => {
     if (activeNav !== 'anomaly') return
@@ -200,21 +195,9 @@ export default function DataPadPage() {
 
     setAnomaliesLoading(true)
     setAnomaliesError(null)
-    const requestHeaders = buildRequestHeaders(token)
-
-    fetch(`${API_BASE}/api/anomalies`, {
-      headers: Object.keys(requestHeaders).length > 0 ? requestHeaders : undefined,
-    })
-      .then((r) => {
-        if (!r.ok) {
-          const error = new Error(`HTTP ${r.status}`)
-          error.status = r.status
-          throw error
-        }
-        return r.json()
-      })
+    fetchAnomalies(token)
       .then((rows) => {
-        setAnomalies(Array.isArray(rows) ? rows : [])
+        setAnomalies(rows)
         setAnomaliesLoading(false)
       })
       .catch(async (e) => {
@@ -223,6 +206,12 @@ export default function DataPadPage() {
           navigate(isGmodTabletMode() ? '/tablet/login' : '/auth', { replace: true })
           return
         }
+        console.error('[dashboard] failed to load anomalies', {
+          endpoint: '/api/anomalies',
+          status: e?.status ?? 0,
+          detail: e?.detail ?? e?.message,
+          error: e,
+        })
         setAnomaliesError(e.message)
         setAnomaliesLoading(false)
       })
@@ -238,7 +227,7 @@ export default function DataPadPage() {
   }, [deptColor])
 
   if (loading) return <LoadingState />
-  if (error)   return <ErrorState error={error} username={username} />
+  if (error)   return <ErrorState error={error} username={username} onRetry={handleRetry} onLogout={handleLogout} />
 
   const { agent, operationalStatus: ops, alerts, recentActivity, quickActions, modules } = data
   const critCount = alerts.filter((alert) => normalizeAlertLevel(alert.level) === 'CRITICO').length

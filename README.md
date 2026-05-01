@@ -23,8 +23,12 @@ cp .env.example .env
 Default:
 
 ```env
+VITE_API_BASE_URL=http://localhost:8000
 VITE_API_URL=http://localhost:8000
 ```
+
+For production (`npm run build` / GitHub Pages), configure `VITE_API_BASE_URL` to a stable API domain in CI.
+Do not commit ephemeral tunnel URLs (like ngrok) into `.env.production`.
 
 Build for production:
 
