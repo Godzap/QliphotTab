@@ -6,10 +6,10 @@ import HomePage from './pages/HomePage'
 import ListPage from './pages/ListPage'
 import DetailPage from './pages/DetailPage'
 import AuthPage from './pages/AuthPage'
-import TabletPage from './pages/TabletPage'
+import DataPadPage from './pages/DataPadPage'
 import LoadingScreen from './components/LoadingScreen'
 import { ThemeProvider } from './context/ThemeContext'
-import { isGmodTabletMode, getGmodRenderHints } from './utils/gmod'
+import { isGmodTabletMode } from './utils/gmod'
 
 const NAV_SHORTCUTS = { '1': '/', '2': '/abnormalities', '3': '/systems', '4': '/ordeals', '5': '/auth' }
 
@@ -37,7 +37,6 @@ function GlobalKeyHandler() {
 
 export default function App() {
   const tabletMode = isGmodTabletMode()
-  const renderHints = getGmodRenderHints()
   const [loading, setLoading] = useState(!tabletMode)
 
   useEffect(() => {
@@ -59,7 +58,7 @@ export default function App() {
         <Routes>
           {tabletMode ? (
             <>
-              <Route path="/tablet" element={<TabletPage renderHints={renderHints} />} />
+              <Route path="/tablet" element={<DataPadPage />} />
               <Route path="*" element={<Navigate to="/tablet" replace />} />
             </>
           ) : (
