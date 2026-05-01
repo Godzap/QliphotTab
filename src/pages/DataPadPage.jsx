@@ -1,9 +1,10 @@
-﻿import { useState, useEffect, useMemo } from 'react'
+﻿import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { isGmodTabletMode } from '../utils/gmod'
 import { useAuth } from '../context/AuthContext'
 import { API_BASE_URL } from '../services/apiClient'
 import { fetchAnomalies, fetchDashboardData, normalizeDashboardPayload } from '../services/dashboardService'
+import AnomalyRepository from './AnomalyRepository'
 import './datapad.css'
 
 const API_BASE = API_BASE_URL
@@ -17,7 +18,6 @@ const DEPT_COLORS = {
   'Anomalia': '#B83232',
 }
 
-const ANOMALY_LEVEL_ORDER = ['Zayin', 'Teth', 'HE', 'Waw', 'Aleph']
 
 const NAV_ITEMS = [
   { id: 'home',    label: 'Home',    icon: 'home'    },
@@ -130,7 +130,6 @@ export default function DataPadPage() {
   const [anomalies, setAnomalies] = useState([])
   const [anomaliesLoading, setAnomaliesLoading] = useState(false)
   const [anomaliesError, setAnomaliesError] = useState(null)
-  const [selectedAnomalyId, setSelectedAnomalyId] = useState(null)
   const time     = useClock()
   const username = user?.username || ''
 
@@ -243,31 +242,6 @@ export default function DataPadPage() {
     : alertLevelIndex >= 1 ? 'tag-caution'
     : 'tag-active'
 
-  useEffect(() => {
-    if (anomalies.length === 0) {
-      setSelectedAnomalyId(null)
-      return
-    }
-    const exists = anomalies.some((entry) => entry.id === selectedAnomalyId)
-    if (!exists) {
-      setSelectedAnomalyId(anomalies[0].id)
-    }
-  }, [anomalies, selectedAnomalyId])
-
-  const selectedAnomaly = useMemo(
-    () => anomalies.find((entry) => entry.id === selectedAnomalyId) ?? null,
-    [anomalies, selectedAnomalyId],
-  )
-
-  const anomaliesByLevel = useMemo(() => {
-    const counts = { Zayin: 0, Teth: 0, HE: 0, Waw: 0, Aleph: 0 }
-    for (const entry of anomalies) {
-      if (counts[entry.level] !== undefined) {
-        counts[entry.level] += 1
-      }
-    }
-    return counts
-  }, [anomalies])
 
   if (loading) return <LoadingState />
   if (error)   return <ErrorState error={error} username={username} onRetry={handleRetry} onLogout={handleLogout} />
@@ -334,156 +308,16 @@ export default function DataPadPage() {
         </nav>
 
         {/* MAIN */}
-        <main className="main-content">
-          {activeNav === 'anomaly' ? (
-            <>
-              <div className="card">
-                <div className="card-header">
-                  <div className="card-title">Codex de Anomalias</div>
-                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: '8px', color: '#A79B8B' }}>
-                    {anomalies.length} registros
-                  </div>
-                </div>
-                <div className="card-body">
-                  <div className="anomaly-level-grid">
-                    {ANOMALY_LEVEL_ORDER.map((level) => (
-                      <div key={level} className="ops-item" style={{ borderBottom: 'none', paddingBottom: 0 }}>
-                        <div className="ops-label">{level}</div>
-                        <div className="ops-value">{anomaliesByLevel[level] ?? 0}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {anomaliesLoading ? (
-                <div className="card">
-                  <div className="card-body">
-                    <span className="dp-state-text">Carregando anomalias do backend...</span>
-                  </div>
-                </div>
-              ) : anomaliesError ? (
-                <div className="card">
-                  <div className="card-body">
-                    <span className="dp-state-label">FALHA AO BUSCAR ANOMALIAS</span>
-                    <div className="dp-state-text" style={{ marginTop: '6px' }}>{anomaliesError}</div>
-                  </div>
-                </div>
-              ) : anomalies.length === 0 ? (
-                <div className="card">
-                  <div className="card-body">
-                    <span className="dp-state-text">Nenhuma anomalia retornada pelo backend.</span>
-                  </div>
-                </div>
-              ) : (
-                <div className="anomaly-layout">
-                  <div className="card">
-                    <div className="card-header">
-                      <div className="card-title">Lista</div>
-                    </div>
-                    <div className="card-body anomaly-list-wrap">
-                      {anomalies.map((entry) => (
-                        <button
-                          key={entry.id}
-                          type="button"
-                          className={`anomaly-list-item${selectedAnomalyId === entry.id ? ' active' : ''}`}
-                          onClick={() => setSelectedAnomalyId(entry.id)}
-                        >
-                          <div className="anomaly-list-name">{entry.name}</div>
-                          <div className="anomaly-list-meta">{entry.level} · {entry.code ?? entry.id}</div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="card">
-                    <div className="card-header">
-                      <div className="card-title-accent">{selectedAnomaly?.name ?? 'Detalhes'}</div>
-                      <div className="status-tag tag-neutral">{selectedAnomaly?.level ?? '-'}</div>
-                    </div>
-                    <div className="card-body anomaly-detail-wrap">
-                      {selectedAnomaly ? (
-                        <>
-                          <div className="anomaly-stat-grid">
-                            <div className="agent-field">
-                              <div className="agent-field-label">ID</div>
-                              <div className="agent-field-value mono">{selectedAnomaly.id}</div>
-                            </div>
-                            <div className="agent-field">
-                              <div className="agent-field-label">Código</div>
-                              <div className="agent-field-value mono">{selectedAnomaly.code ?? '-'}</div>
-                            </div>
-                            <div className="agent-field">
-                              <div className="agent-field-label">Qliphoth Max</div>
-                              <div className="agent-field-value mono">{selectedAnomaly.qliphothMax ?? '-'}</div>
-                            </div>
-                            <div className="agent-field">
-                              <div className="agent-field-label">E.G.O</div>
-                              <div className="agent-field-value mono">
-                                {(selectedAnomaly.egoWeapon || selectedAnomaly.egoSuit)
-                                  ? `${selectedAnomaly.egoWeapon ?? '-'} / ${selectedAnomaly.egoSuit ?? '-'}`
-                                  : '-'}
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="anomaly-section">
-                            <div className="agent-field-label">Resistências</div>
-                            <div className="anomaly-mini-grid">
-                              {Object.entries(selectedAnomaly.resistances ?? {}).map(([key, value]) => (
-                                <div key={key} className="anomaly-mini-item">
-                                  <span>{key}</span>
-                                  <strong>{value}</strong>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div className="anomaly-section">
-                            <div className="agent-field-label">Preferências de Trabalho</div>
-                            <div className="anomaly-mini-grid">
-                              {Object.entries(selectedAnomaly.workPreferences ?? {}).length > 0 ? (
-                                Object.entries(selectedAnomaly.workPreferences ?? {}).map(([key, value]) => (
-                                  <div key={key} className="anomaly-mini-item">
-                                    <span>{key}</span>
-                                    <strong>{value}</strong>
-                                  </div>
-                                ))
-                              ) : (
-                                <div className="anomaly-empty">Sem dados</div>
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="anomaly-section">
-                            <div className="agent-field-label">Notas</div>
-                            <div className="anomaly-text">
-                              {selectedAnomaly.notes?.trim() ? selectedAnomaly.notes : 'Sem notas registradas.'}
-                            </div>
-                          </div>
-
-                          <div className="anomaly-section">
-                            <div className="agent-field-label">Diretrizes Gerenciais</div>
-                            <div className="anomaly-guidelines">
-                              {(selectedAnomaly.managerialNotes?.guidelines ?? []).length > 0
-                                ? selectedAnomaly.managerialNotes.guidelines.map((line, idx) => (
-                                  <div key={`${selectedAnomaly.id}-gl-${idx}`} className="anomaly-text">
-                                    {line}
-                                  </div>
-                                ))
-                                : <div className="anomaly-empty">Sem diretrizes registradas.</div>}
-                            </div>
-                          </div>
-                        </>
-                      ) : (
-                        <span className="dp-state-text">Selecione uma anomalia para ver os detalhes.</span>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </>
-          ) : (
+        {activeNav === 'anomaly' ? (
+          <AnomalyRepository
+            anomalies={anomalies}
+            loading={anomaliesLoading}
+            error={anomaliesError}
+            user={user}
+            token={token}
+          />
+        ) : (
+          <main className="main-content">
             <>
           {/* ROW 1: Identificação + Status + Alertas */}
           <div className="row" style={{ alignItems: 'stretch' }}>
@@ -729,8 +563,8 @@ export default function DataPadPage() {
             </div>
           </div>
             </>
-          )}
-        </main>
+          </main>
+        )}
       </div>
     </div>
   )
