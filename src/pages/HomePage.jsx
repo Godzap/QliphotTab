@@ -27,6 +27,11 @@ const CATEGORY_ICONS = {
       <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V7.875a4.125 4.125 0 1 0-8.25 0V10.5m-1.5 0h10.5A1.5 1.5 0 0 1 18.75 12v6a1.5 1.5 0 0 1-1.5 1.5H6.75A1.5 1.5 0 0 1 5.25 18v-6a1.5 1.5 0 0 1 1.5-1.5Z" />
     </svg>
   ),
+  dashboard: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-7 h-7">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75h7.5v7.5h-7.5zM12.75 3.75h7.5v4.5h-7.5zM12.75 9.75h7.5v10.5h-7.5zM3.75 12.75h7.5v7.5h-7.5z" />
+    </svg>
+  ),
 }
 
 const NAV_ENTRIES = [
@@ -50,6 +55,13 @@ const NAV_ENTRIES = [
     label: 'Times',
     description: 'Quadros operacionais, respostas de campo e frentes acionadas conforme o estado da instalacao.',
     shortcut: 'Ctrl+4',
+  },
+  {
+    key: 'dashboard',
+    to: '/dashboard',
+    label: 'Dashboard',
+    description: 'Painel principal com status operacional, alertas e atividade recente em tempo real.',
+    shortcut: 'Ctrl+6',
   },
   {
     key: 'auth',
@@ -76,6 +88,7 @@ export default function HomePage() {
     abnormalities: getAll('abnormalities').length,
     systems: getAll('systems').length,
     ordeals: getAll('ordeals').length,
+    dashboard: 1,
     auth: 1,
   }
 
@@ -227,7 +240,7 @@ export default function HomePage() {
                         {String(counts[key]).padStart(2, '0')}
                       </span>
                       <span className="font-mono text-[10px] text-gold/20 group-hover:text-gold/45 transition-colors tracking-wider">
-                        {key === 'auth' ? 'portal' : 'registros'}
+                        {key === 'auth' ? 'portal' : key === 'dashboard' ? 'painel' : 'registros'}
                       </span>
                     </div>
                   </div>
@@ -243,7 +256,7 @@ export default function HomePage() {
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1.5 text-xs font-mono text-gold/40 group-hover:text-gold transition-colors">
-                      <span>{key === 'auth' ? 'Abrir portal' : 'Ver registros'}</span>
+                      <span>{key === 'auth' ? 'Abrir portal' : key === 'dashboard' ? 'Abrir painel' : 'Ver registros'}</span>
                       <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                       </svg>

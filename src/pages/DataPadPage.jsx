@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
-import { parseGmodQueryParams } from '../utils/gmod'
+﻿import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { isGmodTabletMode, parseGmodQueryParams } from '../utils/gmod'
+import { useAuth } from '../context/AuthContext'
 import './datapad.css'
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const API_BASE = import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
 const DEPT_COLORS = {
   'Informação': '#7B5EA7',
@@ -39,6 +41,14 @@ function useClock() {
     return () => clearInterval(t)
   }, [])
   return time
+}
+
+function normalizeAlertLevel(level) {
+  if (!level || typeof level !== 'string') return ''
+  return level
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toUpperCase()
 }
 
 // ── Ícones SVG ────────────────────────────────────────────────────────────────
@@ -92,27 +102,40 @@ function ErrorState({ error, username }) {
 // ── Componente principal ──────────────────────────────────────────────────────
 
 export default function DataPadPage() {
+  const navigate = useNavigate()
+  const { token, user, signOut } = useAuth()
   const [data,    setData]    = useState(null)
   const [loading, setLoading] = useState(true)
   const [error,   setError]   = useState(null)
   const [activeNav, setActiveNav] = useState('home')
   const time     = useClock()
-  const username = getUsername()
+  const username = user?.username || getUsername()
+
+  async function handleLogout() {
+    await signOut()
+    navigate(isGmodTabletMode() ? '/tablet/login' : '/auth', { replace: true })
+  }
 
   useEffect(() => {
     setLoading(true)
     setError(null)
-    const requestHeaders = API_BASE.includes('ngrok-free.dev')
-      ? { 'ngrok-skip-browser-warning': 'true' }
-      : undefined
+    const requestHeaders = {}
+
+    if (/ngrok/i.test(API_BASE)) {
+      requestHeaders['ngrok-skip-browser-warning'] = 'true'
+    }
+
+    if (token) {
+      requestHeaders.Authorization = `Bearer ${token}`
+    }
 
     fetch(`${API_BASE}/api/home/${username}`, {
-      headers: requestHeaders,
+      headers: Object.keys(requestHeaders).length > 0 ? requestHeaders : undefined,
     })
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json() })
       .then(d  => { setData(d); setLoading(false) })
       .catch(e => { setError(e.message); setLoading(false) })
-  }, [username])
+  }, [token, username])
 
   const dept      = data?.agent?.department ?? 'Controle'
   const deptColor = DEPT_COLORS[dept] ?? '#BFA35A'
@@ -127,7 +150,7 @@ export default function DataPadPage() {
   if (error)   return <ErrorState error={error} username={username} />
 
   const { agent, operationalStatus: ops, alerts, recentActivity, quickActions, modules } = data
-  const critCount = alerts.filter(a => a.level === 'CRÍTICO').length
+  const critCount = alerts.filter((alert) => normalizeAlertLevel(alert.level) === 'CRITICO').length
 
   // Nível de alerta dinâmico baseado em brechas abertas
   const alertLevelIndex = ops.openBreaches >= 4 ? 4
@@ -164,6 +187,21 @@ export default function DataPadPage() {
               {agent.role} · NÍVEL {String(agent.accessLevel).padStart(2, '0')}
             </div>
           </div>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="topbar-badge"
+            style={{
+              background: 'transparent',
+              border: '1px solid #3A332C',
+              color: '#A79B8B',
+              cursor: 'pointer',
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+            }}
+          >
+            Logout
+          </button>
           <div className="topbar-time">{time}</div>
         </div>
       </div>
@@ -342,18 +380,24 @@ export default function DataPadPage() {
               </div>
               <div className="card-body">
                 <div className="activity-list">
-                  {alerts.slice(0, 3).map((alert, i) => (
-                    <div className="alert-item" key={i}>
-                      <div className={`alert-badge ${alert.level === 'CRÍTICO' ? 'crit' : alert.level === 'ATENÇÃO' ? 'warn' : 'info'}`}>
-                        {alert.level === 'CRÍTICO' ? 'CRIT' : alert.level === 'ATENÇÃO' ? 'ATÊN' : 'INFO'}
+                  {alerts.slice(0, 3).map((alert, i) => {
+                    const level = normalizeAlertLevel(alert.level)
+                    const badgeClass = level === 'CRITICO' ? 'crit' : level === 'ATENCAO' ? 'warn' : 'info'
+                    const badgeText = level === 'CRITICO' ? 'CRIT' : level === 'ATENCAO' ? 'ATEN' : 'INFO'
+
+                    return (
+                      <div className="alert-item" key={i}>
+                        <div className={`alert-badge ${badgeClass}`}>
+                          {badgeText}
+                        </div>
+                        <div className="alert-text">
+                          <div className="alert-title">{alert.title}</div>
+                          <div className="alert-desc">{alert.description}</div>
+                          <div className="alert-meta">{alert.timeLabel} Â· {alert.department}</div>
+                        </div>
                       </div>
-                      <div className="alert-text">
-                        <div className="alert-title">{alert.title}</div>
-                        <div className="alert-desc">{alert.description}</div>
-                        <div className="alert-meta">{alert.timeLabel} · {alert.department}</div>
-                      </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             </div>
@@ -440,3 +484,4 @@ export default function DataPadPage() {
     </div>
   )
 }
+

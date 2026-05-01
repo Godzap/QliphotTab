@@ -7,11 +7,21 @@ import ListPage from './pages/ListPage'
 import DetailPage from './pages/DetailPage'
 import AuthPage from './pages/AuthPage'
 import DataPadPage from './pages/DataPadPage'
+import LoginPage from './pages/LoginPage'
 import LoadingScreen from './components/LoadingScreen'
 import { ThemeProvider } from './context/ThemeContext'
+import { AuthProvider, useAuth } from './context/AuthContext'
+import ProtectedRoute from './routes/ProtectedRoute'
 import { isGmodTabletMode } from './utils/gmod'
 
-const NAV_SHORTCUTS = { '1': '/', '2': '/abnormalities', '3': '/systems', '4': '/ordeals', '5': '/auth' }
+const NAV_SHORTCUTS = {
+  '1': '/',
+  '2': '/abnormalities',
+  '3': '/systems',
+  '4': '/ordeals',
+  '5': '/auth',
+  '6': '/dashboard',
+}
 
 function GlobalKeyHandler() {
   const location = useLocation()
@@ -35,6 +45,14 @@ function GlobalKeyHandler() {
   return null
 }
 
+function TabletIndexRedirect() {
+  const { isReady, isAuthenticated } = useAuth()
+
+  if (!isReady) return null
+
+  return <Navigate to={isAuthenticated ? '/tablet/home' : '/tablet/login'} replace />
+}
+
 export default function App() {
   const tabletMode = isGmodTabletMode()
   const [loading, setLoading] = useState(!tabletMode)
@@ -51,33 +69,42 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      {loading && !tabletMode && <LoadingScreen onComplete={() => setLoading(false)} />}
-      <HashRouter>
-        {!tabletMode && <GlobalKeyHandler />}
-        {!tabletMode && <GlobalSearchModal />}
-        <Routes>
-          {tabletMode ? (
-            <>
-              <Route path="/tablet" element={<DataPadPage />} />
-              <Route path="*" element={<Navigate to="/tablet" replace />} />
-            </>
-          ) : (
-            <>
-              <Route path="/tablet" element={<Navigate to="/" replace />} />
-              <Route element={<Layout />}>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/abnormalities" element={<ListPage category="abnormalities" />} />
-                <Route path="/abnormalities/:id" element={<DetailPage category="abnormalities" />} />
-                <Route path="/systems" element={<ListPage category="systems" />} />
-                <Route path="/systems/:id" element={<DetailPage category="systems" />} />
-                <Route path="/ordeals" element={<ListPage category="ordeals" />} />
-                <Route path="/ordeals/:id" element={<DetailPage category="ordeals" />} />
-                <Route path="/auth" element={<AuthPage />} />
-              </Route>
-            </>
-          )}
-        </Routes>
-      </HashRouter>
+      <AuthProvider>
+        {loading && !tabletMode && <LoadingScreen onComplete={() => setLoading(false)} />}
+        <HashRouter>
+          {!tabletMode && <GlobalKeyHandler />}
+          {!tabletMode && <GlobalSearchModal />}
+          <Routes>
+            {tabletMode ? (
+              <>
+                <Route path="/tablet" element={<TabletIndexRedirect />} />
+                <Route path="/tablet/login" element={<LoginPage />} />
+                <Route element={<ProtectedRoute redirectTo="/tablet/login" />}>
+                  <Route path="/tablet/home" element={<DataPadPage />} />
+                </Route>
+                <Route path="*" element={<Navigate to="/tablet" replace />} />
+              </>
+            ) : (
+              <>
+                <Route path="/tablet" element={<Navigate to="/dashboard" replace />} />
+                <Route path="/tablet/login" element={<Navigate to="/dashboard" replace />} />
+                <Route path="/tablet/home" element={<Navigate to="/dashboard" replace />} />
+                <Route element={<Layout />}>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/abnormalities" element={<ListPage category="abnormalities" />} />
+                  <Route path="/abnormalities/:id" element={<DetailPage category="abnormalities" />} />
+                  <Route path="/systems" element={<ListPage category="systems" />} />
+                  <Route path="/systems/:id" element={<DetailPage category="systems" />} />
+                  <Route path="/ordeals" element={<ListPage category="ordeals" />} />
+                  <Route path="/ordeals/:id" element={<DetailPage category="ordeals" />} />
+                  <Route path="/auth" element={<AuthPage />} />
+                  <Route path="/dashboard" element={<ProtectedRoute redirectTo="/auth"><DataPadPage /></ProtectedRoute>} />
+                </Route>
+              </>
+            )}
+          </Routes>
+        </HashRouter>
+      </AuthProvider>
     </ThemeProvider>
   )
 }

@@ -14,11 +14,28 @@ npm install
 npm run dev
 ```
 
+Configure API base URL for local auth/dashboard integration:
+
+```bash
+cp .env.example .env
+```
+
+Default:
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
 Build for production:
 
 ```bash
 npm run build
 ```
+
+Auth flow routes:
+
+- Login: `#/auth`
+- Dashboard (protected): `#/dashboard`
 
 ---
 
