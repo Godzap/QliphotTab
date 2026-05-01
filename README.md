@@ -3,7 +3,7 @@
 A Lobotomy Corporation TTRPG reference app. Lists abnormalities, tools, and ordeals with their managerial guidelines, defensive stats, and empirical research notes.
 
 **Stack:** React 18 + Vite + Tailwind CSS + Framer Motion  
-**Hosted:** GitHub Pages → `https://<username>.github.io/lobotomy-corporation/`
+**Hosted:** GitHub Pages -> `https://godzap.github.io/QliphotTab/`
 
 ---
 

@@ -102,7 +102,13 @@ export default function DataPadPage() {
   useEffect(() => {
     setLoading(true)
     setError(null)
-    fetch(`${API_BASE}/api/home/${username}`)
+    const requestHeaders = API_BASE.includes('ngrok-free.dev')
+      ? { 'ngrok-skip-browser-warning': 'true' }
+      : undefined
+
+    fetch(`${API_BASE}/api/home/${username}`, {
+      headers: requestHeaders,
+    })
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json() })
       .then(d  => { setData(d); setLoading(false) })
       .catch(e => { setError(e.message); setLoading(false) })
