@@ -28,11 +28,15 @@ const DEPT_COLORS = {
 
 function normalizeDepartment(department) {
   if (!department) return 'Controle'
-  if (department === 'Anomalia') return 'Anomalia'
-  if (department === 'Treinamento') return 'Treinamento'
-  if (department === 'Informacao' || department === 'InformaÃ§Ã£o') return 'Informacao'
-  if (department === 'Seguranca' || department === 'SeguranÃ§a') return 'Seguranca'
-  return department
+  const normalized = String(department)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+
+  if (normalized === 'Anomalia') return 'Anomalia'
+  if (normalized === 'Treinamento') return 'Treinamento'
+  if (normalized === 'Informacao') return 'Informacao'
+  if (normalized === 'Seguranca') return 'Seguranca'
+  return normalized
 }
 
 function useClock() {
@@ -256,3 +260,4 @@ export default function DataPadLoginExperience({
     </div>
   )
 }
+
