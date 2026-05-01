@@ -226,9 +226,6 @@ export default function DataPadPage() {
     return () => document.documentElement.style.removeProperty('--dept-color')
   }, [deptColor])
 
-  if (loading) return <LoadingState />
-  if (error)   return <ErrorState error={error} username={username} onRetry={handleRetry} onLogout={handleLogout} />
-
   const { agent, operationalStatus: ops, alerts, recentActivity, quickActions, modules } = data
   const critCount = alerts.filter((alert) => normalizeAlertLevel(alert.level) === 'CRITICO').length
 
@@ -271,6 +268,9 @@ export default function DataPadPage() {
     }
     return counts
   }, [anomalies])
+
+  if (loading) return <LoadingState />
+  if (error)   return <ErrorState error={error} username={username} onRetry={handleRetry} onLogout={handleLogout} />
 
   return (
     <div className="dp-root">
