@@ -165,16 +165,16 @@
 }
 
 :root {
-  --tablet-image-width: 1920;
-  --tablet-image-height: 1080;
+  --tablet-image-width: 2560;
+  --tablet-image-height: 1248;
   --tablet-art-left: 0;
   --tablet-art-top: 0;
-  --tablet-art-width: 1920;
-  --tablet-art-height: 1080;
-  --tablet-screen-left: 95;
-  --tablet-screen-top: 130;
-  --tablet-screen-width: 1730;
-  --tablet-screen-height: 851;
+  --tablet-art-width: 2560;
+  --tablet-art-height: 1248;
+  --tablet-screen-left: 126;
+  --tablet-screen-top: 150;
+  --tablet-screen-width: 2307;
+  --tablet-screen-height: 984;
 }
 
 .tablet-frame-shell {
@@ -207,8 +207,8 @@
 .tablet-frame-stage {
   position: relative;
   z-index: 2;
-  width: min(100vw, calc(100dvh * (var(--tablet-art-width) / var(--tablet-art-height))));
-  height: min(100dvh, calc(100vw / (var(--tablet-art-width) / var(--tablet-art-height))));
+  width: max(100vw, calc(100dvh * (var(--tablet-art-width) / var(--tablet-art-height))));
+  height: max(100dvh, calc(100vw / (var(--tablet-art-width) / var(--tablet-art-height))));
   aspect-ratio: var(--tablet-art-width) / var(--tablet-art-height);
   overflow: hidden;
 }
@@ -244,8 +244,8 @@
   }
 
   .tablet-frame-stage {
-    width: min(100vw, calc(100vh * (var(--tablet-art-width) / var(--tablet-art-height))));
-    height: min(100vh, calc(100vw / (var(--tablet-art-width) / var(--tablet-art-height))));
+    width: max(100vw, calc(100vh * (var(--tablet-art-width) / var(--tablet-art-height))));
+    height: max(100vh, calc(100vw / (var(--tablet-art-width) / var(--tablet-art-height))));
   }
 }
 
