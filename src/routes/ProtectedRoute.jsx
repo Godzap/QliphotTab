@@ -8,7 +8,7 @@ export default function ProtectedRoute({ redirectTo = '/auth', children }) {
   if (!isReady) {
     return (
       <div style={{
-        minHeight: '100vh',
+        minHeight: '100%',
         display: 'grid',
         placeItems: 'center',
         background: '#0d0f12',

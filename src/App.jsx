@@ -9,6 +9,7 @@ import AuthPage from './pages/AuthPage'
 import DataPadPage from './pages/DataPadPage'
 import LoginPage from './pages/LoginPage'
 import LoadingScreen from './components/LoadingScreen'
+import TabletFrame from './components/TabletFrame'
 import { ThemeProvider } from './context/ThemeContext'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import ProtectedRoute from './routes/ProtectedRoute'
@@ -51,7 +52,7 @@ function TabletIndexRedirect() {
   if (!isReady) {
     return (
       <div style={{
-        minHeight: '100vh',
+        minHeight: '100%',
         display: 'grid',
         placeItems: 'center',
         background: '#0d0f12',
@@ -89,20 +90,20 @@ export default function App() {
           {!tabletMode && <GlobalSearchModal />}
           <Routes>
             {tabletMode ? (
-              <>
+              <Route element={<TabletFrame />}>
                 <Route path="/tablet" element={<TabletIndexRedirect />} />
                 <Route path="/tablet/login" element={<LoginPage />} />
                 <Route element={<ProtectedRoute redirectTo="/tablet/login" />}>
                   <Route path="/tablet/home" element={<DataPadPage />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/tablet" replace />} />
-              </>
+              </Route>
             ) : (
               <>
                 <Route path="/tablet" element={<Navigate to="/dashboard" replace />} />
                 <Route path="/tablet/login" element={<Navigate to="/dashboard" replace />} />
                 <Route path="/tablet/home" element={<Navigate to="/dashboard" replace />} />
-                <Route element={<Layout />}>
+                <Route element={<TabletFrame><Layout /></TabletFrame>}>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/abnormalities" element={<ListPage category="abnormalities" />} />
                   <Route path="/abnormalities/:id" element={<DetailPage category="abnormalities" />} />
@@ -113,6 +114,7 @@ export default function App() {
                   <Route path="/auth" element={<AuthPage />} />
                   <Route path="/dashboard" element={<ProtectedRoute redirectTo="/auth"><DataPadPage /></ProtectedRoute>} />
                 </Route>
+                <Route path="*" element={<Navigate to="/" replace />} />
               </>
             )}
           </Routes>

@@ -23,13 +23,11 @@ export default function AuthPage() {
   const redirectPath = useMemo(() => getRedirectPath(location.state?.from), [location.state])
 
   return (
-    <div className="dpl-web-shell">
-      <DataPadLoginExperience
-        terminalId={TERMINAL_ID}
-        redirectPath={redirectPath}
-        buildVersion={BUILD_VERSION}
-        rootClassName="dpl-root dpl-root-web"
-      />
-    </div>
+    <DataPadLoginExperience
+      terminalId={TERMINAL_ID}
+      redirectPath={redirectPath}
+      buildVersion={BUILD_VERSION}
+      rootClassName="dpl-root"
+    />
   )
 }

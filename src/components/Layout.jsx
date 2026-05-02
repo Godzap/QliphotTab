@@ -13,7 +13,7 @@ function CornerDecorations() {
   const svgStyle = { color: 'var(--t-corner-bright)' }
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-40 overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none z-40 overflow-hidden">
       <svg style={svgStyle} className="absolute top-0 right-0" width="140" height="80" viewBox="0 0 140 80">
         <line x1="0" y1="4" x2="140" y2="4" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.35" />
         <line x1="136" y1="4" x2="136" y2="80" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.35" />
@@ -33,7 +33,7 @@ export default function Layout() {
   const location = useLocation()
 
   return (
-    <div className="h-screen flex flex-col relative overflow-hidden">
+    <div className="h-full min-h-0 flex flex-col relative overflow-hidden">
       <CornerDecorations />
       <Navbar />
 
