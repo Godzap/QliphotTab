@@ -1,6 +1,8 @@
 import { Outlet } from 'react-router-dom'
 
 export default function TabletFrame({ children }) {
+  const tabletImageSrc = `${import.meta.env.BASE_URL}images/tablet.png`
+
   return (
     <div className="tablet-frame-shell">
       <div className="tablet-frame-stage">
@@ -8,7 +10,7 @@ export default function TabletFrame({ children }) {
           {children ?? <Outlet />}
         </div>
         <img
-          src="/images/tablet.png"
+          src={tabletImageSrc}
           alt=""
           aria-hidden="true"
           className="tablet-frame-image"
