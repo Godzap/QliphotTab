@@ -123,8 +123,17 @@ export default function App() {
                   <Route path="/ordeals" element={<ListPage category="ordeals" />} />
                   <Route path="/ordeals/:id" element={<DetailPage category="ordeals" />} />
                   <Route path="/auth" element={<AuthPage />} />
-                  <Route path="/dashboard" element={<ProtectedRoute redirectTo="/auth"><DataPadPage /></ProtectedRoute>} />
                 </Route>
+                <Route
+                  path="/dashboard"
+                  element={(
+                    <TabletFrame>
+                      <ProtectedRoute redirectTo="/auth">
+                        <DataPadPage />
+                      </ProtectedRoute>
+                    </TabletFrame>
+                  )}
+                />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </>
             )}
