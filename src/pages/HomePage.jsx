@@ -130,9 +130,6 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
-            <p>
-              Utilize a area de autenticacao para validar suas credenciais e liberar os recursos disponiveis para o seu cargo.
-            </p>
             <p className="text-moonstone-dark/50 italic text-xs pt-1 border-t border-gold/10 pt-3">
               Caso seja um funcionario novo ou ainda tenha duvidas sobre o funcionamento da corporacao,
               consulte o <span className="text-gold/60 not-italic font-mono tracking-wide">Guia para Novos Funcionarios</span>.

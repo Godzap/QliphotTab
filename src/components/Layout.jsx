@@ -51,12 +51,6 @@ export default function Layout() {
           </motion.div>
         </AnimatePresence>
       </main>
-
-      <footer className="border-t border-gold/10 py-3 px-6">
-        <p className="text-xs text-moonstone-dark/40 font-mono tracking-widest uppercase text-center">
-          Compendio de Faust - Referencia TTRPG de Lobotomy Corporation
-        </p>
-      </footer>
     </div>
   )
 }

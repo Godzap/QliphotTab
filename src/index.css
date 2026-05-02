@@ -207,8 +207,8 @@
 .tablet-frame-stage {
   position: relative;
   z-index: 2;
-  width: max(100vw, calc(100dvh * (var(--tablet-art-width) / var(--tablet-art-height))));
-  height: max(100dvh, calc(100vw / (var(--tablet-art-width) / var(--tablet-art-height))));
+  width: min(100vw, calc(100dvh * (var(--tablet-art-width) / var(--tablet-art-height))));
+  height: min(100dvh, calc(100vw / (var(--tablet-art-width) / var(--tablet-art-height))));
   aspect-ratio: var(--tablet-art-width) / var(--tablet-art-height);
   overflow: hidden;
 }
@@ -244,8 +244,8 @@
   }
 
   .tablet-frame-stage {
-    width: max(100vw, calc(100vh * (var(--tablet-art-width) / var(--tablet-art-height))));
-    height: max(100vh, calc(100vw / (var(--tablet-art-width) / var(--tablet-art-height))));
+    width: min(100vw, calc(100vh * (var(--tablet-art-width) / var(--tablet-art-height))));
+    height: min(100vh, calc(100vw / (var(--tablet-art-width) / var(--tablet-art-height))));
   }
 }
 
