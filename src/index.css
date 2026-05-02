@@ -6,10 +6,13 @@
   html {
     @apply bg-navy-950 text-moonstone;
     scroll-behavior: smooth;
+    height: 100%;
   }
 
   body {
     @apply font-body antialiased min-h-screen;
+    height: 100%;
+    overflow: hidden;
     background-color: var(--t-body-bg);
     background-image: radial-gradient(circle, var(--t-dot-color) 1px, transparent 1px);
     background-size: 28px 28px;
@@ -156,6 +159,11 @@
   }
 }
 
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
 :root {
   --tablet-frame-width: 1672;
   --tablet-frame-height: 941;
@@ -166,19 +174,21 @@
 }
 
 .tablet-frame-shell {
-  width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(8px, 1.2vw, 18px);
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .tablet-frame-stage {
-  position: relative;
-  width: min(calc(var(--tablet-frame-width) * 1px), calc(100vw - 24px));
-  max-height: calc(100dvh - 24px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: max(100vw, calc(100dvh * (var(--tablet-frame-width) / var(--tablet-frame-height))));
+  height: max(100dvh, calc(100vw / (var(--tablet-frame-width) / var(--tablet-frame-height))));
   aspect-ratio: var(--tablet-frame-width) / var(--tablet-frame-height);
 }
 
@@ -207,19 +217,13 @@
 }
 
 @supports not (height: 100dvh) {
-  .tablet-frame-stage {
-    max-height: calc(100vh - 24px);
-  }
-}
-
-@media (max-width: 700px) {
   .tablet-frame-shell {
-    padding: 6px;
+    height: 100vh;
   }
 
   .tablet-frame-stage {
-    width: calc(100vw - 12px);
-    max-height: calc(100dvh - 12px);
+    width: max(100vw, calc(100vh * (var(--tablet-frame-width) / var(--tablet-frame-height))));
+    height: max(100vh, calc(100vw / (var(--tablet-frame-width) / var(--tablet-frame-height))));
   }
 }
 
