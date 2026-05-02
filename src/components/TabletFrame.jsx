@@ -5,6 +5,14 @@ export default function TabletFrame({ children }) {
 
   return (
     <div className="tablet-frame-shell">
+      <img
+        src={tabletImageSrc}
+        alt=""
+        aria-hidden="true"
+        className="tablet-frame-backdrop"
+        draggable="false"
+      />
+
       <div className="tablet-frame-stage">
         <div className="tablet-frame-viewport">
           {children ?? <Outlet />}
