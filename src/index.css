@@ -165,16 +165,16 @@
 }
 
 :root {
-  --tablet-image-width: 1672;
-  --tablet-image-height: 941;
-  --tablet-art-left: 12;
-  --tablet-art-top: 19;
-  --tablet-art-width: 1648;
-  --tablet-art-height: 899;
-  --tablet-screen-left: 81;
-  --tablet-screen-top: 108;
-  --tablet-screen-width: 1485;
-  --tablet-screen-height: 711;
+  --tablet-image-width: 1920;
+  --tablet-image-height: 1080;
+  --tablet-art-left: 0;
+  --tablet-art-top: 0;
+  --tablet-art-width: 1920;
+  --tablet-art-height: 1080;
+  --tablet-screen-left: 95;
+  --tablet-screen-top: 130;
+  --tablet-screen-width: 1730;
+  --tablet-screen-height: 851;
 }
 
 .tablet-frame-shell {
@@ -227,12 +227,12 @@
 
 .tablet-frame-image {
   position: absolute;
-  left: -0.7282%;
-  top: -2.1135%;
-  width: 101.4563%;
-  height: 104.6730%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   z-index: 3;
-  object-fit: fill;
+  object-fit: contain;
   pointer-events: none;
   user-select: none;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
