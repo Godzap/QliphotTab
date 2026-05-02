@@ -81,10 +81,21 @@ export default function App() {
     }
   }, [tabletMode])
 
+  if (loading && !tabletMode) {
+    return (
+      <ThemeProvider>
+        <AuthProvider>
+          <TabletFrame>
+            <LoadingScreen onComplete={() => setLoading(false)} />
+          </TabletFrame>
+        </AuthProvider>
+      </ThemeProvider>
+    )
+  }
+
   return (
     <ThemeProvider>
       <AuthProvider>
-        {loading && !tabletMode && <LoadingScreen onComplete={() => setLoading(false)} />}
         <HashRouter>
           {!tabletMode && <GlobalKeyHandler />}
           {!tabletMode && <GlobalSearchModal />}

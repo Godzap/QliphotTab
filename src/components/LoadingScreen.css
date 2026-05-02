@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&display=swap');
 
 .lc-loading-wrap {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: 10000;
+  z-index: 10;
   background: #000;
   font-family: 'Barlow Condensed', sans-serif;
   overflow: hidden;
@@ -202,7 +202,7 @@
 
 /* ── PROGRESS ── */
 .lc-progress-area {
-  width: min(560px, 80vw);
+  width: min(560px, 80%);
   opacity: 0;
   animation: lcFadeIn 0.4s ease 0.8s forwards;
 }
@@ -238,7 +238,7 @@
 
 /* ── LOG LINES ── */
 .lc-log-area {
-  width: min(560px, 80vw);
+  width: min(560px, 80%);
   margin-top: 20px;
   opacity: 0;
   animation: lcFadeIn 0.3s ease 1s forwards;
