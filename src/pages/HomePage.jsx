@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { getAll } from '../data'
-import { useTheme, TEAMS } from '../context/ThemeContext'
 
 const CATEGORY_ICONS = {
   abnormalities: (
@@ -25,11 +24,6 @@ const CATEGORY_ICONS = {
   auth: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-7 h-7">
       <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V7.875a4.125 4.125 0 1 0-8.25 0V10.5m-1.5 0h10.5A1.5 1.5 0 0 1 18.75 12v6a1.5 1.5 0 0 1-1.5 1.5H6.75A1.5 1.5 0 0 1 5.25 18v-6a1.5 1.5 0 0 1 1.5-1.5Z" />
-    </svg>
-  ),
-  dashboard: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} className="w-7 h-7">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75h7.5v7.5h-7.5zM12.75 3.75h7.5v4.5h-7.5zM12.75 9.75h7.5v10.5h-7.5zM3.75 12.75h7.5v7.5h-7.5z" />
     </svg>
   ),
 }
@@ -57,13 +51,6 @@ const NAV_ENTRIES = [
     shortcut: 'Ctrl+4',
   },
   {
-    key: 'dashboard',
-    to: '/dashboard',
-    label: 'Dashboard',
-    description: 'Painel principal com status operacional, alertas e atividade recente em tempo real.',
-    shortcut: 'Ctrl+6',
-  },
-  {
     key: 'auth',
     to: '/auth',
     label: 'Autentificar-se',
@@ -83,12 +70,10 @@ const containerVariants = {
 }
 
 export default function HomePage() {
-  const { team, setTeam } = useTheme()
   const counts = {
     abnormalities: getAll('abnormalities').length,
     systems: getAll('systems').length,
     ordeals: getAll('ordeals').length,
-    dashboard: 1,
     auth: 1,
   }
 
@@ -156,63 +141,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="border-t border-gold/20">
-          <div className="flex items-center gap-0 bg-gold/5 border-b border-gold/15 px-6 py-2">
-            <span className="section-label tracking-[0.2em] text-gold/70">Selecionar Time</span>
-            <span className="flex-1 ml-4 h-px bg-gold/15" />
-          </div>
-          <div className="grid grid-cols-3 sm:grid-cols-6 divide-x divide-gold/10">
-            {TEAMS.map((t) => {
-              const active = team === t.id
-              return (
-                <motion.button
-                  key={t.id}
-                  onClick={() => setTeam(t.id)}
-                  whileTap={{ scale: 0.97 }}
-                  className="relative flex flex-col items-center justify-center gap-1.5 py-4 px-3 transition-colors duration-200 group overflow-hidden"
-                  style={{ background: active ? `${t.bg}cc` : 'transparent' }}
-                >
-                  {active && (
-                    <motion.span
-                      layoutId="team-active-bar"
-                      className="absolute top-0 left-0 right-0 h-0.5"
-                      style={{ background: t.color }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    />
-                  )}
-
-                  <span
-                    className="w-4 h-4 rounded-full border border-white/10 transition-all duration-200"
-                    style={{
-                      background: t.color,
-                      boxShadow: active ? `0 0 10px ${t.color}99` : 'none',
-                    }}
-                  />
-
-                  <span
-                    className="font-mono text-[10px] tracking-widest uppercase leading-none transition-all duration-200"
-                    style={{ color: active ? t.color : 'rgba(var(--t-accent-rgb) / 0.4)' }}
-                  >
-                    {t.label}
-                  </span>
-
-                  <span
-                    className="font-mono text-[9px] tracking-wider opacity-0 group-hover:opacity-100 transition-opacity"
-                    style={{ color: `${t.textColor}80` }}
-                  >
-                    {t.sublabel}
-                  </span>
-
-                  <span
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
-                    style={{ background: `${t.color}0d` }}
-                  />
-                </motion.button>
-              )
-            })}
-          </div>
-        </div>
-
         <div className="flex items-center gap-0 bg-gold/5 border-t border-b border-gold/20 px-6 py-2">
           <span className="section-label tracking-[0.2em] text-gold/70">Navegacao</span>
           <span className="flex-1 ml-4 h-px bg-gold/15" />
@@ -240,7 +168,7 @@ export default function HomePage() {
                         {String(counts[key]).padStart(2, '0')}
                       </span>
                       <span className="font-mono text-[10px] text-gold/20 group-hover:text-gold/45 transition-colors tracking-wider">
-                        {key === 'auth' ? 'portal' : key === 'dashboard' ? 'painel' : 'registros'}
+                        {key === 'auth' ? 'portal' : 'registros'}
                       </span>
                     </div>
                   </div>
@@ -256,7 +184,7 @@ export default function HomePage() {
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1.5 text-xs font-mono text-gold/40 group-hover:text-gold transition-colors">
-                      <span>{key === 'auth' ? 'Abrir portal' : key === 'dashboard' ? 'Abrir painel' : 'Ver registros'}</span>
+                      <span>{key === 'auth' ? 'Abrir portal' : 'Ver registros'}</span>
                       <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                       </svg>
@@ -272,72 +200,6 @@ export default function HomePage() {
           ))}
         </motion.div>
 
-        <div className="flex-1 border-t border-gold/20 relative overflow-hidden flex flex-col min-h-[220px]">
-          <div className="flex items-center justify-between bg-gold/5 border-b border-gold/15 px-6 py-2 shrink-0">
-            <span className="section-label tracking-[0.2em]">Interface de Consulta Sephirah</span>
-            <div className="flex items-center gap-2">
-              <motion.span
-                animate={{ opacity: [1, 0.3, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                className="w-1.5 h-1.5 rounded-full bg-tier-aleph"
-              />
-              <span className="font-mono text-xs text-tier-aleph/70 tracking-widest">OFFLINE</span>
-            </div>
-          </div>
-
-          <div className="flex-1 px-6 py-5 space-y-4 select-none pointer-events-none opacity-25">
-            <div className="flex gap-3 items-start">
-              <span className="font-mono text-xs text-gold shrink-0 pt-1">FAUST &gt;</span>
-              <p className="text-sm text-moonstone italic">Este terminal ainda nao esta operacional. Aguarde.</p>
-            </div>
-            <div className="flex justify-end">
-              <p className="text-sm text-moonstone-dark/60 bg-navy-800/40 border border-gold/10 px-4 py-2 max-w-sm font-mono text-xs">
-                Qual tipo de trabalho e seguro para Spider Bud?
-              </p>
-            </div>
-            <div className="flex gap-3 items-start">
-              <span className="font-mono text-xs text-gold shrink-0 pt-1">FAUST &gt;</span>
-              <p className="text-sm text-moonstone italic">Processamento suspenso ate a ativacao completa do sistema.</p>
-            </div>
-          </div>
-
-          <div className="shrink-0 border-t border-gold/15 px-4 py-3 flex gap-3 opacity-20 pointer-events-none select-none">
-            <div
-              className="flex-1 bg-navy-900/60 border border-gold/20 px-4 py-2 text-sm font-mono text-moonstone-dark/40"
-              style={{ clipPath: 'polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%)' }}
-            >
-              Consultar compendio...
-            </div>
-            <div className="border border-gold/20 text-gold/40 font-mono text-xs px-5 py-2 tracking-widest uppercase flex items-center">
-              Enviar
-            </div>
-          </div>
-
-          <div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{
-              background: 'repeating-linear-gradient(-45deg, transparent, transparent 18px, rgba(0,255,153,0.015) 18px, rgba(0,255,153,0.015) 36px)',
-            }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.4 }}
-              className="border border-gold/30 bg-navy-950/90 px-10 py-6 text-center space-y-2.5"
-              style={{ clipPath: 'polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))' }}
-            >
-              <p
-                className="font-display text-lg text-gold/80 tracking-[0.3em] uppercase font-semibold"
-                style={{ textShadow: '0 0 20px rgba(0,255,153,0.3)' }}
-              >
-                Em Desenvolvimento
-              </p>
-              <p className="font-mono text-xs text-moonstone-dark/50 tracking-widest mt-1">
-                Interface de Consulta Sephirah - Implementacao Pendente
-              </p>
-            </motion.div>
-          </div>
-        </div>
       </motion.div>
     </div>
   )
